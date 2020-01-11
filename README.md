@@ -1,2 +1,4 @@
-# Java_Training-Reverse_Number
-First assignment on the Java training. Reversing a number without using any String operations.
+# Java LP Training (Trainee- Krishantha Dinesh)
+
+This is the official repository for the Java LP Training.
+Each directory/file contains different assignments given for completion.

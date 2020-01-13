@@ -17,26 +17,31 @@ public class Tester {
 
     public static void main(String[] args) throws IOException {
         
-        try (FileReader fileReader = new FileReader("Document.txt");
-                Reader reader = new ReaderOverride(fileReader)) {
+        ReaderOverride readerOverride = new ReaderOverride(new FileReader("Document.txt"));
 
-            int asciiValue = 0;
-            char singleCharacter = 0;
+        System.out.println();
 
-            // reads to the end of the text file
-            while ((asciiValue = reader.read()) != -1) {
+        String line = null;
 
-                // converts ASCII int to character
-                singleCharacter = (char) asciiValue;
+        while ((line = readerOverride.readLine()) != null) {
+            System.out.println("Output from readLine() method: " + line);
+        }
+        
+        readerOverride = new ReaderOverride(new FileReader("Document.txt"));
 
-                // prints character
-                System.out.print(singleCharacter);
-            }
-            
-            System.out.println();
-            
-        } catch (IOException ex) {
-            System.out.println("Exception thrown: " + ex);
+        int asciiValue = 0;
+        char singleCharacter = 0;
+
+        System.out.print("Output from read() method: ");
+
+        // reads to the end of the text file
+        while ((asciiValue = readerOverride.read()) != -1) {
+
+            // converts ASCII int to character
+            singleCharacter = (char) asciiValue;
+
+            // prints character
+            System.out.print(singleCharacter);
         }
     }
 }

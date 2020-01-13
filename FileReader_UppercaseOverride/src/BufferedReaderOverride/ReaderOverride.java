@@ -30,4 +30,18 @@ public class ReaderOverride extends BufferedReader {
             return asciiValue;
         }
     }
+    
+    
+    @Override
+    public String readLine() throws IOException {
+
+        String line = super.readLine();
+
+        if (line != null) {
+            return line.toUpperCase();
+        } else {
+            return null;
+        }
+    }
+
 }

@@ -23,9 +23,9 @@ public class FileReader_FileWriter {
     /**
      * @param args the command line arguments
      */
-    static Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 
-    private static void read(String path) throws IOException {
+    private void read(String path) throws IOException {
 
         FileReader fileReader = null;
         BufferedReader bufferedReader = null;
@@ -42,16 +42,9 @@ public class FileReader_FileWriter {
             }
         } catch (FileNotFoundException ex) {
 
-            System.out.println("Sorry! That file was not found. Please create a new file.");
-            System.out.print("\nPlease enter the directory path to save the file: ");
-            String newPath = write(scanner.nextLine());
-            System.out.println("File saved!");
-
-            System.out.println("\nReading the saved file!");
-            read(newPath);
-        } catch (IOException ex) {
-
-            System.out.println("Exception thrown: " + ex);
+            System.out.println("Sorry! That file was not found!");
+            System.out.print("\nPlease enter a directory path to read the file (Including the file name with extension): ");
+            read(scanner.nextLine());
         } finally {
 
             if (fileReader != null) {
@@ -63,12 +56,11 @@ public class FileReader_FileWriter {
         }
     }
 
-    private static String write(String path) throws IOException {
+    private void write(String path) throws IOException {
 
         FileWriter fileWriter = null;
         BufferedWriter bufferedWriter = null;
-        
-        
+
         System.out.print("Please enter the file name: ");
         StringBuilder stringBuilder = new StringBuilder(path);
         stringBuilder.append("\\");
@@ -82,9 +74,6 @@ public class FileReader_FileWriter {
 
             System.out.print("Please enter some text: ");
             bufferedWriter.write(scanner.nextLine());
-        } catch (IOException ex) {
-
-            System.out.println("Exception thrown: " + ex);
         } finally {
 
             if (bufferedWriter != null) {
@@ -95,14 +84,38 @@ public class FileReader_FileWriter {
                 fileWriter.close();
             }
         }
-        
-        return stringBuilder.toString();
     }
 
-    public static void main(String[] args) throws IOException {
+    public void optionsToExecute() throws IOException {
 
-        System.out.print("Please enter file directory path to read from: ");
-        read(scanner.nextLine());
+        System.out.print("\nEnter 1 to read a file OR 2 to write a file: ");
+        int option = 0;
+
+        try {
+            option = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException ex) {
+            
+            System.out.print("Invalid entry! Please try again. ex");
+            optionsToExecute();
+        } finally {
+
+            switch (option) {
+                case 1:
+                    System.out.print("Please enter a directory path to read the file (Including the file name with extension): ");
+                    read(scanner.nextLine());
+                    break;
+                    
+                case 2:
+                    System.out.print("Please enter a directory path to write the file: ");
+                    write(scanner.nextLine());
+                    break;
+                    
+                default:
+                    System.out.println("Invalid entry! Please try again.");
+                    optionsToExecute();
+
+            }
+        }
     }
 
 }

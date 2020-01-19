@@ -1,0 +1,1 @@
+Calls Project1 from Project2 through Maven dependencies (Using jar file of Project1 stored in local Maven Repository)

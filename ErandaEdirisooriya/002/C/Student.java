@@ -1,5 +1,3 @@
-import B.Course;
-
 public class Student{
 	
 	public void print(){

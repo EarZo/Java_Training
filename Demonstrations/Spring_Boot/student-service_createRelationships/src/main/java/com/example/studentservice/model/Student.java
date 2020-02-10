@@ -13,6 +13,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import lombok.Data;
 
 @Entity
@@ -30,11 +33,13 @@ public @Data class Student {
 	Address address;
 
 	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE) // still eagerly loads the collection, but eliminates the MultipleBagFetchException
 	List<Telephone> telephoneNumbers;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "student_project", joinColumns = {
 			@JoinColumn(name = "student_id", referencedColumnName = "studentId") }, inverseJoinColumns = {
 					@JoinColumn(name = "project_id", referencedColumnName = "projectId") })
+	@LazyCollection(LazyCollectionOption.FALSE) // still eagerly loads the collection, but eliminates the MultipleBagFetchException
 	List<Project> projects;
 }

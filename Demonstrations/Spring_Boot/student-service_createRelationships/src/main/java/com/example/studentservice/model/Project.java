@@ -1,6 +1,5 @@
 package com.example.studentservice.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -24,5 +23,5 @@ public @Data class Project {
 	
 	@ManyToMany(mappedBy = "projects")
 	@JsonIgnore
-	List<Student> students = new ArrayList<>();
+	List<Student> students;
 }

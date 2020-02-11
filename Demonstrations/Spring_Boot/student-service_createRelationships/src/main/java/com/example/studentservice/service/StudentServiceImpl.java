@@ -1,8 +1,7 @@
 package com.example.studentservice.service;
 
 import java.util.List;
-
-import javax.persistence.EntityNotFoundException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,11 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student findStudentById(int id) {
-		return studentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Sorry! Requested student not found! Please check the Id and try again."));
+		Optional<Student> s = studentRepository.findById(id);
+		
+		if(s.isPresent())
+			return s.get();
+		return null;
 	}
 
 	@Override

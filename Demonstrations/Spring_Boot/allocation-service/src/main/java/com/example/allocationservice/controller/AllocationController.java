@@ -1,7 +1,5 @@
 package com.example.allocationservice.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +23,8 @@ public class AllocationController {
 		return allocationService.saveAllocation(allocation);
 	}
 	
-	@GetMapping("/allocation/{studentId}")
-	public List<Allocation> getAllocationByStudentId(@PathVariable Integer studentId){
+	@GetMapping("/allocations/{studentId}")
+	public Allocation[] getAllocationsByStudentId(@PathVariable Integer studentId){
 		return allocationService.getAllocationsByStudentId(studentId);
 	}
 	

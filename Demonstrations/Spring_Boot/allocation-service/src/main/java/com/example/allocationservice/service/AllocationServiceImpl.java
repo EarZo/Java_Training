@@ -21,13 +21,15 @@ public class AllocationServiceImpl implements AllocationService {
 	}
 	
 	@Override
-	public List<Allocation> getAllocationsByStudentId(Integer studentId){
+	public Allocation[] getAllocationsByStudentId(Integer studentId){
 		
 		Allocation allocation = new Allocation();
 		allocation.setStudentId(studentId);
 		
 		Example<Allocation> exampleObject = Example.of(allocation);
 		
-		return allocationRepository.findAll(exampleObject);
+		List<Allocation> allocations = allocationRepository.findAll(exampleObject);
+		
+		return allocations.toArray(new Allocation[allocations.size()]);
 	}
 }

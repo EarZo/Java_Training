@@ -32,36 +32,13 @@ public class StudentController {
 	RestTemplate restTemplate;
 	
 	@Bean
-	public RestTemplate getAllocationBean() {
+	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
 	}
 
 	@GetMapping("/hello")
 	public String welcomeMessage() {
 		return "Hello from Spring!";
-	}
-
-	@GetMapping("/students")
-	public List<Student> getAllStudents() {
-		return studentService.findAllStudents();
-	}
-
-	@GetMapping("/student/{id}")
-	public Student getStudent(@PathVariable int id) {
-		
-//		HttpHeaders headers = new HttpHeaders();
-//		
-//		HttpEntity<Allocation[]> allocationsRequest = new HttpEntity<Allocation[]>(new Allocation());
-//
-//		ResponseEntity<Allocation[]> allocationsResponse = restTemplate.exchange("http://localhost:8081/services/allocation" + id, HttpMethod.GET, allocationsRequest, Allocation.class);
-//		
-//		List<Allocation> studentAllocations = allocationsResponse.getBody().;
-//		
-//		Student student = studentService.findStudentById(id);
-//		
-//		student.setStudentAllocations(studentAllocations);
-		
-		return student;
 	}
 
 	@PostMapping("/student")
@@ -72,5 +49,35 @@ public class StudentController {
 				telephone.setStudent(student);
 		
 		return studentService.saveStudent(student);
+	}
+	
+	@GetMapping("/allocation/{studentId}")
+	public Allocation[] getStudentAllocations(@PathVariable Integer studentId){
+		HttpHeaders httpHeaders = new HttpHeaders();
+		
+		HttpEntity<String> allocationsRequest = new HttpEntity<>("", httpHeaders);
+
+		ResponseEntity<Allocation[]> allocationsResponse = restTemplate.exchange("http://localhost:8081/services/allocations/" + studentId, HttpMethod.GET, allocationsRequest, Allocation[].class);
+		
+		return allocationsResponse.getBody();
+	}
+
+	@GetMapping("/student/{studentId}")
+	public Student getStudent(@PathVariable Integer studentId) {
+		Student student = studentService.findStudentById(studentId);
+		student.setStudentAllocations(getStudentAllocations(studentId));
+		
+		return student;
+	}
+
+	@GetMapping("/students")
+	public List<Student> getAllStudents() {
+		List<Student> studentList = studentService.findAllStudents();
+		
+		for(Student student : studentList) {
+			student.setStudentAllocations(getStudentAllocations(student.getStudentId()));
+		}
+		
+		return studentList;
 	}
 }

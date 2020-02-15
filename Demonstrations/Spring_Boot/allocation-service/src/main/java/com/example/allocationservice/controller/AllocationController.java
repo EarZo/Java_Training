@@ -17,6 +17,11 @@ public class AllocationController {
 
 	@Autowired
 	AllocationService allocationService;
+
+	@GetMapping("/hello")
+	public String welcomeMessage() {
+		return "Hello from Allocation-Service!";
+	}
 	
 	@PostMapping("/allocation")
 	public Allocation saveAllocation(@RequestBody Allocation allocation) {

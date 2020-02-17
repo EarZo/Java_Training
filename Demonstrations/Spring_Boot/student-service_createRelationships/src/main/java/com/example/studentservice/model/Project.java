@@ -22,6 +22,6 @@ public @Data class Project {
 	String projectName;
 	
 	@ManyToMany(mappedBy = "projects")
-	@JsonIgnore
+//	@JsonIgnore
 	List<Student> students;
 }

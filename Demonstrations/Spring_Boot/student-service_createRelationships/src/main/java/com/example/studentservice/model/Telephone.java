@@ -22,6 +22,6 @@ public @Data class Telephone {
 
 	@ManyToOne
 	@JoinColumn(name = "student_id")
-	@JsonIgnore
+//	@JsonIgnore
 	Student student;
 }

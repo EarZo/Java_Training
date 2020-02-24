@@ -11,8 +11,6 @@ import java.util.*;
 public class ChatServer {
     private int port;
 	private String userName;
-    private Set<String> userNames = new HashSet<>();
-    private Set<UserThread> userThreads = new HashSet<>();
 	private Map<String, UserThread> userMap = new HashMap<String, UserThread>();
 	private InputStream input;
 	private BufferedReader reader;
@@ -32,11 +30,10 @@ public class ChatServer {
 				input = socket.getInputStream();
 				reader = new BufferedReader(new InputStreamReader(input));
 				userName = reader.readLine();
-                System.out.println(userName + " has connected to the server succesfully!");
+                System.out.println(userName + " has connected to the server successfully!");
  
-                UserThread newUser = new UserThread(socket, this);
+                UserThread newUser = new UserThread(socket, this, userName);
 				userMap.put(userName, newUser);
-                userThreads.add(newUser);
                 newUser.start();
  
             }
@@ -55,48 +52,43 @@ public class ChatServer {
      * Delivers a message from one user to others (broadcasting)
      */
     void broadcast(String message, UserThread excludeUser) {
-        for (UserThread aUser : userThreads) {
+        for (UserThread aUser : userMap.values()) {
             if (aUser != excludeUser) {
                 aUser.sendMessage(message);
             }
         }
     }
-	
-	
  
     /**
-     * Delivers a message from one user to others (broadcasting)
+     * Delivers a message from one user to another single user (broadcasting)
      */
     void broadcastToOne(String message, String targetUser) {
 		userMap.get(targetUser).sendMessage(message);
     }
  
     /**
-     * Stores username of the newly connected client.
-     */
-    void addUserName(String userName) {
-        userNames.add(userName);
-    }
- 
-    /**
-     * When a client is disconneted, removes the associated username and UserThread
+     * When a client is disconnected, removes the associated username and UserThread
      */
     void removeUser(String userName, UserThread aUser) {
-        boolean removed = userNames.remove(userName);
+        boolean removed = userMap.remove(userName, aUser);
+
         if (removed) {
-            userThreads.remove(aUser);
-            System.out.println("The user " + userName + " quitted");
+            System.out.println(userName + " left!");
         }
     }
  
     Set<String> getUserNames() {
-        return this.userNames;
+        return this.userMap.keySet();
     }
  
     /**
      * Returns true if there are other users connected (not count the currently connected user)
      */
     boolean hasUsers() {
-        return !this.userNames.isEmpty();
+        return !this.userMap.isEmpty();
+    }
+
+    boolean hasMoreThanOneUser(){
+        return userMap.size() > 1;
     }
 }

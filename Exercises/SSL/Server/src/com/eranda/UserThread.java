@@ -12,10 +12,12 @@ public class UserThread extends Thread {
     private Socket socket;
     private ChatServer server;
     private PrintWriter writer;
+    private String userName;
  
-    public UserThread(Socket socket, ChatServer server) {
+    public UserThread(Socket socket, ChatServer server, String userName) {
         this.socket = socket;
         this.server = server;
+        this.userName = userName;
     }
  
     public void run() {
@@ -28,27 +30,26 @@ public class UserThread extends Thread {
  
             printUsers();
  
-            String userName = reader.readLine();
-            server.addUserName(userName);
- 
-            String serverMessage = "New user connected: " + userName;
+            String serverMessage = "New user [" + userName + "] connected to the chat!";
             server.broadcast(serverMessage, this);
  
             String clientMessage;
  
             do {
                 clientMessage = reader.readLine();
-				
-				String[] parts = clientMessage.split("-");
-				serverMessage = "[" + userName + "]: " + parts[0];
-				server.broadcastToOne(serverMessage, parts[1]);
+
+                if(!clientMessage.equals("bye")) {
+                    String[] parts = clientMessage.split("->");
+                    serverMessage = "[" + userName + "]: " + parts[0];
+                    server.broadcastToOne(serverMessage, parts[1]);
+                }
  
             } while (!clientMessage.equals("bye"));
  
             server.removeUser(userName, this);
             socket.close();
  
-            serverMessage = userName + " has quitted.";
+            serverMessage = userName + " left the chat!";
             server.broadcast(serverMessage, this);
  
         } catch (IOException ex) {
@@ -60,7 +61,7 @@ public class UserThread extends Thread {
      * Sends a list of online users to the newly connected user.
      */
     void printUsers() {
-        if (server.hasUsers()) {
+        if (server.hasUsers() && server.hasMoreThanOneUser()) {
             writer.println("Connected users: " + server.getUserNames());
         } else {
             writer.println("No other users connected");

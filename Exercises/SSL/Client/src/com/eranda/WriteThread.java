@@ -35,10 +35,15 @@ public class WriteThread extends Thread {
         Scanner scanner = new Scanner(System.in);
  
         String text;
+        System.out.println("To send a message to a user, use 'send <message>-><Receiver>'");
  
         do {
-            System.out.print("[" + userName + "]: ");
             text = scanner.nextLine();
+
+            if(!text.equals("bye")) {
+                text = text.substring(4);
+            }
+
             writer.println(text);
  
         } while (!text.equals("bye"));

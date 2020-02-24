@@ -29,7 +29,7 @@ public class ChatClient {
         try {
             Socket socket = new Socket(hostname, port);
  
-            System.out.println("Connected to the chat server");
+            System.out.println("Connected to the chat server successfully!");
  
             new ReadThread(socket, this).start();
             new WriteThread(socket, this).start();

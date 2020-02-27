@@ -1,5 +1,6 @@
 package com.eranda;
 
+import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -7,6 +8,7 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.*;
 
 public class Server {
@@ -20,31 +22,20 @@ public class Server {
 
 
             HttpServer server = HttpServer.create(new InetSocketAddress(8082), 0);
-            server.createContext("/", new MyHandler());
-            server.setExecutor(null); // creates a default executor
+            HttpContext httpContext = server.createContext("/");
+            httpContext.setHandler(Server::handle);
             server.start();
         } catch (IOException e) {
             throw new RuntimeException("IO Exception occurred in the server side!", e);
         }
     }
 
-    static class MyHandler implements HttpHandler {
-        @Override
-        public void handle(HttpExchange httpExchange) throws IOException {
-            while (true) {
-                try (BufferedReader br = new BufferedReader(new InputStreamReader(httpExchange.getRequestBody(), "utf-8"))) {
-                    StringBuilder response = new StringBuilder();
-                    String responseLine = null;
-
-                    while (true) {
-                        if (((responseLine = br.readLine()) != null)) {
-                            response.append(responseLine.trim());
-                            break;
-                        }
-                    }
-                    System.out.println(response.toString());
-                }
-            }
-        }
+    static void handle(HttpExchange httpExchange) throws IOException {
+        System.out.println("Inside handle() method");
+        String response = "Hi there!";
+        httpExchange.sendResponseHeaders(200, response.getBytes().length);
+        OutputStream outputStream = httpExchange.getResponseBody();
+        outputStream.write(response.getBytes());
+        outputStream.close();
     }
 }

@@ -8,38 +8,106 @@ import java.util.Scanner;
 
 public class Client {
 
-    public static void main(String[] args) {
-        try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Client program started!"
-                    +"\n\nTo connect to the server use 'connect <server ip-address>:<server port> as <Your name>': ");
-            String response = scanner.nextLine();
+    private static final String USER_AGENT = "Mozilla/5.0";
+    private static String username;
 
-            String[] parts = response.split("\\s+");
-            String[] connection = parts[1].split(":");
+    public static void main(String[] args) throws IOException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Client program started!"
+                +"\n\nTo connect to the server use 'connect <server ip-address>:<server port> as <Your name>': ");
+        String response = scanner.nextLine();
 
-            String username = parts[3];
-            String hostname = connection[0];
-            int port = Integer.parseInt(connection[1]);
-            URL url = new URL("http://" + hostname + ":" + port + "/");
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("POST");
+        String[] parts = response.split("\\s+");
+        String[] connection = parts[1].split(":");
 
-            System.setProperty("java.net.preferIPv4Stack" , "true");
-            con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("Accept", "application/json");
-            con.setDoOutput(true);
+        username = parts[3];
+        String hostname = connection[0];
+        int port = Integer.parseInt(connection[1]);
 
-            String jsonInputString = "{\"username\": \"" + username + "\"}";
+        Client client = new Client();
+        client.sendPOST(username, hostname, port);
+//        sendGET(hostname, port);
+//        System.out.println("GET Done!");
+    }
 
-            try(OutputStream outputStream = con.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
-                outputStream.write(input, 0, input.length);
+    static void sendGET(String hostname, int port) throws IOException {
+        URL url = new URL("http://" + hostname + ":" + port);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("User-Agent", USER_AGENT);
+        int responseCode = con.getResponseCode();
+        System.out.println("GET Response Code :: " + responseCode);
+
+        if(responseCode == HttpURLConnection.HTTP_OK){
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while((inputLine = bufferedReader.readLine()) != null){
+                response.append(inputLine);
             }
+            bufferedReader.close();
 
-            con.disconnect();
-        } catch (IOException e) {
-            throw new RuntimeException("IO Exception occurred in the client side!", e);
+            System.out.println(response.toString());
+        }else{
+            System.out.println("GET Request not worked!");
         }
+    }
+
+    private void sendPOST(String username, String hostname, int port) throws IOException {
+        URL obj = new URL("http://" + hostname + ":" + port);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setRequestMethod("POST");
+        con.setRequestProperty("User-Agent", USER_AGENT);
+
+        // For POST only - START
+//        con.setDoOutput(true);
+//        OutputStream os = con.getOutputStream();
+//        os.write(username.getBytes());
+//        os.flush();
+//        os.close();
+        // For POST only - END
+
+        int responseCode = con.getResponseCode();
+
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            System.out.println("Connected to the chat server successfully!");
+            new ReadThread(this, con).start();
+            new WriteThread(this, con).start();
+        } else {
+            System.out.println("POST request not worked");
+        }
+
+        // For POST only - START
+//        con.setDoOutput(true);
+//        OutputStream os = con.getOutputStream();
+//        os.write(username.getBytes());
+//        os.flush();
+//        os.close();
+//        // For POST only - END
+//
+//        int responseCode = con.getResponseCode();
+//        System.out.println("POST Response Code :: " + responseCode);
+//
+//        if (responseCode == HttpURLConnection.HTTP_OK) { //success
+//            BufferedReader in = new BufferedReader(new InputStreamReader(
+//                    con.getInputStream()));
+//            String inputLine;
+//            StringBuffer response = new StringBuffer();
+//
+//            while ((inputLine = in.readLine()) != null) {
+//                response.append(inputLine);
+//            }
+//            in.close();
+//
+//            // print result
+//            System.out.println(response.toString());
+//        } else {
+//            System.out.println("POST request not worked");
+//        }
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

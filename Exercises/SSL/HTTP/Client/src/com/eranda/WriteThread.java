@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Scanner;
 
 public class WriteThread extends Thread {
@@ -12,14 +13,14 @@ public class WriteThread extends Thread {
     private Client client;
     private String userName;
 
-    public WriteThread(Client client, HttpURLConnection con) {
+    public WriteThread(Client client, String hostname, int port) {
         this.client = client;
-        this.con = con;
 
         try {
+            this.con = (HttpURLConnection) new URL("http://" + hostname + ":" + port).openConnection();
             con.setDoOutput(true);
             OutputStream output = con.getOutputStream();
-//            os.write(userName.getBytes());
+            output.write(userName.getBytes());
             writer = new PrintWriter(output, true);
         } catch (IOException ex) {
             throw new RuntimeException("Error getting output stream!", ex);

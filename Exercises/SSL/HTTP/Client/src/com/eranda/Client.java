@@ -55,8 +55,8 @@ public class Client {
     }
 
     private void sendPOST(String username, String hostname, int port) throws IOException {
-        URL obj = new URL("http://" + hostname + ":" + port);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        URL url = new URL("http://" + hostname + ":" + port);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("User-Agent", USER_AGENT);
 
@@ -73,7 +73,7 @@ public class Client {
         if (responseCode == HttpURLConnection.HTTP_OK) {
             System.out.println("Connected to the chat server successfully!");
             new ReadThread(this, con).start();
-            new WriteThread(this, con).start();
+            new WriteThread(this, hostname, port).start();
         } else {
             System.out.println("POST request not worked");
         }

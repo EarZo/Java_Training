@@ -8,44 +8,80 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class WriteThread extends Thread {
-    private PrintWriter writer;
-    HttpURLConnection con;
     private Client client;
-    private String userName;
+    private String username;
+    HttpURLConnection httpURLConnection;
+    private static URL url;
+    private static final String USER_AGENT = "Mozilla/5.0";
 
-    public WriteThread(Client client, String hostname, int port) {
+    public WriteThread(Client client, URL url) throws IOException {
         this.client = client;
-
-        try {
-            this.con = (HttpURLConnection) new URL("http://" + hostname + ":" + port).openConnection();
-            con.setDoOutput(true);
-            OutputStream output = con.getOutputStream();
-            output.write(userName.getBytes());
-            writer = new PrintWriter(output, true);
-        } catch (IOException ex) {
-            throw new RuntimeException("Error getting output stream!", ex);
-        }
+        this.httpURLConnection = (HttpURLConnection) url.openConnection();
+        this.username = client.getUsername();
     }
 
     public void run() {
-
-        userName = client.getUsername();
-        writer.println(userName);
-
         Scanner scanner = new Scanner(System.in);
 
         String text;
         System.out.println("To send a message to a user, use 'send <message>-><Receiver>'");
 
-        do {
-            text = scanner.nextLine();
+        try {
+            do {
+                text = scanner.nextLine();
 
-            if(!text.equals("bye")) {
-                text = text.substring(4);
-            }
+                if (!text.equals("bye")) {
+//                    text = text.substring(4);
+                }
 
-            writer.println(text);
+                sendPOST(text, httpURLConnection);
 
-        } while (!text.equals("bye"));
+            } while (!text.equals("bye"));
+        } catch (IOException ex) {
+            throw new RuntimeException("Error writing to the stream!", ex);
+        }
+    }
+
+    private void sendPOST(String text, HttpURLConnection httpURLConnection) throws IOException {
+
+        httpURLConnection.setRequestMethod("POST");
+        httpURLConnection.setRequestProperty("User-Agent", USER_AGENT);
+
+        // For POST only - START
+        httpURLConnection.setDoOutput(true);
+        OutputStream os = httpURLConnection.getOutputStream();
+        os.write(text.getBytes());
+        os.flush();
+        os.close();
+        // For POST only - END
+
+
+        // For POST only - START
+//        con.setDoOutput(true);
+//        OutputStream os = con.getOutputStream();
+//        os.write(username.getBytes());
+//        os.flush();
+//        os.close();
+//        // For POST only - END
+//
+//        int responseCode = con.getResponseCode();
+//        System.out.println("POST Response Code :: " + responseCode);
+//
+//        if (responseCode == HttpURLConnection.HTTP_OK) { //success
+//            BufferedReader in = new BufferedReader(new InputStreamReader(
+//                    con.getInputStream()));
+//            String inputLine;
+//            StringBuffer response = new StringBuffer();
+//
+//            while ((inputLine = in.readLine()) != null) {
+//                response.append(inputLine);
+//            }
+//            in.close();
+//
+//            // print result
+//            System.out.println(response.toString());
+//        } else {
+//            System.out.println("POST request not worked");
+//        }
     }
 }

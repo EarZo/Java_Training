@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ebb6c46-0cb1-4383-89ca-6f06786539ec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Client/META-INF/Client.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Client/com/eranda/WriteThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Client/com/eranda/WriteThread.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/eranda/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eranda/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/eranda/ReadThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eranda/ReadThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/eranda/WriteThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/eranda/WriteThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/com/eranda/Server$MyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/com/eranda/Server$MyHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/out/production/Server/com/eranda/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/out/production/Server/com/eranda/Server.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Server/src/com/eranda/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/com/eranda/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/src/com/eranda/UserThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/src/com/eranda/UserThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/src/com/eranda/UserThread.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +49,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
-    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.eranda.Client" />
       <module name="Client" />
       <extension name="coverage">
@@ -82,6 +82,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="137" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583078461971">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="137" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768@0.0.1366.768" timestamp="1583078461971" />
     <state x="488" y="67" key="#com.intellij.ide.util.MemberChooser" timestamp="1582751928072">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -90,38 +94,38 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="462" y="125" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1582726756904" />
-    <state width="1323" height="192" key="GridCell.Tab.0.bottom" timestamp="1582847656289">
+    <state width="1323" height="238" key="GridCell.Tab.0.bottom" timestamp="1583109936636">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="192" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1582847656289" />
-    <state width="1323" height="192" key="GridCell.Tab.0.center" timestamp="1582847656289">
+    <state width="1323" height="238" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1583109936636" />
+    <state width="1323" height="238" key="GridCell.Tab.0.center" timestamp="1583109936636">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="192" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1582847656289" />
-    <state width="1323" height="192" key="GridCell.Tab.0.left" timestamp="1582847656288">
+    <state width="1323" height="238" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1583109936636" />
+    <state width="1323" height="238" key="GridCell.Tab.0.left" timestamp="1583109936636">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="192" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1582847656288" />
-    <state width="1323" height="192" key="GridCell.Tab.0.right" timestamp="1582847656289">
+    <state width="1323" height="238" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1583109936636" />
+    <state width="1323" height="238" key="GridCell.Tab.0.right" timestamp="1583109936636">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="192" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1582847656289" />
-    <state width="1323" height="238" key="GridCell.Tab.1.bottom" timestamp="1582847656282">
+    <state width="1323" height="238" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1583109936636" />
+    <state width="1323" height="238" key="GridCell.Tab.1.bottom" timestamp="1583109936636">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="238" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1582847656282" />
-    <state width="1323" height="238" key="GridCell.Tab.1.center" timestamp="1582847656282">
+    <state width="1323" height="238" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1583109936636" />
+    <state width="1323" height="238" key="GridCell.Tab.1.center" timestamp="1583109936636">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="238" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1582847656282" />
-    <state width="1323" height="238" key="GridCell.Tab.1.left" timestamp="1582847656282">
+    <state width="1323" height="238" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1583109936636" />
+    <state width="1323" height="238" key="GridCell.Tab.1.left" timestamp="1583109936636">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="238" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1582847656282" />
-    <state width="1323" height="238" key="GridCell.Tab.1.right" timestamp="1582847656282">
+    <state width="1323" height="238" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1583109936636" />
+    <state width="1323" height="238" key="GridCell.Tab.1.right" timestamp="1583109936636">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="1323" height="238" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1582847656282" />
+    <state width="1323" height="238" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1583109936636" />
     <state x="65" y="4" key="new project wizard" timestamp="1582664408342">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
@@ -131,14 +135,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/eranda/Client.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/src/com/eranda/WriteThread.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/eranda/WriteThread.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="5" />
+          <line>52</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -10,7 +10,7 @@ public class ReadThread extends Thread {
     private BufferedReader reader;
     HttpURLConnection con;
 
-    public ReadThread(Client client, HttpURLConnection con) {
+    public ReadThread(HttpURLConnection con) {
         this.con = con;
 
         try {

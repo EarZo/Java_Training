@@ -10,7 +10,7 @@ public class ReadThread extends Thread {
     private BufferedReader reader;
     HttpURLConnection con;
 
-    public ReadThread(Client client, HttpURLConnection con) {
+    public ReadThread(HttpURLConnection con) {
         this.con = con;
 
         try {
@@ -23,11 +23,9 @@ public class ReadThread extends Thread {
     public void run() {
 
         try {
-            while (true) {
-                String response = reader.readLine();
-                System.out.println(response);
-            }
-        } catch (SocketException ex){
+            String response = reader.readLine();
+            System.out.println(response);
+        } catch (SocketException ex) {
             System.out.println("See you again soon!");
         } catch (IOException ex) {
             throw new RuntimeException("Error reading from server!", ex);

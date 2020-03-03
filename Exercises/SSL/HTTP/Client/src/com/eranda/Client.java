@@ -3,13 +3,14 @@ package com.eranda;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Client {
 
-    private static final String USER_AGENT = "Mozilla/5.0";
     private static String username;
+    private static HttpURLConnection httpURLConnection;
+    private static URL url;
+    private static final String USER_AGENT = "Mozilla/5.0";
 
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
@@ -24,90 +25,76 @@ public class Client {
         String hostname = connection[0];
         int port = Integer.parseInt(connection[1]);
 
+
+        url = new URL("http://" + hostname + ":" + port + "/handle");
+        System.out.println(url.toString());
+        httpURLConnection = (HttpURLConnection) url.openConnection();
+
         Client client = new Client();
-        client.sendPOST(username, hostname, port);
-//        sendGET(hostname, port);
-//        System.out.println("GET Done!");
+        client.checkConnection();
     }
 
-    static void sendGET(String hostname, int port) throws IOException {
-        URL url = new URL("http://" + hostname + ":" + port);
-        HttpURLConnection con = (HttpURLConnection) url.openConnection();
-        con.setRequestMethod("GET");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);
+    private void checkConnection() throws IOException {
 
-        if(responseCode == HttpURLConnection.HTTP_OK){
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
+//        String command = "Hi to the server!";
+//
+//        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+//
+//        InputStream inputStream = conn.getInputStream();
+//        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//
+//        String inputLine;
+//
+//        while ((inputLine = bufferedReader.readLine()) != null) {
+//            System.out.println(inputLine);
+//        }
+//
+//        bufferedReader.close();
+//        inputStreamReader.close();
+//        inputStream.close();
 
-            while((inputLine = bufferedReader.readLine()) != null){
-                response.append(inputLine);
-            }
-            bufferedReader.close();
 
-            System.out.println(response.toString());
-        }else{
-            System.out.println("GET Request not worked!");
-        }
-    }
 
-    private void sendPOST(String username, String hostname, int port) throws IOException {
-        URL obj = new URL("http://" + hostname + ":" + port);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        con.setRequestMethod("POST");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-
-        // For POST only - START
-//        con.setDoOutput(true);
-//        OutputStream os = con.getOutputStream();
-//        os.write(username.getBytes());
-//        os.flush();
-//        os.close();
-        // For POST only - END
-
-        int responseCode = con.getResponseCode();
+        httpURLConnection.setRequestMethod("GET");
+        httpURLConnection.setRequestProperty("User-Agent", USER_AGENT);
+        int responseCode = httpURLConnection.getResponseCode();
 
         if (responseCode == HttpURLConnection.HTTP_OK) {
             System.out.println("Connected to the chat server successfully!");
-            new ReadThread(this, con).start();
-            new WriteThread(this, con).start();
+            new ReadThread(httpURLConnection).start();
+            new WriteThread(this, url).start();
         } else {
-            System.out.println("POST request not worked");
+            System.out.println("GET request not worked");
         }
 
-        // For POST only - START
-//        con.setDoOutput(true);
-//        OutputStream os = con.getOutputStream();
-//        os.write(username.getBytes());
-//        os.flush();
-//        os.close();
-//        // For POST only - END
-//
-//        int responseCode = con.getResponseCode();
-//        System.out.println("POST Response Code :: " + responseCode);
-//
-//        if (responseCode == HttpURLConnection.HTTP_OK) { //success
-//            BufferedReader in = new BufferedReader(new InputStreamReader(
-//                    con.getInputStream()));
-//            String inputLine;
-//            StringBuffer response = new StringBuffer();
-//
-//            while ((inputLine = in.readLine()) != null) {
-//                response.append(inputLine);
-//            }
-//            in.close();
-//
-//            // print result
-//            System.out.println(response.toString());
-//        } else {
-//            System.out.println("POST request not worked");
-//        }
     }
 
     public String getUsername() {
         return username;
+    }
+
+    static void sendGET(String hostname, int port) throws IOException {
+//        URL url = new URL("http://" + hostname + ":" + port);
+//        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+//        con.setRequestMethod("GET");
+//        con.setRequestProperty("User-Agent", USER_AGENT);
+//        int responseCode = con.getResponseCode();
+//        System.out.println("GET Response Code :: " + responseCode);
+//
+//        if(responseCode == HttpURLConnection.HTTP_OK){
+//            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+//            String inputLine;
+//            StringBuffer response = new StringBuffer();
+//
+//            while((inputLine = bufferedReader.readLine()) != null){
+//                response.append(inputLine);
+//            }
+//            bufferedReader.close();
+//
+//            System.out.println(response.toString());
+//        }else{
+//            System.out.println("GET Request not worked!");
+//        }
     }
 }

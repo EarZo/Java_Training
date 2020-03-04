@@ -14,8 +14,7 @@ public class Client {
 
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Client program started!"
-                + "\n\nTo connect to the server use 'connect <server ip-address>:<server port> as <Your name>': ");
+        System.out.print("To connect to the server use 'connect <server ip-address>:<server port> as <Your name>': ");
         String response = scanner.nextLine();
 
         String[] parts = response.split("\\s+");
@@ -33,14 +32,21 @@ public class Client {
     }
 
     private void checkConnection() throws IOException {
-
-        httpURLConnection.setRequestMethod("GET");
+        httpURLConnection.setRequestMethod("POST");
         httpURLConnection.setRequestProperty("User-Agent", USER_AGENT);
+        httpURLConnection.setDoOutput(true);
+        int port = new Listener().listen();
+        String userDetails = username + " " + port;
+
+        try( DataOutputStream dataOutputStream = new DataOutputStream( httpURLConnection.getOutputStream())) {
+            dataOutputStream.write( userDetails.getBytes() );
+        }
+
         int responseCode = httpURLConnection.getResponseCode();
 
         if (responseCode == HttpURLConnection.HTTP_OK) {
-            System.out.println("Connected to the Server successfully!");
-            new WriteThread(this, url).start();
+            System.out.println("CONNECTED TO THE SERVER SUCCESSFULLY AS *" + username.toUpperCase() + "*!");
+            new Writer(this, url).start();
         } else {
             System.out.println("GET request not worked");
         }

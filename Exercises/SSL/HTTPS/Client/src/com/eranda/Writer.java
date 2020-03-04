@@ -25,7 +25,7 @@ public class Writer extends Thread {
         Scanner scanner = new Scanner(System.in);
 
         String text;
-        System.out.println("\nTo send a message to a user, use 'send <message>-><Receiver>'\n");
+        System.out.println("\nTo send a message to a user, use 'send <message>-><Receiver>'");
 
         try {
             do {

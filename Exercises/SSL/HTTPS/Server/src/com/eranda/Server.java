@@ -20,7 +20,7 @@ public class Server {
             HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
             server.createContext("/", new MyHandler());
             server.start();
-            System.out.println("com.eranda.Server started successfully!");
+            System.out.println("Server started successfully!");
         } catch (IOException e) {
             throw new RuntimeException("IO Exception occurred in the server side!", e);
         }
@@ -29,20 +29,21 @@ public class Server {
     static class MyHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange httpExchange) throws IOException {
-            System.out.println("Inside handle() method");
 
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpExchange.getRequestBody()));
-            System.out.println(bufferedReader.readLine());
-            bufferedReader.close();
+            if(httpExchange.getRequestBody().available() > 0) {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpExchange.getRequestBody()));
+                System.out.println(bufferedReader.readLine());
+                bufferedReader.close();
+            }
+
+            System.out.println(httpExchange.getRemoteAddress().toString());
 
             String response = "Hi there!";
             httpExchange.sendResponseHeaders(200, response.getBytes().length);
             OutputStream outputStream = httpExchange.getResponseBody();
             outputStream.write(response.getBytes());
             outputStream.close();
-            System.out.println("HttpConnection Closing!");
             httpExchange.close();
-            System.out.println("HttpConnection Closed!");
         }
     }
 

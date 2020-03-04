@@ -8,14 +8,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
 
-public class WriteThread extends Thread {
+public class Writer extends Thread {
     private Client client;
     private String username;
     HttpURLConnection httpURLConnection;
     private static URL url;
     private static final String USER_AGENT = "Mozilla/5.0";
 
-    public WriteThread(Client client, URL url) {
+    public Writer(Client client, URL url) {
         this.client = client;
         this.url = url;
         this.username = client.getUsername();
@@ -29,12 +29,11 @@ public class WriteThread extends Thread {
 
         try {
             do {
-                System.out.print("Waiting for input: ");
                 text = scanner.nextLine();
 
-//                if (!text.equals("bye")) {
-//                    text = text.substring(4);
-//                }
+                if (!text.equals("bye")) {
+                    text = text.substring(5);
+                }
 
                 sendPOST(text);
 
@@ -58,8 +57,6 @@ public class WriteThread extends Thread {
         int responseCode = httpURLConnection.getResponseCode();
 
         if (responseCode == HttpURLConnection.HTTP_OK) {
-            System.out.println("Message delivery successful!");
-
             BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
             String inputLine;
             StringBuilder response = new StringBuilder();
@@ -68,8 +65,6 @@ public class WriteThread extends Thread {
                 response.append(inputLine);
             }
             in.close();
-
-            System.out.println(response.toString());
         } else {
             System.out.println("POST request not worked");
         }

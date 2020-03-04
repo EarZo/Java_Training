@@ -25,8 +25,6 @@ public class Client {
         String hostname = connection[0];
         int port = Integer.parseInt(connection[1]);
 
-        url = new URL("http://" + hostname + ":" + port + "/handle");
-        System.out.println(url.toString());
         url = new URL("http://" + hostname + ":" + port);
         httpURLConnection = (HttpURLConnection) url.openConnection();
 
@@ -36,35 +34,20 @@ public class Client {
 
     private void checkConnection() throws IOException {
 
-//        String command = "Hi to the server!";
-//
-//        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//
-//        InputStream inputStream = conn.getInputStream();
-//        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//
-//        String inputLine;
-//
-//        while ((inputLine = bufferedReader.readLine()) != null) {
-//            System.out.println(inputLine);
-//        }
-//
-//        bufferedReader.close();
-//        inputStreamReader.close();
-//        inputStream.close();
-
         httpURLConnection.setRequestMethod("GET");
         httpURLConnection.setRequestProperty("User-Agent", USER_AGENT);
         int responseCode = httpURLConnection.getResponseCode();
 
         if (responseCode == HttpURLConnection.HTTP_OK) {
-            System.out.println("Connected to the chat server successfully!");
-//            new ReadThread(httpURLConnection).start();
+            System.out.println("Connected to the Server successfully!");
             new WriteThread(this, url).start();
         } else {
             System.out.println("GET request not worked");
         }
+
+//        for(int i = 0; i < 10; i++){
+//            System.out.println(httpURLConnection.getHeaderFieldKey(i) + " = " + httpURLConnection.getHeaderField(i));
+//        }
     }
 
     public String getUsername() {

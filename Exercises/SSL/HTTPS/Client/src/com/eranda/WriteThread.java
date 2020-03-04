@@ -1,7 +1,9 @@
 package com.eranda;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
@@ -23,16 +25,16 @@ public class WriteThread extends Thread {
         Scanner scanner = new Scanner(System.in);
 
         String text;
-        System.out.println("To send a message to a user, use 'send <message>-><Receiver>'");
+        System.out.println("\nTo send a message to a user, use 'send <message>-><Receiver>'\n");
 
         try {
             do {
-                System.out.println("Waiting for input!");
+                System.out.print("Waiting for input: ");
                 text = scanner.nextLine();
 
-                if (!text.equals("bye")) {
+//                if (!text.equals("bye")) {
 //                    text = text.substring(4);
-                }
+//                }
 
                 sendPOST(text);
 
@@ -47,8 +49,6 @@ public class WriteThread extends Thread {
         httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.setRequestMethod("POST");
         httpURLConnection.setRequestProperty("User-Agent", USER_AGENT);
-
-        // For POST only - START
         httpURLConnection.setDoOutput(true);
 
         try( DataOutputStream dataOutputStream = new DataOutputStream( httpURLConnection.getOutputStream())) {
@@ -56,10 +56,20 @@ public class WriteThread extends Thread {
         }
 
         int responseCode = httpURLConnection.getResponseCode();
-        // For POST only - END
 
         if (responseCode == HttpURLConnection.HTTP_OK) {
             System.out.println("Message delivery successful!");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            System.out.println(response.toString());
         } else {
             System.out.println("POST request not worked");
         }

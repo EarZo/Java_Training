@@ -23,7 +23,16 @@ public class SmartphoneController {
 
 	@GetMapping("/hello")
 	public String sayHello() {
-		return "Hello from SmartphoneController!";
+		return "Hello from Smartphone-Service!";
+	}
+
+	@PostMapping("/smartphone")
+	public Smartphone saveSmartphone(@RequestBody Smartphone smartphone) {
+		if (smartphone.getReviews() != null)
+			for (Review review : smartphone.getReviews())
+				review.setSmartphone(smartphone);
+		
+		return smartphoneService.saveSmartphone(smartphone);
 	}
 
 	@GetMapping("/smartphones")
@@ -34,15 +43,6 @@ public class SmartphoneController {
 	@GetMapping("/smartphone/{id}")
 	public Smartphone getStudent(@PathVariable Integer id) {
 		return smartphoneService.findSmartphoneById(id);
-	}
-
-	@PostMapping("/smartphone")
-	public Smartphone saveSmartphone(@RequestBody Smartphone smartphone) {
-		if (smartphone.getReviews() != null)
-			for (Review review : smartphone.getReviews())
-				review.setSmartphone(smartphone);
-		
-		return smartphoneService.saveSmartphone(smartphone);
 	}
 	
 }

@@ -2,6 +2,7 @@ package com.cellterion.smartphoneservice.controller;
 
 import java.util.List;
 
+import com.cellterion.smartphoneservice.model.SmartphoneDealers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,12 +15,19 @@ import com.cellterion.smartphoneservice.model.Review;
 import com.cellterion.smartphoneservice.model.Smartphone;
 import com.cellterion.smartphoneservice.service.SmartphoneService;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 @RestController
 @RequestMapping("/services")
 public class SmartphoneController {
 
 	@Autowired
 	SmartphoneService smartphoneService;
+
+	@PersistenceContext
+	EntityManager entityManager;
 
 	@GetMapping("/hello")
 	public String sayHello() {
@@ -44,5 +52,11 @@ public class SmartphoneController {
 	public Smartphone getStudent(@PathVariable Integer id) {
 		return smartphoneService.findSmartphoneById(id);
 	}
-	
+
+	@GetMapping("/smartphoneDealers/{id}")
+	public List<SmartphoneDealers> getDealers(@PathVariable Integer id){
+		TypedQuery<SmartphoneDealers> query = entityManager.createQuery("Select dealerId from SmartphoneDealers where smartphoneId=?" + id, SmartphoneDealers.class);
+		return query.getResultList();
+	}
+
 }

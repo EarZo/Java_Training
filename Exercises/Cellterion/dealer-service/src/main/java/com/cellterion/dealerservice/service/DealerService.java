@@ -12,4 +12,6 @@ public interface DealerService {
 
     List<Dealer> findAllDealers();
 
+    List<Dealer> findDealersBySmartphoneId(Integer id);
+
 }

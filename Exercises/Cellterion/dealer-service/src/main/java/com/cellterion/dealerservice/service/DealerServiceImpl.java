@@ -33,4 +33,8 @@ public class DealerServiceImpl implements DealerService {
         return dealerRepository.findAll();
     }
 
+    @Override
+    public List<Dealer> findDealersBySmartphoneId(Integer id) {
+        return dealerRepository.findDealersBySmartphoneId(id);
+    }
 }

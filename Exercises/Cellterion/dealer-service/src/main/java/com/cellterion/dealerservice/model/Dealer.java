@@ -2,10 +2,8 @@ package com.cellterion.dealerservice.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public @Data class Dealer {
@@ -16,4 +14,16 @@ public @Data class Dealer {
 
     String dealerName;
 
+    public Dealer(){
+
+    }
+
+    public Dealer(Integer dealerId, String dealerName) {
+        this.dealerId = dealerId;
+        this.dealerName = dealerName;
+    }
+
+    @OneToMany(mappedBy = "dealer", cascade = CascadeType.ALL)
+//    @LazyCollection(LazyCollectionOption.FALSE) // still eagerly loads the collection, but eliminates the MultipleBagFetchException
+    List<DealerSmartphone> dealerSmartphones;
 }

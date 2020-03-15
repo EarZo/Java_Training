@@ -2,8 +2,8 @@
   <!--Search section starts-->
   <div
     class="site-blocks-cover"
-    data-aos="fade"
     style="background-color: gainsboro; top: -35px"
+    data-aos="fade"
   >
     <div class="container">
       <br />
@@ -84,10 +84,9 @@
       </div>
       <div class="row">
         <div class="col-md-12 block-3 products-wrap">
-          <owl-carousel>
-<!--                      [options]="SlideOptions"-->
-<!--                      [carouselClasses]="['owl-theme', 'row', 'sliding']"-->
-<!--          >-->
+          <owl-carousel-o [options]="customOptions">
+
+            <ng-template carouselSlide>
             <div class="product">
               <a href="servlet_smartphonesByBrand?brandCode=7" class="item">
                 <img
@@ -97,7 +96,8 @@
                 />
               </a>
             </div>
-
+            </ng-template>
+            <ng-template carouselSlide>
             <div class="product">
               <a href="servlet_smartphonesByBrand?brandCode=9" class="item">
                 <img
@@ -107,7 +107,8 @@
                 />
               </a>
             </div>
-
+            </ng-template>
+              <ng-template carouselSlide>
             <div class="product">
               <a href="servlet_smartphonesByBrand?brandCode=48" class="item">
                 <img
@@ -117,7 +118,8 @@
                 />
               </a>
             </div>
-
+              </ng-template>
+                <ng-template carouselSlide>
             <div class="product">
               <a href="servlet_smartphonesByBrand?brandCode=95" class="item">
                 <img
@@ -127,7 +129,8 @@
                 />
               </a>
             </div>
-
+                </ng-template>
+                  <ng-template carouselSlide>
             <div class="product">
               <a href="servlet_smartphonesByBrand?brandCode=1" class="item">
                 <img
@@ -137,7 +140,8 @@
                 />
               </a>
             </div>
-
+                  </ng-template>
+                    <ng-template carouselSlide>
             <div class="product">
               <a href="servlet_smartphonesByBrand?brandCode=80" class="item">
                 <img
@@ -147,7 +151,8 @@
                 />
               </a>
             </div>
-          </owl-carousel>
+                    </ng-template>
+          </owl-carousel-o>
         </div>
       </div>
     </div>
@@ -258,7 +263,3 @@
   <br />
   <br />
 </div>
-
-
-<script src="./src/js/main.js"></script>
-<script src="./src/js/search.js"></script>

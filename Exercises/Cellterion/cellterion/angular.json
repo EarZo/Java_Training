@@ -23,21 +23,23 @@
             "styles": [
               "./node_modules/bootstrap/scss/bootstrap.scss",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/css/style.css",
-              "./node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
-              "./node_modules/owl.carousel/dist/assets/owl.theme.default.min.css",
-              "./node_modules/aos/dist/aos.css"
+              "src/assets/css/style.css",
+              "./node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "./node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
+              "./node_modules/aos/dist/aos.css",
+              "./node_modules/slick-carousel/slick/slick.scss",
+              "./node_modules/slick-carousel/slick/slick-theme.scss"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/jquery-ui-dist/jquery-ui.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "./node_modules/owl.carousel/dist/owl.carousel.min.js",
               "./node_modules/aos/dist/aos.js",
               "./node_modules/less/dist/less.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./node_modules/magnific-popup/dist/jquery.magnific-popup.min.js",
-              "src/js/slick.min.js"
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/slick-carousel/slick/slick.min.js"
             ]
           },
           "configurations": {

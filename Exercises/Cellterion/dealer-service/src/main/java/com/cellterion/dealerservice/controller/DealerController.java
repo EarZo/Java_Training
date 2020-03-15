@@ -48,10 +48,10 @@ public class DealerController{
     }
 
 	@GetMapping("/dealerSmartphone/{id}")
-	public List<Dealer> getDealers(@PathVariable Integer id){
-        return dealerService.findDealersBySmartphoneId(id);
-//		TypedQuery<DealerSmartphone> query = entityManager.createQuery("SELECT * FROM DealerSmartphone WHERE smartphoneDealersId=" + id, DealerSmartphone.class);
-//		return query.getResultList();
+	public List getDealers(@PathVariable Integer id){
+        return entityManager.createQuery
+                ("SELECT DISTINCT d.dealerName, ds.price FROM Dealer d INNER JOIN DealerSmartphone ds ON d.dealerId=ds.dealer.dealerId WHERE smartphoneId = :smartphoneId")
+                .setParameter("smartphoneId", id).getResultList();
 	}
 
 }

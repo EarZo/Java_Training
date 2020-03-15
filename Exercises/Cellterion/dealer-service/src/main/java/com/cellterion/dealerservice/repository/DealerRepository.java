@@ -10,7 +10,4 @@ import java.util.List;
 @Repository
 public interface DealerRepository extends JpaRepository<Dealer, Integer> {
 
-        @Query("SELECT DISTINCT new Dealer(de.dealerId,de.dealerName) FROM Dealer de JOIN de.dealerSmartphones ds WHERE ds.smartphoneId = ?1")
-        List<Dealer> findDealersBySmartphoneId(Integer id);
-
 }

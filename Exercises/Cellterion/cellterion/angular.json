@@ -33,7 +33,11 @@
               "./node_modules/jquery-ui-dist/jquery-ui.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./node_modules/owl.carousel/dist/owl.carousel.min.js",
-              "./node_modules/aos/dist/aos.js"
+              "./node_modules/aos/dist/aos.js",
+              "./node_modules/less/dist/less.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./node_modules/magnific-popup/dist/jquery.magnific-popup.min.js",
+              "src/js/slick.min.js"
             ]
           },
           "configurations": {

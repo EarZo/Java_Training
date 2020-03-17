@@ -23,6 +23,7 @@ public @Data class Smartphone {
 	String cameraShutter;
 	String processor;
 	String battery;
+	String image;
 	
 	@OneToMany(mappedBy = "smartphone", cascade = CascadeType.ALL)
 //	@LazyCollection(LazyCollectionOption.FALSE) // still eagerly loads the collection, but eliminates the MultipleBagFetchException, i.e. we can have two or more eager loadings at once

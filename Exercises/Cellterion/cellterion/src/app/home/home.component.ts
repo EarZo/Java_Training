@@ -9,6 +9,8 @@ declare var $: any;
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+  currentYear: number = new Date().getFullYear();
+
   customOptions: OwlOptions = {
     center: false,
     items: 1,

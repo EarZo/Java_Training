@@ -1,0 +1,31 @@
+<div class="site-wrap">
+
+  <div class="brand-topic text-center">
+    <h1><b>Latest Smartphones ({{currentYear}})</b></h1>
+    <hr>
+  </div>
+
+  <!--Phone List section starts-->
+  <div class="phone-list-section container-fluid">
+    <div id="phone-list" class="row">
+      <div class="col-sm-3" *ngFor="let latestSmartphone of latestSmartphones">
+        <div class="card">
+          <div class="hovereffect">
+              <img class="img-fluid mx-auto d-block" src="{{latestSmartphone.image}}" alt="phone">
+            <div class="overlay">
+              <h2>Wanna Know Specifications?</h2>
+              <a class="info" href="">View Specs</a>
+            </div>
+          </div>
+          <div class="card-block" style="width: 300px">
+            <h6 class="card-title text-center"><b>{{latestSmartphone.model}}</b></h6>
+          </div>
+          <div class="card-footer text-center"><small class="text-muted">Hover on the Image to View
+            Specifications</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Phone List section ends-->
+
+</div>

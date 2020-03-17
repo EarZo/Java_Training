@@ -170,14 +170,13 @@
         <div class="col-lg-6 ml-auto order-lg-2 align-self-start">
           <div class="site-block-cover-content">
             <h2 class="sub-title">
-              <script>
-                document.write(new Date().getFullYear());
-              </script>
+              {{currentYear}}
             </h2>
             <h1>LATEST SMARTPHONES</h1>
             <p>
               <a
-                href="servlet_latestSmartphones"
+                routerLink="/latest-smartphones"
+                routerLinkActive="active"
                 class="btn btn-black rounded-0"
                 >View Now</a
               >

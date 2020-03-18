@@ -15,7 +15,7 @@ import lombok.Data;
 public @Data class Role {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer roleId;
 	
 	String roleName;

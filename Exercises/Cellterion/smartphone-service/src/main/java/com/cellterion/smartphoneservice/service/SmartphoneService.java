@@ -12,4 +12,6 @@ public interface SmartphoneService {
 
 	List<Smartphone> findAllSmartphones();
 
+	List<Smartphone> findLatestSmartphones(Integer manufactureYear);
+
 }

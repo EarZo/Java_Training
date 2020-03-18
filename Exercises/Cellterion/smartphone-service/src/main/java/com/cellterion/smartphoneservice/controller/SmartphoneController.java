@@ -15,10 +15,14 @@ import javax.persistence.TypedQuery;
 
 @RestController
 @RequestMapping("/services")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SmartphoneController {
 
 	@Autowired
 	SmartphoneService smartphoneService;
+
+	@PersistenceContext
+	EntityManager entityManager;
 
 	@GetMapping("/hello")
 	public String sayHello() {
@@ -35,9 +39,13 @@ public class SmartphoneController {
 	}
 
 	@GetMapping("/smartphones")
-	@CrossOrigin(origins = "http://localhost:4200")
 	public List<Smartphone> getAllSmartphones() {
 		return smartphoneService.findAllSmartphones();
+	}
+
+	@GetMapping("/smartphones/{year}")
+	public List<Smartphone> getLatestSmartphones(@PathVariable Integer year) {
+		return smartphoneService.findLatestSmartphones(year);
 	}
 
 	@GetMapping("/smartphone/{id}")
@@ -45,4 +53,10 @@ public class SmartphoneController {
 		return smartphoneService.findSmartphoneById(id);
 	}
 
+	@GetMapping("/variants/{id}")
+	public List getDealers(@PathVariable Integer id){
+		return entityManager.createQuery
+				("SELECT DISTINCT s.brand, s.model, s.fullImage, s.manufactureYear, v.ram, v.memory, v.gpu, v.displayType, v.displaySize, v.displayResolution, v.displayProtection, v.chipset, v.cameraShutter, v.battery FROM Smartphone s INNER JOIN Variant v ON s.smartphoneId=v.smartphone.smartphoneId WHERE smartphoneId = :smartphoneId")
+				.setParameter("smartphoneId", id).getResultList();
+	}
 }

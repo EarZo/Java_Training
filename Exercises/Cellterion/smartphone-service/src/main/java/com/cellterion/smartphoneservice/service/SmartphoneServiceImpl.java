@@ -33,5 +33,10 @@ public class SmartphoneServiceImpl implements SmartphoneService {
 	public List<Smartphone> findAllSmartphones(){
 		return smartphoneRepository.findAll();
 	}
+
+	@Override
+	public List<Smartphone> findLatestSmartphones(Integer manufactureYear){
+		return smartphoneRepository.findSmartphonesByManufactureYear(manufactureYear);
+	}
 	
 }

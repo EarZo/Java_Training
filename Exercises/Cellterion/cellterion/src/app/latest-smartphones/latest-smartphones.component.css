@@ -1,11 +1,11 @@
 /*
-====body styling starts====
+====site-wrap styling starts====
 */
-body{
+.site-wrap{
   background-color: gainsboro;
 }
 /*
-====body styling ends====
+====site-wrap styling ends====
 */
 
 
@@ -13,8 +13,7 @@ body{
 ====topic styling starts====
 */
 div.brand-topic{
-  margin-top: 150px;
-  padding: 20px;
+  padding-top: 150px;
   color: black;
 }
 /*

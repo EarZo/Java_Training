@@ -41,9 +41,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     AOS.init({
-      duration: 800,
-      easing: 'slide',
-      once: true
     });
 
     $('#inpt_search').on('focus', function() {

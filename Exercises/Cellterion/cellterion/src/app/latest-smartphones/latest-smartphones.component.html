@@ -1,6 +1,6 @@
 <div class="site-wrap">
 
-  <div class="brand-topic text-center">
+  <div class="brand-topic text-center" data-aos="fade" data-aos-duration="1000">
     <h1><b>Latest Smartphones ({{currentYear}})</b></h1>
     <hr>
   </div>
@@ -9,16 +9,16 @@
   <div class="phone-list-section container-fluid">
     <div id="phone-list" class="row">
       <div class="col-sm-3" *ngFor="let latestSmartphone of latestSmartphones">
-        <div class="card">
+        <div class="card" data-aos="flip-right" data-aos-easing="ease-out-cubic">
           <div class="hovereffect">
-              <img class="img-fluid mx-auto d-block" src="{{latestSmartphone.image}}" alt="phone">
+              <img class="img-fluid mx-auto d-block" src="{{latestSmartphone.cardImage}}" alt="phone">
             <div class="overlay">
               <h2>Wanna Know Specifications?</h2>
               <a class="info" href="">View Specs</a>
             </div>
           </div>
           <div class="card-block" style="width: 300px">
-            <h6 class="card-title text-center"><b>{{latestSmartphone.model}}</b></h6>
+            <h6 class="card-title text-center"><b>{{latestSmartphone.brand}} {{latestSmartphone.model}}</b></h6>
           </div>
           <div class="card-footer text-center"><small class="text-muted">Hover on the Image to View
             Specifications</small></div>

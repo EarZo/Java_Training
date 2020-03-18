@@ -6,10 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LatestSmartphonesService {
+  currentYear: number = new Date().getFullYear();
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<any> {
-    return this.http.get('//localhost:8080/services/smartphones');
+    return this.http.get('//localhost:8080/services/smartphones/' + this.currentYear);
   }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 public @Data class Dealer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer dealerId;
 
     String dealerName;

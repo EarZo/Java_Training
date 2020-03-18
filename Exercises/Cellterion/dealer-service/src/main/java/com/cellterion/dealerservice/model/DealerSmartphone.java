@@ -18,7 +18,7 @@ public @Data class DealerSmartphone implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "dealer_id")
     @JsonIgnore
     Dealer dealer;
 

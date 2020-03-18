@@ -6,11 +6,10 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-public @Data
-class Variant {
+public @Data class Variant {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer variantId;
 
     String ram;
@@ -25,7 +24,7 @@ class Variant {
     String battery;
 
     @ManyToOne
-    @JoinColumn(name = "variant_id")
+    @JoinColumn(name = "smartphone_id")
     @JsonIgnore
     Smartphone smartphone;
 }

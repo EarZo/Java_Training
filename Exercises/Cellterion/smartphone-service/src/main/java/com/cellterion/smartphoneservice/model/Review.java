@@ -15,14 +15,14 @@ import lombok.Data;
 public @Data class Review {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer reviewId;
 	
 	int rating;
 	String review;
 	
 	@ManyToOne
-	@JoinColumn(name = "student_id")
+	@JoinColumn(name = "smartphone_id")
 	@JsonIgnore
 	Smartphone smartphone;
 	

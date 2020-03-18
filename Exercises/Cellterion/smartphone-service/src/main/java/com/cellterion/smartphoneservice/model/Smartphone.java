@@ -14,7 +14,7 @@ import lombok.Data;
 public @Data class Smartphone {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer smartphoneId;
 
 	String brand;

@@ -2,6 +2,7 @@ package com.cellterion.smartphoneservice.controller;
 
 import java.util.List;
 
+import com.cellterion.smartphoneservice.model.Variant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +35,10 @@ public class SmartphoneController {
 		if (smartphone.getReviews() != null)
 			for (Review review : smartphone.getReviews())
 				review.setSmartphone(smartphone);
+
+        if (smartphone.getVariants() != null)
+            for (Variant variant : smartphone.getVariants())
+                variant.setSmartphone(smartphone);
 		
 		return smartphoneService.saveSmartphone(smartphone);
 	}

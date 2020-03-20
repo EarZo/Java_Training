@@ -38,9 +38,14 @@ export class LatestSmartphonesComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    this.latestSmartphonesService.getAll().subscribe(data => {
+    this.latestSmartphonesService.getLatest().subscribe(data => {
       this.latestSmartphones = data;
     });
+  }
+
+  showSmartphoneDetails(id: number) {
+    this.latestSmartphonesService.setId(id);
+    this.router.navigate(['/details']);
   }
 
 }

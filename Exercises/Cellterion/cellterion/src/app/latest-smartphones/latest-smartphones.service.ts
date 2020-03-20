@@ -1,16 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LatestSmartphonesService {
   currentYear: number = new Date().getFullYear();
+  private smartphoneId = new BehaviorSubject(0);
+  currentSmartphoneId = this.smartphoneId.asObservable();
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any> {
+  getLatest(): Observable<any> {
     return this.http.get('//localhost:8080/services/smartphones/' + this.currentYear);
+  }
+
+  setId(id: number) {
+    this.smartphoneId.next(id);
   }
 }

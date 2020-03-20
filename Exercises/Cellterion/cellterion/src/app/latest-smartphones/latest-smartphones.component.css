@@ -64,6 +64,10 @@ div.brand-topic{
   color: black;
 }
 
+a.info{
+  cursor: pointer;
+}
+
 .hovereffect {
   width: 100%;
   height: 100%;

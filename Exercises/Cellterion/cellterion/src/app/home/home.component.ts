@@ -1,6 +1,10 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { OwlOptions } from 'ngx-owl-carousel-o';
+import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
+import {OwlOptions} from 'ngx-owl-carousel-o';
 import * as AOS from 'aos';
+import {filter, takeUntil} from 'rxjs/operators';
+import {NavigationEnd, Router, RouterEvent} from '@angular/router';
+import {Subject} from 'rxjs';
+
 declare var $: any;
 
 @Component({
@@ -8,8 +12,9 @@ declare var $: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   currentYear: number = new Date().getFullYear();
+  public destroyed = new Subject<any>();
 
   customOptions: OwlOptions = {
     center: false,
@@ -37,10 +42,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
   };
 
-  constructor() {}
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
-    AOS.init({
+    AOS.init({});
+
+    this.router.events.pipe(
+      filter((event: RouterEvent) => event instanceof NavigationEnd),
+      takeUntil(this.destroyed)
+    ).subscribe(() => {
+      siteMenuClone();
     });
 
     $('#inpt_search').on('focus', function() {
@@ -93,9 +105,112 @@ export class HomeComponent implements OnInit, AfterViewInit {
         });
       }
     });
+
+    // tslint:disable-next-line:only-arrow-functions
+    const siteMenuClone = function() {
+
+      $('<div class="site-mobile-menu"></div>').prependTo('.site-wrap');
+
+      $('<div class="site-mobile-menu-header"></div>').prependTo('.site-mobile-menu');
+      $('<div class="site-mobile-menu-logo"></div>').prependTo('.site-mobile-menu-header');
+      // tslint:disable-next-line:max-line-length
+      $('<div style="text-align: center;"><div class="site-mobile-menu-close "/><hr style="background-color: gainsboro"/></div>').prependTo('.site-mobile-menu-header');
+
+      $('<div class="site-mobile-menu-body"></div>').appendTo('.site-mobile-menu');
+
+
+      $('.js-logo-clone').clone().appendTo('.site-mobile-menu-logo');
+
+      $('<span class="icon-close js-menu-toggle"></div>').prependTo('.site-mobile-menu-close');
+
+
+      $('.js-clone-nav').each(function() {
+        const $this = $(this);
+        $this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
+      });
+
+
+      // tslint:disable-next-line:only-arrow-functions
+      setTimeout(function() {
+
+        let counter = 0;
+        $('.site-mobile-menu .has-children').each(function() {
+          const $this = $(this);
+
+          $this.prepend('<span class="arrow-collapse collapsed">');
+
+          $this.find('.arrow-collapse').attr({
+            'data-toggle': 'collapse',
+            'data-target': '#collapseItem' + counter
+          });
+
+          $this.find('> ul').attr({
+            class: 'collapse',
+            id: 'collapseItem' + counter
+          });
+
+          counter++;
+
+        });
+
+      }, 1000);
+
+      $('body').on('click', '.arrow-collapse', function(e) {
+        const $this = $(this);
+        if ($this.closest('li').find('.collapse').hasClass('show')) {
+          $this.removeClass('active');
+        } else {
+          $this.addClass('active');
+        }
+        e.preventDefault();
+
+      });
+
+      $(window).resize(function() {
+        // tslint:disable-next-line:one-variable-per-declaration
+        const $this = $(this),
+          w = $this.width();
+
+        if (w > 768) {
+          if ($('body').hasClass('offcanvas-menu')) {
+            $('body').removeClass('offcanvas-menu');
+          }
+        }
+      });
+
+      $('body').on('click', '.js-menu-toggle', function(e) {
+        const $this = $(this);
+        e.preventDefault();
+
+        if ($('body').hasClass('offcanvas-menu')) {
+          $('body').removeClass('offcanvas-menu');
+          $this.removeClass('active');
+        } else {
+          $('body').addClass('offcanvas-menu');
+          $this.addClass('active');
+        }
+      });
+
+      // click outisde offcanvas
+      // tslint:disable-next-line:only-arrow-functions
+      $(document).mouseup(function(e) {
+        const container = $('.site-mobile-menu');
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+          if ($('body').hasClass('offcanvas-menu')) {
+            $('body').removeClass('offcanvas-menu');
+          }
+        }
+      });
+    };
+    siteMenuClone();
   }
 
   ngAfterViewInit(): void {
-    'use strict';
+    // 'use strict';
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed.next();
+    this.destroyed.complete();
   }
 }

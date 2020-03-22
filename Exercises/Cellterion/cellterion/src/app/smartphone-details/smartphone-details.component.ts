@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {SmartphoneDetailsService} from './smartphone-details.service';
 import {filter, takeUntil} from 'rxjs/operators';
 import {NavigationEnd, Router, RouterEvent} from '@angular/router';
@@ -6,12 +6,14 @@ import * as AOS from 'aos';
 import {LatestSmartphonesService} from '../latest-smartphones/latest-smartphones.service';
 import {Subject} from 'rxjs';
 
+declare var $: any;
+
 @Component({
   selector: 'app-smartphone-details',
   templateUrl: './smartphone-details.component.html',
   styleUrls: ['./smartphone-details.component.css']
 })
-export class SmartphoneDetailsComponent implements OnInit {
+export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
   private smartphoneId: number;
   public destroyed = new Subject<any>();
   smartphoneDetails: Array<any>;
@@ -35,6 +37,11 @@ export class SmartphoneDetailsComponent implements OnInit {
     ).subscribe(() => {
       this.fetchData();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed.next();
+    this.destroyed.complete();
   }
 
 

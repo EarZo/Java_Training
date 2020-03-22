@@ -1,42 +1,42 @@
 <div class="site-wrap">
 
   <!--Main Details section starts-->
-  <div class="main-details-section" data-aos="fade" style="margin-top: 200px">
+  <div class="main-details-section" data-aos="fade" style="margin-top: 200px" *ngFor="let smartphoneDetail of smartphoneDetails">
     <div class="container-fluid">
       <div class="row align-items-center">
 
         <!--main-details div starts-->
         <div class="main-details col-lg-4 ml-auto order-lg-2 align-self-start">
-          <h5 class="sub-title">{{smartphoneDetails[0]}}</h5>
-          <h1 class="main-title"><b>{{smartphoneDetails[1]}}</b></h1>
+          <h5 class="sub-title">{{smartphoneDetail[0]}}</h5>
+          <h1 class="main-title"><b>{{smartphoneDetail[1]}}</b></h1>
           <hr>
           <div class="main-specs-container">
             <div class="main-spec">
               <img class="main-spec-icon" src="assets/images/touchscreen-technology.png"/>
-              <h4>{{smartphoneDetails[8]}}</h4>
+              <h4>{{smartphoneDetail[8]}}</h4>
               <p>
-                {{smartphoneDetails[8]}}
+                {{smartphoneDetail[8]}}
               </p>
             </div>
             <div class="main-spec">
               <img class="main-spec-icon" src="assets/images/camera-shutter.png"/>
-              <h4>{{smartphoneDetails[12]}}</h4>
+              <h4>{{smartphoneDetail[12]}}</h4>
               <p>
-                {{smartphoneDetails[12]}}
+                {{smartphoneDetail[12]}}
               </p>
             </div>
             <div class="main-spec" class="specs">
               <img class="main-spec-icon" src="assets/images/processor.png"/>
-              <h4>{{smartphoneDetails[11]}}</h4>
+              <h4>{{smartphoneDetail[11]}}</h4>
               <p>
-                {{smartphoneDetails[11]}}
+                {{smartphoneDetail[11]}}
               </p>
             </div>
             <div class="main-spec" class="specs">
               <img class="main-spec-icon" src="assets/images/battery.png"/>
-              <h4>{{smartphoneDetails[13]}}</h4>
+              <h4>{{smartphoneDetail[13]}}</h4>
               <p>
-                {{smartphoneDetails[13]}}
+                {{smartphoneDetail[13]}}
               </p>
             </div>
           </div>
@@ -53,7 +53,7 @@
 
 <!--                    <c:forEach var="image" items="${images}">-->
                       <div class="product">
-                        <img src="{{smartphoneDetails[2]}}" alt="Image" class="img-fluid">
+                        <img src="{{smartphoneDetail[2]}}" alt="Image" class="img-fluid">
                       </div>
 <!--                    </c:forEach>-->
 

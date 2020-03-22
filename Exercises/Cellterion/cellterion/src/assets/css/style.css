@@ -6616,7 +6616,6 @@ a:hover {
   position: absolute;
   height: 100%;
   width: 100%;
-  z-index: 2;
   overflow: hidden;
 }
 
@@ -7031,15 +7030,14 @@ a:hover {
   width: 300px;
   position: fixed;
   right: 0;
-  z-index: 2000;
-  padding-top: 20px;
+  z-index: 5000;
   background: #fff;
   height: calc(100vh);
   -webkit-transform: translateX(110%);
   -ms-transform: translateX(110%);
   transform: translateX(110%);
   -webkit-box-shadow: -10px 0 20px -10px rgba(0, 0, 0, 0.1);
-  box-shadow: -10px 0 20px -10px rgba(0, 0, 0, 0.1);
+  box-shadow: -10px 0 20px -10px white;
   -webkit-transition: .3s all ease-in-out;
   -o-transition: .3s all ease-in-out;
   transition: .3s all ease-in-out;
@@ -7053,19 +7051,18 @@ a:hover {
 
 .site-mobile-menu .site-mobile-menu-header {
   width: 100%;
-  float: left;
-  margin-bottom: 20px;
   padding-left: 20px;
   padding-right: 20px;
+  background-color: gainsboro;
+  box-shadow: 0 10px 20px #888888;
 }
 
 .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-close {
-  float: right;
-  margin-top: 8px;
+  padding-top: 20px;
 }
 
 .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-close span {
-  font-size: 40px;
+  font-size: 30px;
   display: inline-block;
   padding-left: 10px;
   padding-right: 10px;
@@ -7081,9 +7078,11 @@ a:hover {
 }
 
 .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-logo {
-  float: left;
-  margin-top: 10px;
-  margin-left: 20px;
+  padding-bottom: 40px;
+}
+
+.site-mobile-menu .site-mobile-menu-header .site-mobile-menu-logo a img{
+  width: 250px;
 }
 
 .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-logo a {

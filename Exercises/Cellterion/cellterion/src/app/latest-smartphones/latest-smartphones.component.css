@@ -56,6 +56,10 @@ div.brand-topic{
   display: flex;
 }
 
+.card-block{
+  width: 300px;
+}
+
 .card-title{
   color: black;
 }
@@ -147,7 +151,10 @@ a.info{
 }
 
 .hovereffect a.info:hover {
-  box-shadow: 0 0 5px #fff;
+  color: white;
+  text-shadow: 2px 2px 6px #000000;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px #fff;
 }
 
 .hovereffect:hover a.info {

@@ -5,6 +5,8 @@ import {filter, takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 import * as AOS from 'aos';
 
+declare var $: any;
+
 @Component({
   selector: 'app-latest-smartphones',
   templateUrl: './latest-smartphones.component.html',

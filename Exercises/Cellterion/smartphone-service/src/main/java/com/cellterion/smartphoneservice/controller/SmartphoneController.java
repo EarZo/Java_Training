@@ -58,7 +58,7 @@ public class SmartphoneController {
 		return smartphoneService.findSmartphoneById(id);
 	}
 
-	@GetMapping("/variants/{id}")
+	@GetMapping("/details/{id}")
 	public List getDealers(@PathVariable Integer id){
 		return entityManager.createQuery
 				("SELECT DISTINCT s.brand, s.model, s.fullImage, s.manufactureYear, v.ram, v.memory, v.gpu, v.displayType, v.displaySize, v.displayResolution, v.displayProtection, v.chipset, v.cameraShutter, v.battery FROM Smartphone s INNER JOIN Variant v ON s.smartphoneId=v.smartphone.smartphoneId WHERE smartphoneId = :smartphoneId")

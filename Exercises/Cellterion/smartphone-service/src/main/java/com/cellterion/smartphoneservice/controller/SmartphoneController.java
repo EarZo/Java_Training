@@ -2,7 +2,7 @@ package com.cellterion.smartphoneservice.controller;
 
 import java.util.List;
 
-import com.cellterion.smartphoneservice.model.Variant;
+import com.cellterion.smartphoneservice.model.MainCamera;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,13 +32,15 @@ public class SmartphoneController {
 
 	@PostMapping("/smartphone")
 	public Smartphone saveSmartphone(@RequestBody Smartphone smartphone) {
-		if (smartphone.getReviews() != null)
+		if (smartphone.getMainCameras() != null) {
+			for (MainCamera mainCamera : smartphone.getMainCameras())
+				mainCamera.setSmartphone(smartphone);
+		}
+
+		if (smartphone.getReviews() != null) {
 			for (Review review : smartphone.getReviews())
 				review.setSmartphone(smartphone);
-
-        if (smartphone.getVariants() != null)
-            for (Variant variant : smartphone.getVariants())
-                variant.setSmartphone(smartphone);
+		}
 		
 		return smartphoneService.saveSmartphone(smartphone);
 	}
@@ -54,14 +56,21 @@ public class SmartphoneController {
 	}
 
 	@GetMapping("/smartphone/{id}")
-	public Smartphone getStudent(@PathVariable Integer id) {
+	public Smartphone getSmartphone(@PathVariable Integer id) {
 		return smartphoneService.findSmartphoneById(id);
 	}
 
-	@GetMapping("/details/{id}")
-	public List getDealers(@PathVariable Integer id){
-		return entityManager.createQuery
-				("SELECT DISTINCT s.brand, s.model, s.fullImage, s.manufactureYear, v.ram, v.memory, v.gpu, v.displayType, v.displaySize, v.displayResolution, v.displayProtection, v.chipset, v.cameraShutter, v.battery FROM Smartphone s INNER JOIN Variant v ON s.smartphoneId=v.smartphone.smartphoneId WHERE smartphoneId = :smartphoneId")
-				.setParameter("smartphoneId", id).getResultList();
-	}
+//	@GetMapping("/details/{id}")
+//	public List getDealers(@PathVariable Integer id){
+//		return entityManager.createQuery
+//				("SELECT DISTINCT s.brand, s.model, s.fullImage, s.manufactureYear, v.ram, v.memory, v.gpu, v.displayType, v.displaySize, v.displayResolution, v.displayProtection, v.chipset, v.cameraShutter, v.battery FROM Smartphone s INNER JOIN Variant v ON s.smartphoneId=v.smartphone.smartphoneId WHERE smartphoneId = :smartphoneId")
+//				.setParameter("smartphoneId", id).getResultList();
+//	}
+
+//	@GetMapping("/details/{id}")
+//	public List<Variant> getDealers(@PathVariable Integer id){
+//		return entityManager.createQuery
+//				("SELECT v FROM Variant v WHERE v.smartphone.smartphoneId = :smartphoneId", Variant.class)
+//				.setParameter("smartphoneId", id).getResultList();
+//	}
 }

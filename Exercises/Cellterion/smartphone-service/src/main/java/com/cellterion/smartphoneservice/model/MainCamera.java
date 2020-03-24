@@ -6,22 +6,16 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-public @Data class Variant {
+public @Data class MainCamera {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer variantId;
+    Integer mainCameraId;
 
-    String ram;
-    String chipset;
-    String gpu;
-    String memory;
-    String displayType;
-    String displaySize;
-    String displayResolution;
-    String displayProtection;
-    String cameraShutter;
-    String battery;
+    String pixels;
+    String aperture;
+    String focalLength;
+    String sensorSize;
 
     @ManyToOne
     @JoinColumn(name = "smartphone_id")

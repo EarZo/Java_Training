@@ -2,11 +2,7 @@ package com.cellterion.userservice.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -17,8 +13,17 @@ public @Data class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer roleId;
-	
-	String roleName;
+
+	@Enumerated(EnumType.STRING)
+	@Column(length = 20)
+	RoleType roleType;
+
+	public Role() {
+	}
+
+	public Role(RoleType roleType) {
+		this.roleType = roleType;
+	}
 	
 	@ManyToMany(mappedBy = "roles")
 	@JsonIgnore

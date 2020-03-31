@@ -48,7 +48,8 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> findAllStudents() {
 		return studentRepository.findAll();
 	}
-	
+
+	@Override
 	public Allocation[] getStudentAllocations(Student student){
 		HttpHeaders httpHeaders = new HttpHeaders();
 		

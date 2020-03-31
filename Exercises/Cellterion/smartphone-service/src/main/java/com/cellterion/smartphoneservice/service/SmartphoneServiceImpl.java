@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.cellterion.smartphoneservice.model.Smartphone;
@@ -37,6 +38,19 @@ public class SmartphoneServiceImpl implements SmartphoneService {
 	@Override
 	public List<Smartphone> findLatestSmartphones(Integer manufactureYear){
 		return smartphoneRepository.findSmartphonesByManufactureYear(manufactureYear);
+	}
+
+	@Override
+	public Smartphone[] getSmartphonesByBrandId(Integer studentId){
+
+		Smartphone smartphone = new Smartphone();
+		smartphone.setBrandId(studentId);
+
+		Example<Smartphone> exampleObject = Example.of(smartphone);
+
+		List<Smartphone> smartphones = smartphoneRepository.findAll(exampleObject);
+
+		return smartphones.toArray(new Smartphone[smartphones.size()]);
 	}
 	
 }

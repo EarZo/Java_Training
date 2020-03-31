@@ -3,11 +3,7 @@ package com.cellterion.smartphoneservice.model;
 import java.util.List;
 
 import javax.persistence.*;
-
 import com.cellterion.smartphoneservice.sharedModel.Dealer;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import lombok.Data;
 
@@ -17,6 +13,8 @@ public @Data class Smartphone {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer smartphoneId;
+
+	Integer brandId;
 
 	String model;
 	String cardImage;
@@ -29,11 +27,6 @@ public @Data class Smartphone {
 	String internalMemory;
 	String externalMemory;
 	String damageProtection;
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "brand_id")
-	@JsonIgnore
-	Brand brand;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "display_id")

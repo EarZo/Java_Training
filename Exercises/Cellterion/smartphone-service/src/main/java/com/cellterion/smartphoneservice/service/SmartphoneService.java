@@ -14,4 +14,6 @@ public interface SmartphoneService {
 
 	List<Smartphone> findLatestSmartphones(Integer manufactureYear);
 
+	Smartphone[] getSmartphonesByBrandId(Integer studentId);
+
 }

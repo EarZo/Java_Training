@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cellterion.smartphoneservice.model.MainCamera;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.cellterion.smartphoneservice.model.Review;
@@ -12,7 +13,6 @@ import com.cellterion.smartphoneservice.service.SmartphoneService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 @RestController
 @RequestMapping("/services")
@@ -56,9 +56,20 @@ public class SmartphoneController {
 	}
 
 	@GetMapping("/smartphone/{id}")
-	public Smartphone getSmartphone(@PathVariable Integer id) {
-		return smartphoneService.findSmartphoneById(id);
+	public ResponseEntity<Smartphone> getSmartphone(@PathVariable Integer id) {
+		Smartphone smartphone = smartphoneService.findSmartphoneById(id);
+		
+		if(smartphone == null){
+			return ResponseEntity.notFound().build();
+		}else{
+			return ResponseEntity.ok().body(smartphone);
+		}
 	}
+
+    @GetMapping("/smartphones/{brandId}")
+    public Smartphone[] getSmartphonesByBrandId(@PathVariable Integer brandId){
+        return smartphoneService.getSmartphonesByBrandId(brandId);
+    }
 
 //	@GetMapping("/details/{id}")
 //	public List getDealers(@PathVariable Integer id){

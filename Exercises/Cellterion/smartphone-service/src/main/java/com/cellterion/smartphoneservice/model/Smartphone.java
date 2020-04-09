@@ -3,8 +3,6 @@ package com.cellterion.smartphoneservice.model;
 import java.util.List;
 
 import javax.persistence.*;
-import com.cellterion.smartphoneservice.sharedModel.Dealer;
-
 import lombok.Data;
 
 @Entity
@@ -14,8 +12,7 @@ public @Data class Smartphone {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer smartphoneId;
 
-	Integer brandId;
-
+	String brandName;
 	String model;
 	String cardImage;
 	String fullImage;
@@ -46,6 +43,8 @@ public @Data class Smartphone {
 //	@Fetch(FetchMode.SELECT) // can use this also, to eliminate MultipleBagFetchException
 	List<Review> reviews;
 
-	@Transient
-	Dealer[] dealers;
+	@OneToMany(mappedBy = "smartphone", cascade = CascadeType.ALL)
+//    @LazyCollection(LazyCollectionOption.FALSE) // still eagerly loads the collection, but eliminates the MultipleBagFetchException
+	List<SmartphoneDealer> smartphoneDealers;
+
 }

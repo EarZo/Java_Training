@@ -25,12 +25,12 @@ public class BrandController {
         return brandService.saveBrand(brand);
     }
 
-    @GetMapping("/brands")
+    @GetMapping("/brand/all")
     public List<Brand> getAllBrands() {
         return brandService.findAllBrands();
     }
 
-    @GetMapping("/brands/models")
+    @GetMapping("/brand/model/all")
     public List<Brand> getAllBrandModels() {
         List<Brand> brands = brandService.findAllBrands();
 

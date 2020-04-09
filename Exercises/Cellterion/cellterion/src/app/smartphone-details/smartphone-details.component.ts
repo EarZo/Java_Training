@@ -6,8 +6,6 @@ import * as AOS from 'aos';
 import {LatestSmartphonesService} from '../latest-smartphones/latest-smartphones.service';
 import {Subject} from 'rxjs';
 
-declare var $: any;
-
 @Component({
   selector: 'app-smartphone-details',
   templateUrl: './smartphone-details.component.html',
@@ -43,7 +41,6 @@ export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
     this.destroyed.next();
     this.destroyed.complete();
   }
-
 
   fetchData() {
     this.smartphoneDetailsService.getDetails(this.smartphoneId).subscribe(data => {

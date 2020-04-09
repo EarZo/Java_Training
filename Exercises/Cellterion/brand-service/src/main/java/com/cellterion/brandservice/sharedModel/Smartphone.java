@@ -4,14 +4,12 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+@Entity
 public @Data class Smartphone {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer smartphoneId;
 
-    Integer brandId;
-
+    String brandName;
     String model;
     String cardImage;
 }

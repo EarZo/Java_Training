@@ -10,6 +10,6 @@ export class SmartphoneDetailsService {
   constructor(private http: HttpClient) { }
 
   getDetails(id): Observable<any> {
-    return this.http.get('//localhost:8080/services/details/' + id);
+    return this.http.get('//localhost:8080/services/smartphone/' + id);
   }
 }

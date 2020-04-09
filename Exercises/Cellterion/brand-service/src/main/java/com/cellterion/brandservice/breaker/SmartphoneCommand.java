@@ -27,7 +27,7 @@ public class SmartphoneCommand extends HystrixCommand<Smartphone[]> {
     protected Smartphone[] run() throws Exception {
         HttpEntity<String> smartphonesRequest = new HttpEntity<>("", httpHeaders);
 
-        ResponseEntity<Smartphone[]> smartphonesResponse = restTemplate.exchange("http://allocationService/services/allocations/" + brand.getBrandId(), HttpMethod.GET, smartphonesRequest, Smartphone[].class);
+        ResponseEntity<Smartphone[]> smartphonesResponse = restTemplate.exchange("http://smartphoneService/services/smartphone/all/brand/" + brand.getBrandName(), HttpMethod.GET, smartphonesRequest, Smartphone[].class);
 
         return smartphonesResponse.getBody();
     }

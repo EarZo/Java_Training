@@ -4,17 +4,29 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.cellterion.smartphoneservice.model.Smartphone;
 import com.cellterion.smartphoneservice.repository.SmartphoneRepository;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class SmartphoneServiceImpl implements SmartphoneService {
 	
 	@Autowired
 	SmartphoneRepository smartphoneRepository;
+
+	@Autowired
+	RestTemplate restTemplate;
+
+	@Bean
+	@LoadBalanced
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
 	
 	@Override
 	public Smartphone saveSmartphone(Smartphone smartphone) {
@@ -41,10 +53,10 @@ public class SmartphoneServiceImpl implements SmartphoneService {
 	}
 
 	@Override
-	public Smartphone[] getSmartphonesByBrandId(Integer studentId){
+	public Smartphone[] getSmartphonesByBrandName(String brandName){
 
 		Smartphone smartphone = new Smartphone();
-		smartphone.setBrandId(studentId);
+		smartphone.setBrandName(brandName);
 
 		Example<Smartphone> exampleObject = Example.of(smartphone);
 

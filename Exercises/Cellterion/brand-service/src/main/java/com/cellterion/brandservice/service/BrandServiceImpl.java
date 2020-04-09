@@ -48,12 +48,13 @@ public class BrandServiceImpl implements BrandService {
         return brandRepository.findAll();
     }
 
+    @Override
     public Smartphone[] getSmartphones(Brand brand){
         HttpHeaders httpHeaders = new HttpHeaders();
 
-        SmartphoneCommand allocationCommand = new SmartphoneCommand(brand, httpHeaders, restTemplate);
+        SmartphoneCommand smartphoneCommand = new SmartphoneCommand(brand, httpHeaders, restTemplate);
 
-        return allocationCommand.execute();
+        return smartphoneCommand.execute();
     }
 
 }

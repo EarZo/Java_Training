@@ -19,57 +19,58 @@ import javax.persistence.PersistenceContext;
 @CrossOrigin(origins = "http://localhost:4200")
 public class SmartphoneController {
 
-	@Autowired
-	SmartphoneService smartphoneService;
+    @Autowired
+    SmartphoneService smartphoneService;
 
-	@PersistenceContext
-	EntityManager entityManager;
+    @PersistenceContext
+    EntityManager entityManager;
 
-	@GetMapping("/hello")
-	public String sayHello() {
-		return "Hello from Smartphone-Service!";
-	}
-
-	@PostMapping("/smartphone")
-	public Smartphone saveSmartphone(@RequestBody Smartphone smartphone) {
-		if (smartphone.getMainCameras() != null) {
-			for (MainCamera mainCamera : smartphone.getMainCameras())
-				mainCamera.setSmartphone(smartphone);
-		}
-
-		if (smartphone.getReviews() != null) {
-			for (Review review : smartphone.getReviews())
-				review.setSmartphone(smartphone);
-		}
-		
-		return smartphoneService.saveSmartphone(smartphone);
-	}
-
-	@GetMapping("/smartphones")
-	public List<Smartphone> getAllSmartphones() {
-		return smartphoneService.findAllSmartphones();
-	}
-
-	@GetMapping("/smartphones/{year}")
-	public List<Smartphone> getLatestSmartphones(@PathVariable Integer year) {
-		return smartphoneService.findLatestSmartphones(year);
-	}
-
-	@GetMapping("/smartphone/{id}")
-	public ResponseEntity<Smartphone> getSmartphone(@PathVariable Integer id) {
-		Smartphone smartphone = smartphoneService.findSmartphoneById(id);
-		
-		if(smartphone == null){
-			return ResponseEntity.notFound().build();
-		}else{
-			return ResponseEntity.ok().body(smartphone);
-		}
-	}
-
-    @GetMapping("/smartphones/{brandId}")
-    public Smartphone[] getSmartphonesByBrandId(@PathVariable Integer brandId){
-        return smartphoneService.getSmartphonesByBrandId(brandId);
+    @GetMapping("/hello")
+    public String sayHello() {
+        return "Hello from Smartphone-Service!";
     }
+
+    @PostMapping("/smartphone")
+    public Smartphone saveSmartphone(@RequestBody Smartphone smartphone) {
+        if (smartphone.getMainCameras() != null) {
+            for (MainCamera mainCamera : smartphone.getMainCameras())
+                mainCamera.setSmartphone(smartphone);
+        }
+
+        if (smartphone.getReviews() != null) {
+            for (Review review : smartphone.getReviews())
+                review.setSmartphone(smartphone);
+        }
+
+        return smartphoneService.saveSmartphone(smartphone);
+    }
+
+    @GetMapping("/smartphone/all")
+    public List<Smartphone> getAllSmartphones() {
+        return smartphoneService.findAllSmartphones();
+    }
+
+    @GetMapping("/smartphone/all/{year}")
+    public List<Smartphone> getLatestSmartphones(@PathVariable Integer year) {
+        return smartphoneService.findLatestSmartphones(year);
+    }
+
+    @GetMapping("/smartphone/{id}")
+    public ResponseEntity<Smartphone> getSmartphone(@PathVariable Integer id) {
+        Smartphone smartphone = smartphoneService.findSmartphoneById(id);
+
+        if (smartphone == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok().body(smartphone);
+        }
+    }
+
+    @GetMapping("/smartphone/all/brand/{brandName}")
+    public Smartphone[] getSmartphonesByBrandName(@PathVariable String brandName) {
+        return smartphoneService.getSmartphonesByBrandName(brandName);
+    }
+
 
 //	@GetMapping("/details/{id}")
 //	public List getDealers(@PathVariable Integer id){
@@ -78,10 +79,13 @@ public class SmartphoneController {
 //				.setParameter("smartphoneId", id).getResultList();
 //	}
 
-//	@GetMapping("/details/{id}")
-//	public List<Variant> getDealers(@PathVariable Integer id){
-//		return entityManager.createQuery
-//				("SELECT v FROM Variant v WHERE v.smartphone.smartphoneId = :smartphoneId", Variant.class)
-//				.setParameter("smartphoneId", id).getResultList();
+
+//	public List<Smartphone> getDealersBySmartphoneId(Integer smartphoneId){
+//		List<Smartphone> smartphoneList = entityManager.createQuery
+//				("SELECT s FROM Smartphone s WHERE s.smartphoneId = :smartphoneId", Smartphone.class)
+//				.setParameter("smartphoneId", smartphoneId).getResultList();
+//
+//		return smartphoneList.toArray(new Smartphone[smartphoneList.size()]);
 //	}
+
 }

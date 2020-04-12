@@ -18,7 +18,7 @@ public @Data class SmartphoneDealer {
     Smartphone smartphone;
 
     @Id
-    Integer dealerId;
+    String dealerName;
 
     double price;
 }

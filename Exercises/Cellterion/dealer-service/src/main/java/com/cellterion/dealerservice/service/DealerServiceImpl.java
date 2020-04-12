@@ -33,4 +33,8 @@ public class DealerServiceImpl implements DealerService {
         return dealerRepository.findAll();
     }
 
+    @Override
+    public Dealer findDealerByDealerName(String dealerName){
+        return dealerRepository.findDealerByDealerName(dealerName);
+    }
 }

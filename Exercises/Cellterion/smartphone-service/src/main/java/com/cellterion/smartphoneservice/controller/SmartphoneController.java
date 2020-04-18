@@ -3,6 +3,7 @@ package com.cellterion.smartphoneservice.controller;
 import java.util.List;
 
 import com.cellterion.smartphoneservice.model.MainCamera;
+import com.cellterion.smartphoneservice.model.SmartphoneDealer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,11 @@ public class SmartphoneController {
         if (smartphone.getReviews() != null) {
             for (Review review : smartphone.getReviews())
                 review.setSmartphone(smartphone);
+        }
+
+        if (smartphone.getSmartphoneDealers() != null) {
+            for (SmartphoneDealer smartphoneDealer : smartphone.getSmartphoneDealers())
+                smartphoneDealer.setSmartphone(smartphone);
         }
 
         return smartphoneService.saveSmartphone(smartphone);

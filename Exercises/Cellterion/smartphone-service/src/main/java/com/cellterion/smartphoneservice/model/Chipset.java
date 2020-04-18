@@ -8,18 +8,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public @Data class Display {
+public @Data class Chipset {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer displayId;
+    Integer chipsetId;
 
-    String type;
-    String colorGamut;
-    String size;
-    String verticalPixels;
-    String horizontalPixels;
-    String pixelDensity;
-    String ratio;
-    String glassType;
+    String brandName;
+    String modelNumber;
+    String modelName;
+    String architecture;
+    String cpu;
+    String gpu;
 }

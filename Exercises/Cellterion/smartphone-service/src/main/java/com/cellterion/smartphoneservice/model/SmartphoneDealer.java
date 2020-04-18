@@ -7,9 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 
 @Entity
-public @Data class SmartphoneDealer {
+public @Data class SmartphoneDealer implements Serializable {
 
     @Id
     @ManyToOne

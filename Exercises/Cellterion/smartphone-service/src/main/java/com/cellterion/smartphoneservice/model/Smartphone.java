@@ -19,11 +19,13 @@ public @Data class Smartphone {
 	String androidVersion;
 	Integer manufactureYear;
 	String ram;
-	String chipset;
-	String gpu;
 	String internalMemory;
 	String externalMemory;
 	String damageProtection;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "chipset_id")
+    Chipset chipset;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "display_id")

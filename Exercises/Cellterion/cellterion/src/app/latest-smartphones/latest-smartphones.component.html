@@ -1,32 +1,55 @@
 <div class="site-wrap">
-
   <div class="brand-topic text-center" data-aos="fade" data-aos-duration="1000">
-    <h1><b>Latest Smartphones ({{currentYear}})</b></h1>
-    <hr>
+    <h1>
+      <b>Latest Smartphones ({{ currentYear }})</b>
+    </h1>
+    <hr />
   </div>
 
   <!--Phone List section starts-->
   <div class="phone-list-section container-fluid">
+    <div class="no-phones" *ngIf="latestSmartphones.length == 0">
+      <img src="assets/images/sad-phone.png" alt="no-smartphones" />
+      <p>Sorry, No Smartphones Found!</p>
+    </div>
     <div id="phone-list" class="row">
       <div class="col-sm-3" *ngFor="let latestSmartphone of latestSmartphones">
-        <div class="card" data-aos="flip-right" data-aos-easing="ease-out-cubic">
+        <div
+          class="card"
+          data-aos="flip-right"
+          data-aos-easing="ease-out-cubic"
+        >
           <div class="hovereffect">
-            <img class="img-fluid mx-auto d-block" src="{{latestSmartphone.cardImage}}" alt="phone">
+            <img
+              class="img-fluid mx-auto d-block"
+              src="{{ latestSmartphone.cardImage }}"
+              alt="phone"
+            />
             <div class="overlay">
               <h2>Wanna Know Specifications?</h2>
-              <a class="info" (click)="showSmartphoneDetails(latestSmartphone.smartphoneId)">View Specs</a>
+              <a
+                class="info"
+                (click)="showSmartphoneDetails(latestSmartphone.smartphoneId)"
+                >View Specs</a
+              >
             </div>
           </div>
           <div class="card-block">
-            <h6 class="card-title text-center"><b>{{latestSmartphone.brand}} {{latestSmartphone.model}}</b></h6>
+            <h6 class="card-title text-center">
+              <b
+                >{{ latestSmartphone.brandName }}
+                {{ latestSmartphone.model }}</b
+              >
+            </h6>
           </div>
           <div class="card-footer text-center">
-            <small class="text-muted">Hover on the Image to View Specifications</small>
+            <small class="text-muted"
+              >Hover on the Image to View Specifications</small
+            >
           </div>
         </div>
       </div>
     </div>
   </div>
   <!--Phone List section ends-->
-
 </div>

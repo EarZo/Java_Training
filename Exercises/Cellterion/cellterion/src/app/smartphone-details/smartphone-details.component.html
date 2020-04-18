@@ -1,42 +1,49 @@
 <div class="site-wrap">
-
   <!--Main Details section starts-->
-  <div class="main-details-section" data-aos="fade" style="margin-top: 200px" *ngFor="let smartphoneDetail of smartphoneDetails">
+  <div class="main-details-section" data-aos="fade">
     <div class="container-fluid">
       <div class="row align-items-center">
-
         <!--main-details div starts-->
         <div class="main-details col-lg-4 ml-auto order-lg-2 align-self-start">
-          <h5 class="sub-title">{{smartphoneDetail[0]}}</h5>
-          <h1 class="main-title"><b>{{smartphoneDetail[1]}}</b></h1>
-          <hr>
+          <h5 class="sub-title">{{ smartphoneDetails.brandName }}</h5>
+          <h1 class="main-title">
+            <b>{{ smartphoneDetails.model }}</b>
+          </h1>
+          <hr />
           <div class="main-specs-container">
             <div class="main-spec">
-              <img class="main-spec-icon" src="assets/images/touchscreen-technology.png"/>
-              <h4>{{smartphoneDetail[8]}}</h4>
+              <img
+                class="main-spec-icon"
+                src="assets/images/touchscreen-technology.png"
+              />
+              <h4>{{ smartphoneDetails.display.size }}"</h4>
               <p>
-                {{smartphoneDetail[8]}}
+                {{ smartphoneDetails.display.verticalPixels }}x{{
+                  smartphoneDetails.display.horizontalPixels
+                }}
+                pixels
               </p>
             </div>
-            <div class="main-spec">
-              <img class="main-spec-icon" src="assets/images/camera-shutter.png"/>
-              <h4>{{smartphoneDetail[12]}}</h4>
+            <div
+              class="main-spec"
+              *ngFor="let smartphoneCamera of smartphoneCameras"
+            >
+              <img class="main-spec-icon" src="assets/images/camera.png" />
+              <h4>{{ smartphoneCamera.pixels }}MP</h4>
+              <p>{{ smartphoneCamera.sensorSize }}p</p>
+            </div>
+            <div class="main-spec" class="specs">
+              <img class="main-spec-icon" src="assets/images/processor.png" />
+              <h4>{{ smartphoneDetails.ram }}GB RAM</h4>
               <p>
-                {{smartphoneDetail[12]}}
+                {{ smartphoneDetails.chipset.modelName }}
               </p>
             </div>
             <div class="main-spec" class="specs">
-              <img class="main-spec-icon" src="assets/images/processor.png"/>
-              <h4>{{smartphoneDetail[11]}}</h4>
+              <img class="main-spec-icon" src="assets/images/battery.png" />
+              <h4>{{ smartphoneDetails.battery.capacity }}mAh</h4>
               <p>
-                {{smartphoneDetail[11]}}
-              </p>
-            </div>
-            <div class="main-spec" class="specs">
-              <img class="main-spec-icon" src="assets/images/battery.png"/>
-              <h4>{{smartphoneDetail[13]}}</h4>
-              <p>
-                {{smartphoneDetail[13]}}
+                {{ smartphoneDetails.battery.electrolyte }}
               </p>
             </div>
           </div>
@@ -50,13 +57,15 @@
               <div class="row">
                 <div class="col-md-12 block-3 products-wrap">
                   <div class="nonloop-block-3 owl-carousel">
-
-<!--                    <c:forEach var="image" items="${images}">-->
-                      <div class="product">
-                        <img src="{{smartphoneDetail[2]}}" alt="Image" class="img-fluid">
-                      </div>
-<!--                    </c:forEach>-->
-
+                    <!--                    <c:forEach var="image" items="${images}">-->
+                    <div class="product">
+                      <img
+                        src="{{ smartphoneDetails.fullImage }}"
+                        alt="Image"
+                        class="img-fluid"
+                      />
+                    </div>
+                    <!--                    </c:forEach>-->
                   </div>
                 </div>
               </div>
@@ -69,87 +78,86 @@
   </div>
   <!--Main Details section ends-->
 
-  <br>
+  <br />
 
   <!--Specifications List section starts-->
-<!--  <div id="specs-list">-->
-<!--    <c:forEach var="specTable" items="${specsList}">-->
-<!--      ${specTable}-->
-<!--    </c:forEach>-->
-<!--  </div>-->
+  <!--  <div id="specs-list">-->
+  <!--    <c:forEach var="specTable" items="${specsList}">-->
+  <!--      ${specTable}-->
+  <!--    </c:forEach>-->
+  <!--  </div>-->
   <!--Specifications List section ends-->
 
-  <br/>
-  <br/>
+  <br />
+  <br />
 
   <!--Available Smartphone Dealers section starts-->
-<!--  <div class="products-wrap border-top-0">-->
-<!--    <div class="container">-->
-<!--      <div class="row align-items-center">-->
-<!--        <div class="title-section text-center col-12">-->
-<!--          <h2 class="text-uppercase" style="margin-bottom: 0"><b>Available Dealers</b></h2>-->
-<!--          <hr style="background-color: gainsboro; margin-top: 0"/>-->
+  <!--  <div class="products-wrap border-top-0">-->
+  <!--    <div class="container">-->
+  <!--      <div class="row align-items-center">-->
+  <!--        <div class="title-section text-center col-12">-->
+  <!--          <h2 class="text-uppercase" style="margin-bottom: 0"><b>Available Dealers</b></h2>-->
+  <!--          <hr style="background-color: gainsboro; margin-top: 0"/>-->
 
-<!--          <c:if test="${notAvailableInAnyShop}">-->
-<!--            <h3>This Phone is Currently Not Available in Sri Lanka!</h3>-->
-<!--          </c:if>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <br/>-->
-<!--      <div class="row no-gutters products">-->
-<!--        <c:if test="${dialcomStatus == 'Available'}">-->
-<!--          <div class="col-6 col-md-6 col-lg-4">-->
-<!--            <a href="servlet_smartphoneDealerDetails?dealerName=dialcom" class="item">-->
-<!--              <img src="static/image/dialcom.png" alt="Image" class="img-fluid">-->
-<!--              <br>-->
-<!--              <br>-->
-<!--              <br>-->
-<!--              <br>-->
-<!--              <div class="item-info">-->
-<!--                <span class="collection d-block">Available for</span>-->
-<!--                <h3><small>LKR </small>${dialcomPrice}</h3>-->
-<!--              </div>-->
-<!--            </a>-->
-<!--          </div>-->
-<!--        </c:if>-->
+  <!--          <c:if test="${notAvailableInAnyShop}">-->
+  <!--            <h3>This Phone is Currently Not Available in Sri Lanka!</h3>-->
+  <!--          </c:if>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <br/>-->
+  <!--      <div class="row no-gutters products">-->
+  <!--        <c:if test="${dialcomStatus == 'Available'}">-->
+  <!--          <div class="col-6 col-md-6 col-lg-4">-->
+  <!--            <a href="servlet_smartphoneDealerDetails?dealerName=dialcom" class="item">-->
+  <!--              <img src="static/image/dialcom.png" alt="Image" class="img-fluid">-->
+  <!--              <br>-->
+  <!--              <br>-->
+  <!--              <br>-->
+  <!--              <br>-->
+  <!--              <div class="item-info">-->
+  <!--                <span class="collection d-block">Available for</span>-->
+  <!--                <h3><small>LKR </small>${dialcomPrice}</h3>-->
+  <!--              </div>-->
+  <!--            </a>-->
+  <!--          </div>-->
+  <!--        </c:if>-->
 
-<!--        <c:if test="${techmartStatus == 'Available'}">-->
-<!--          <div class="col-6 col-md-6 col-lg-4">-->
-<!--            <a href="servlet_smartphoneDealerDetails?dealerName=techmart" class="item">-->
-<!--              <img src="static/image/techmart.png" alt="Image" class="img-fluid">-->
-<!--              <br>-->
-<!--              <br>-->
-<!--              <br>-->
-<!--              <br>-->
-<!--              <div class="item-info">-->
-<!--                <span class="collection d-block">Available for</span>-->
-<!--                <h3><small>LKR </small>${techmartPrice}</h3>-->
-<!--              </div>-->
-<!--            </a>-->
-<!--          </div>-->
-<!--        </c:if>-->
+  <!--        <c:if test="${techmartStatus == 'Available'}">-->
+  <!--          <div class="col-6 col-md-6 col-lg-4">-->
+  <!--            <a href="servlet_smartphoneDealerDetails?dealerName=techmart" class="item">-->
+  <!--              <img src="static/image/techmart.png" alt="Image" class="img-fluid">-->
+  <!--              <br>-->
+  <!--              <br>-->
+  <!--              <br>-->
+  <!--              <br>-->
+  <!--              <div class="item-info">-->
+  <!--                <span class="collection d-block">Available for</span>-->
+  <!--                <h3><small>LKR </small>${techmartPrice}</h3>-->
+  <!--              </div>-->
+  <!--            </a>-->
+  <!--          </div>-->
+  <!--        </c:if>-->
 
-<!--        <c:if test="${celltronicsStatus == 'Available'}">-->
-<!--          <div class="col-6 col-md-6 col-lg-4">-->
-<!--            <a href="servlet_smartphoneDealerDetails?dealerName=celltronics" class="item">-->
-<!--              <img src="static/image/celltronics.png" alt="Image" class="img-fluid">-->
-<!--              <br>-->
-<!--              <br>-->
-<!--              <br>-->
-<!--              <br>-->
-<!--              <div class="item-info">-->
-<!--                <span class="collection d-block">Available for</span>-->
-<!--                <h3><small>LKR </small>${celltronicsPrice}</h3>-->
-<!--              </div>-->
-<!--            </a>-->
-<!--          </div>-->
-<!--        </c:if>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
+  <!--        <c:if test="${celltronicsStatus == 'Available'}">-->
+  <!--          <div class="col-6 col-md-6 col-lg-4">-->
+  <!--            <a href="servlet_smartphoneDealerDetails?dealerName=celltronics" class="item">-->
+  <!--              <img src="static/image/celltronics.png" alt="Image" class="img-fluid">-->
+  <!--              <br>-->
+  <!--              <br>-->
+  <!--              <br>-->
+  <!--              <br>-->
+  <!--              <div class="item-info">-->
+  <!--                <span class="collection d-block">Available for</span>-->
+  <!--                <h3><small>LKR </small>${celltronicsPrice}</h3>-->
+  <!--              </div>-->
+  <!--            </a>-->
+  <!--          </div>-->
+  <!--        </c:if>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
   <!--Available Smartphone Dealers section ends-->
 
-  <br/>
-  <br/>
-
+  <br />
+  <br />
 </div>

@@ -1,57 +1,64 @@
-.site-wrap{
+.site-wrap {
   background-color: gainsboro;
 }
 
-.main-details{
+.main-details-section {
+  margin-top: 500px;
+}
+
+.main-details {
+  height: 1000px;
+  width: 1000px;
   color: black;
   padding: 10px;
   box-shadow: 0 3px 10px;
   background-image: linear-gradient(to right, gainsboro, #999);
 }
 
-.main-title, .sub-title{
+.main-title,
+.sub-title {
   text-align: center;
 }
 
-.main-details-images .owl-carousel{
+.main-details-images .owl-carousel {
   background-color: white;
   box-shadow: 0 3px 10px;
 }
 
-.main-details-images .product{
+.main-details-images .product {
   height: 400px;
   box-shadow: 0 3px 10px;
 }
 
-.main-details-images .product img{
+.main-details-images .product img {
   position: absolute;
   top: 50%;
-  transform: translate(0%,-50%);
+  transform: translate(0%, -50%);
 }
 
-#specs-list{
+#specs-list {
   background-color: #999;
   color: black;
   padding: 10px;
 }
 
-table{
+table {
   width: 100%;
   margin-bottom: 10px;
 }
 
-tr{
+tr {
   border: 1px solid black;
 }
 
-th{
+th {
   color: red;
   border: 1px solid black;
   text-align: center;
-  width: 20%
+  width: 20%;
 }
 
-.ttl{
+.ttl {
   width: 25%;
   color: black;
   pointer-events: none;
@@ -59,25 +66,25 @@ th{
   text-decoration: none;
 }
 
-.review-section{
+.review-section {
   background-color: #999;
   padding: 50px 10px 100px 10px;
 }
 
-.panel-heading{
+.panel-heading {
   padding: 0 0 10px 0;
   color: black;
 }
 
-.all-reviews-panel{
+.all-reviews-panel {
   width: 50%;
 }
 
-.all-reviews-panel .panel-heading h2{
+.all-reviews-panel .panel-heading h2 {
   margin-left: 20px;
 }
 
-.all-reviews{
+.all-reviews {
   background-color: whitesmoke;
   display: block;
   float: left;
@@ -87,81 +94,80 @@ th{
   margin-left: 20px;
 }
 
-.all-reviews .media-list{
+.all-reviews .media-list {
   margin-left: -30px;
 }
 
-.new-review{
+.new-review {
   height: 300px;
   border-left: 1px solid #999;
 }
 
-@media (min-width: 992px){
-  .main-details{
+@media (min-width: 992px) {
+  .main-details {
     width: 25%;
     position: absolute;
     top: 50%;
     right: -10%;
     margin-right: 10px;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     float: right;
   }
 
-  .main-specs-container{
+  .main-specs-container {
     width: 100%;
   }
 
-  .main-specs-container .main-spec{
+  .main-specs-container .main-spec {
     margin-bottom: 15px;
   }
 
-  .main-specs-container .main-spec .main-spec-icon{
+  .main-specs-container .main-spec .main-spec-icon {
     display: block;
     float: left;
     padding-right: 20px;
   }
 
-  .main-specs-container main.spec h4{
+  .main-specs-container main.spec h4 {
     font-weight: 300;
     margin-bottom: 5px;
   }
 
-  .main-specs-container main.spec p{
+  .main-specs-container main.spec p {
     color: #777777;
   }
 }
 
-@media (max-width: 991px){
-
-  .main-specs-container{
+@media (max-width: 991px) {
+  .main-specs-container {
     width: 100%;
   }
 
-  .main-specs-container .main-spec{
+  .main-specs-container .main-spec {
     display: block;
     float: left;
     width: 25%;
     text-align: center;
   }
 
-  .main-specs-container .main-spec:first-child{
-    border-right: 1px solid #EEEEEE;
+  .main-specs-container .main-spec:first-child {
+    border-right: 1px solid #eeeeee;
   }
 
-  .main-specs-container .main-spec:nth-child(2){
-    border-right: 1px solid #EEEEEE;
+  .main-specs-container .main-spec:nth-child(2) {
+    border-right: 1px solid #eeeeee;
   }
 
-  .main-specs-container .main-spec:last-child{
-    border-left: 1px solid #EEEEEE;
+  .main-specs-container .main-spec:last-child {
+    border-left: 1px solid #eeeeee;
   }
 
-  .main-specs-container .main-spec h4{
+  .main-specs-container .main-spec h4 {
     font-weight: 300;
     margin-bottom: 5px;
   }
 
-  .main-specs-container .main-spec p{
+  .main-specs-container .main-spec p {
     color: #777777;
   }
 }

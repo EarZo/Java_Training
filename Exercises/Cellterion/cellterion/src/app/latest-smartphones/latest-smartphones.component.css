@@ -1,18 +1,17 @@
 /*
 ====site-wrap styling starts====
 */
-.site-wrap{
+.site-wrap {
   background-color: gainsboro;
 }
 /*
 ====site-wrap styling ends====
 */
 
-
 /*
 ====topic styling starts====
 */
-div.brand-topic{
+div.brand-topic {
   padding-top: 150px;
   color: black;
 }
@@ -20,30 +19,51 @@ div.brand-topic{
 ====topic styling ends====
 */
 
+/*
+====no-phone styling starts====
+*/
+.no-phones {
+  text-align: center;
+}
+
+.no-phones img {
+  filter: grayscale(40%);
+  height: 25%;
+  width: 25%;
+}
+
+.no-phones p {
+  font-weight: 900;
+  font-family: cursive;
+  font-size: large;
+}
+/*
+====no-phone styling ends====
+*/
 
 /*
 ====phone-list card styling starts====
 */
-.phone-list-section{
+.phone-list-section {
   padding-bottom: 100px;
 }
 
-.phone-list-section .col-sm-3{
+.phone-list-section .col-sm-3 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.phone-list-section .card{
+.phone-list-section .card {
   box-shadow: 0 3px 10px;
 }
 
-.phone-list-section .card .hovereffect{
+.phone-list-section .card .hovereffect {
   padding: 20px 0 10px 0;
   border-bottom: 1px solid #999;
   height: 250px;
 }
 
-.phone-list-section .card .card-block{
+.phone-list-section .card .card-block {
   padding: 10px 10px 0 10px;
 }
 
@@ -52,23 +72,23 @@ div.brand-topic{
   flex-wrap: wrap;
 }
 
-#phone-list > div[class*='col-'] {
+#phone-list > div[class*="col-"] {
   display: flex;
 }
 
-.card-block{
+.card-block {
   width: 300px;
 }
 
-.card-title{
+.card-title {
   color: black;
 }
 
-.card-text{
+.card-text {
   color: black;
 }
 
-a.info{
+a.info {
   cursor: pointer;
 }
 

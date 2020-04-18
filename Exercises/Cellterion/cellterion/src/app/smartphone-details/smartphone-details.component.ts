@@ -1,40 +1,42 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import {SmartphoneDetailsService} from './smartphone-details.service';
-import {filter, takeUntil} from 'rxjs/operators';
-import {NavigationEnd, Router, RouterEvent} from '@angular/router';
-import * as AOS from 'aos';
-import {LatestSmartphonesService} from '../latest-smartphones/latest-smartphones.service';
-import {Subject} from 'rxjs';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { SmartphoneDetailsService } from "./smartphone-details.service";
+import { filter, takeUntil } from "rxjs/operators";
+import { NavigationEnd, Router, RouterEvent } from "@angular/router";
+import * as AOS from "aos";
+import { LatestSmartphonesService } from "../latest-smartphones/latest-smartphones.service";
+import { Subject } from "rxjs";
 
 @Component({
-  selector: 'app-smartphone-details',
-  templateUrl: './smartphone-details.component.html',
-  styleUrls: ['./smartphone-details.component.css']
+  selector: "app-smartphone-details",
+  templateUrl: "./smartphone-details.component.html",
+  styleUrls: ["./smartphone-details.component.css"]
 })
 export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
   private smartphoneId: number;
   public destroyed = new Subject<any>();
-  smartphoneDetails: Array<any>;
+  smartphoneDetails: any;
+  smartphoneCameras: Array<any>;
 
   // tslint:disable-next-line:max-line-length
-  constructor(private smartphoneDetailsService: SmartphoneDetailsService, private latestSmartphonesService: LatestSmartphonesService, private router: Router) { }
+  constructor(
+    private smartphoneDetailsService: SmartphoneDetailsService,
+    private latestSmartphonesService: LatestSmartphonesService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    AOS.init({
-    });
-
-    this.latestSmartphonesService.currentSmartphoneId.subscribe(data => {
-      this.smartphoneId = data;
-    });
+    AOS.init({});
 
     this.fetchData();
 
-    this.router.events.pipe(
-      filter((event: RouterEvent) => event instanceof NavigationEnd),
-      takeUntil(this.destroyed)
-    ).subscribe(() => {
-      this.fetchData();
-    });
+    this.router.events
+      .pipe(
+        filter((event: RouterEvent) => event instanceof NavigationEnd),
+        takeUntil(this.destroyed)
+      )
+      .subscribe(() => {
+        this.fetchData();
+      });
   }
 
   ngOnDestroy(): void {
@@ -43,9 +45,19 @@ export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    this.smartphoneDetailsService.getDetails(this.smartphoneId).subscribe(data => {
-      this.smartphoneDetails = data;
+    this.latestSmartphonesService.currentSmartphoneId.subscribe(data => {
+      this.smartphoneId = data;
     });
+
+    this.smartphoneDetailsService
+      .getDetails(this.smartphoneId)
+      .subscribe(data => {
+        this.smartphoneDetails = data;
+        this.smartphoneCameras = this.smartphoneDetails.mainCameras;
+      });
   }
 
+  getDimensionsByFilter(mainCameraId) {
+    return this.smartphoneCameras.filter(x => x.mainCameraId === mainCameraId);
+  }
 }

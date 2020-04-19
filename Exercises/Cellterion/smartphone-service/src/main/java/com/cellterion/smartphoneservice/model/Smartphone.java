@@ -14,14 +14,15 @@ public @Data class Smartphone {
 
 	String brandName;
 	String model;
-	String cardImage;
-	String fullImage;
+	String cardImageUrl;
 	String androidVersion;
 	Integer manufactureYear;
+	String manufactureMonth;
 	String ram;
 	String internalMemory;
 	String externalMemory;
 	String damageProtection;
+	String cameraSetup;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "chipset_id")
@@ -34,6 +35,11 @@ public @Data class Smartphone {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "battery_id")
 	Battery battery;
+
+    @OneToMany(mappedBy = "smartphone", cascade = CascadeType.ALL)
+//	@LazyCollection(LazyCollectionOption.FALSE) // still eagerly loads the collection, but eliminates the MultipleBagFetchException, i.e. we can have two or more eager loadings at once
+//	@Fetch(FetchMode.SELECT) // can use this also, to eliminate MultipleBagFetchException
+    List<Image> images;
 
 	@OneToMany(mappedBy = "smartphone", cascade = CascadeType.ALL)
 //	@LazyCollection(LazyCollectionOption.FALSE) // still eagerly loads the collection, but eliminates the MultipleBagFetchException, i.e. we can have two or more eager loadings at once

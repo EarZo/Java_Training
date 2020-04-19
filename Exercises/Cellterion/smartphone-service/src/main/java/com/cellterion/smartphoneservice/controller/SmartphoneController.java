@@ -2,14 +2,11 @@ package com.cellterion.smartphoneservice.controller;
 
 import java.util.List;
 
-import com.cellterion.smartphoneservice.model.MainCamera;
-import com.cellterion.smartphoneservice.model.SmartphoneDealer;
+import com.cellterion.smartphoneservice.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.cellterion.smartphoneservice.model.Review;
-import com.cellterion.smartphoneservice.model.Smartphone;
 import com.cellterion.smartphoneservice.service.SmartphoneService;
 
 import javax.persistence.EntityManager;
@@ -33,6 +30,11 @@ public class SmartphoneController {
 
     @PostMapping("/smartphone")
     public Smartphone saveSmartphone(@RequestBody Smartphone smartphone) {
+        if (smartphone.getImages() != null) {
+            for (Image image : smartphone.getImages())
+                image.setSmartphone(smartphone);
+        }
+
         if (smartphone.getMainCameras() != null) {
             for (MainCamera mainCamera : smartphone.getMainCameras())
                 mainCamera.setSmartphone(smartphone);

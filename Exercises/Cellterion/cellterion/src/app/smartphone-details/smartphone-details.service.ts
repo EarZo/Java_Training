@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class SmartphoneDetailsService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getDetails(id): Observable<any> {
-    return this.http.get('//localhost:8080/services/smartphone/' + id);
+    return this.http.get(
+      "//localhost:8080/services/smartphone/" +
+        localStorage.getItem("smartphoneId")
+    );
   }
 }

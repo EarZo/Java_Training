@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
+import { OwlOptions } from "ngx-owl-carousel-o";
 import { SmartphoneDetailsService } from "./smartphone-details.service";
 import { filter, takeUntil } from "rxjs/operators";
 import { NavigationEnd, Router, RouterEvent } from "@angular/router";
@@ -16,6 +17,38 @@ export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
   public destroyed = new Subject<any>();
   smartphoneDetails: any;
   smartphoneCameras: Array<any>;
+  smartphoneImages: Array<any>;
+  camera: any;
+
+  customOptions: OwlOptions = {
+    center: false,
+    items: 1,
+    loop: true,
+    smartSpeed: 700,
+    stagePadding: 15,
+    margin: 20,
+    autoplay: true,
+    nav: true,
+    autoplayHoverPause: true,
+    navText: [
+      '<span class="icon-chevron-left">',
+      '<span class="icon-chevron-right">'
+    ],
+    responsive: {
+      600: {
+        margin: 20,
+        items: 2
+      },
+      1000: {
+        margin: 20,
+        items: 3
+      },
+      1200: {
+        margin: 20,
+        items: 3
+      }
+    }
+  };
 
   // tslint:disable-next-line:max-line-length
   constructor(
@@ -54,10 +87,11 @@ export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
       .subscribe(data => {
         this.smartphoneDetails = data;
         this.smartphoneCameras = this.smartphoneDetails.mainCameras;
+        this.smartphoneImages = this.smartphoneDetails.images;
       });
   }
 
-  getDimensionsByFilter(mainCameraId) {
-    return this.smartphoneCameras.filter(x => x.mainCameraId === mainCameraId);
+  getCamera(mainCameraId) {
+    return this.smartphoneCameras.find(x => x.mainCameraId === mainCameraId);
   }
 }

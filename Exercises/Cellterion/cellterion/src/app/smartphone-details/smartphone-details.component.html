@@ -1,7 +1,7 @@
 <div class="site-wrap">
   <!--Main Details section starts-->
   <div class="main-details-section" data-aos="fade">
-    <div class="container-fluid">
+    <div class="container-fluid main-details-container">
       <div class="row align-items-center">
         <!--main-details div starts-->
         <div class="main-details col-lg-4 ml-auto order-lg-2 align-self-start">
@@ -24,22 +24,19 @@
                 pixels
               </p>
             </div>
-            <div
-              class="main-spec"
-              *ngFor="let smartphoneCamera of smartphoneCameras"
-            >
+            <div class="main-spec">
               <img class="main-spec-icon" src="assets/images/camera.png" />
-              <h4>{{ smartphoneCamera.pixels }}MP</h4>
-              <p>{{ smartphoneCamera.sensorSize }}p</p>
+              <h4>{{ getCamera(1).pixels }}MP</h4>
+              <p>{{ getCamera(1).sensorSize }}p</p>
             </div>
-            <div class="main-spec" class="specs">
+            <div class="main-spec">
               <img class="main-spec-icon" src="assets/images/processor.png" />
               <h4>{{ smartphoneDetails.ram }}GB RAM</h4>
               <p>
                 {{ smartphoneDetails.chipset.modelName }}
               </p>
             </div>
-            <div class="main-spec" class="specs">
+            <div class="main-spec">
               <img class="main-spec-icon" src="assets/images/battery.png" />
               <h4>{{ smartphoneDetails.battery.capacity }}mAh</h4>
               <p>
@@ -56,17 +53,21 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-12 block-3 products-wrap">
-                  <div class="nonloop-block-3 owl-carousel">
-                    <!--                    <c:forEach var="image" items="${images}">-->
-                    <div class="product">
-                      <img
-                        src="{{ smartphoneDetails.fullImage }}"
-                        alt="Image"
-                        class="img-fluid"
-                      />
-                    </div>
-                    <!--                    </c:forEach>-->
-                  </div>
+                  <owl-carousel-o [options]="customOptions">
+                    <ng-container
+                      *ngFor="let smartphoneImage of smartphoneImages"
+                    >
+                      <ng-template carouselSlide>
+                        <div class="product">
+                          <img
+                            class="img-fluid"
+                            src="{{ smartphoneImage.fullImageUrl }}"
+                            alt="Image"
+                          />
+                        </div>
+                      </ng-template>
+                    </ng-container>
+                  </owl-carousel-o>
                 </div>
               </div>
             </div>
@@ -78,14 +79,154 @@
   </div>
   <!--Main Details section ends-->
 
-  <br />
-
   <!--Specifications List section starts-->
-  <!--  <div id="specs-list">-->
-  <!--    <c:forEach var="specTable" items="${specsList}">-->
-  <!--      ${specTable}-->
-  <!--    </c:forEach>-->
-  <!--  </div>-->
+  <div id="specs-list">
+    <style type="text/css">
+      .tr-toggle {
+        display: none;
+      }
+    </style>
+
+    <table cellspacing="0">
+      <tbody>
+        <tr>
+          <th rowspan="2" scope="row">Launch</th>
+          <td class="ttl">Announced</td>
+          <td class="nfo" data-spec="year">
+            {{ smartphoneDetails.manufactureYear }},
+            {{ smartphoneDetails.manufactureMonth }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table cellspacing="0">
+      <tbody>
+        <tr>
+          <th rowspan="5" scope="row">Display</th>
+          <td class="ttl">Type</td>
+          <td class="nfo" data-spec="displaytype">
+            {{ smartphoneDetails.display.type }},
+            {{ smartphoneDetails.display.colorGamut }}
+          </td>
+        </tr>
+        <tr>
+          <td class="ttl">Size</td>
+          <td class="nfo" data-spec="displaysize">
+            {{ smartphoneDetails.display.size }} inches
+          </td>
+        </tr>
+        <tr>
+          <td class="ttl">Resolution</td>
+          <td class="nfo" data-spec="displayresolution">
+            {{ smartphoneDetails.display.verticalPixels }} x
+            {{ smartphoneDetails.display.horizontalPixels }} pixels,
+            {{ smartphoneDetails.display.ratio }} ratio (~{{
+              smartphoneDetails.display.pixelDensity
+            }}
+            ppi density)
+          </td>
+        </tr>
+        <tr>
+          <td class="ttl">Protection</td>
+          <td class="nfo" data-spec="displayprotection">
+            {{ smartphoneDetails.display.glassType }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table cellspacing="0">
+      <tbody>
+        <tr>
+          <th rowspan="4" scope="row">Platform</th>
+          <td class="ttl">OS</td>
+          <td class="nfo" data-spec="os">
+            {{ smartphoneDetails.androidVersion }}
+          </td>
+        </tr>
+        <tr>
+          <td class="ttl">Chipset</td>
+          <td class="nfo" data-spec="chipset">
+            {{ smartphoneDetails.chipset.brandName }}
+            {{ smartphoneDetails.chipset.modelNumber }}
+            {{ smartphoneDetails.chipset.modelName }} ({{
+              smartphoneDetails.chipset.architecture
+            }})
+          </td>
+        </tr>
+        <tr>
+          <td class="ttl">CPU</td>
+          <td class="nfo" data-spec="cpu">
+            {{ smartphoneDetails.chipset.cpu }}
+          </td>
+        </tr>
+        <tr>
+          <td class="ttl">GPU</td>
+          <td class="nfo" data-spec="gpu">
+            {{ smartphoneDetails.chipset.gpu }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table cellspacing="0">
+      <tbody>
+        <tr>
+          <th rowspan="5" scope="row">Memory</th>
+          <td class="ttl">Card slot</td>
+
+          <td class="nfo" data-spec="memoryslot">
+            {{ smartphoneDetails.externalMemory }}
+          </td>
+        </tr>
+
+        <tr>
+          <td class="ttl">Internal</td>
+          <td class="nfo" data-spec="internalmemory">
+            {{ smartphoneDetails.internalMemory }}GB,
+            {{ smartphoneDetails.ram }}GB RAM
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table cellspacing="0">
+      <tbody>
+        <tr>
+          <th rowspan="4" scope="row" class="small-line-height">Main Camera</th>
+          <td class="ttl">{{ smartphoneDetails.cameraSetup }}</td>
+          <td class="nfo" data-spec="cam1modules">
+            <div *ngFor="let smartphoneCamera of smartphoneCameras">
+              {{ smartphoneCamera.pixels }} MP, {{ smartphoneCamera.aperture }},
+              {{ smartphoneCamera.focalLength }},
+              {{ smartphoneCamera.sensorSize }}"
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table cellspacing="0">
+      <tbody>
+        <tr>
+          <th rowspan="7" scope="row">Battery</th>
+          <td class="ttl">&nbsp;</td>
+          <td class="nfo" data-spec="batdescription1">
+            {{ smartphoneDetails.battery.removability }}
+            {{ smartphoneDetails.battery.electrolyte }}
+            {{ smartphoneDetails.battery.capacity }}mAh battery
+          </td>
+        </tr>
+        <tr>
+          <td class="ttl">Charging</td>
+          <td class="nfo">
+            {{ smartphoneDetails.battery.charging }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <!--Specifications List section ends-->
 
   <br />

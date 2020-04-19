@@ -20,5 +20,6 @@ export class LatestSmartphonesService {
 
   setId(id: number) {
     this.smartphoneId.next(id);
+    localStorage.setItem("smartphoneId", id.toString());
   }
 }

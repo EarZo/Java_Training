@@ -3,12 +3,11 @@
 }
 
 .main-details-section {
-  margin-top: 500px;
+  padding: 130px 0 130px 0;
+  background-image: linear-gradient(to bottom, gainsboro, #999);
 }
 
 .main-details {
-  height: 1000px;
-  width: 1000px;
   color: black;
   padding: 10px;
   box-shadow: 0 3px 10px;
@@ -20,20 +19,26 @@
   text-align: center;
 }
 
-.main-details-images .owl-carousel {
+.main-details-images owl-carousel-o {
   background-color: white;
   box-shadow: 0 3px 10px;
 }
 
+.site-section {
+  padding: 0;
+}
+
 .main-details-images .product {
-  height: 400px;
+  height: 70vh;
   box-shadow: 0 3px 10px;
 }
 
 .main-details-images .product img {
   position: absolute;
   top: 50%;
-  transform: translate(0%, -50%);
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 #specs-list {
@@ -59,6 +64,8 @@ th {
 }
 
 .ttl {
+  font-weight: bolder;
+  padding-left: 10px;
   width: 25%;
   color: black;
   pointer-events: none;

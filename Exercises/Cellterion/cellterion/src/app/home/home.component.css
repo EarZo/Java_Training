@@ -1,4 +1,7 @@
 /*** STYLES ***/
+.item {
+  cursor: pointer;
+}
 .search {
   display: inline-block;
   position: relative;

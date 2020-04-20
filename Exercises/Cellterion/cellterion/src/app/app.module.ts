@@ -12,6 +12,7 @@ import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 import { LatestSmartphonesComponent } from "./latest-smartphones/latest-smartphones.component";
 import { SmartphoneDetailsComponent } from "./smartphone-details/smartphone-details.component";
+import { SmartphoneDealerDetailsComponent } from './smartphone-dealer-details/smartphone-dealer-details.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SmartphoneDetailsComponent } from "./smartphone-details/smartphone-deta
     HeaderComponent,
     FooterComponent,
     LatestSmartphonesComponent,
-    SmartphoneDetailsComponent
+    SmartphoneDetailsComponent,
+    SmartphoneDealerDetailsComponent
   ],
   imports: [
     BrowserModule,

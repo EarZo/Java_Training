@@ -1,0 +1,47 @@
+<div class="site-wrap">
+  <!--Smartphone Dealer Details section starts-->
+  <div class="container dealer-details-section" data-aos="fade">
+    <div class="card">
+      <div class="logo">
+        <img
+          class="img-responsive"
+          src="assets/images/{{
+            smartphoneDealer.dealerName.toLowerCase()
+          }}.png"
+          alt="dealer-logo"
+        />
+      </div>
+      <div class="card-block">
+        <p class="card-text">
+          {{ smartphoneDealer.dealerDescription }}
+        </p>
+        <hr />
+        <span>
+          <p class="card-text" *ngFor="let dealerAddress of dealerAddresses">
+            <small
+              >{{ dealerAddress.residenceNumber }}, {{ dealerAddress.street }},
+              {{ dealerAddress.city }}
+            </small>
+          </p>
+        </span>
+      </div>
+      <span
+        class="dealer-telephone"
+        *ngFor="let dealerTelephoneNumber of dealerTelephoneNumbers"
+      >
+        <a href="tel://{{ dealerTelephoneNumber.telephoneNumber }}">
+          <button class="btn-warning">
+            Contact
+            <span *ngIf="dealerTelephoneNumber.branch != null">
+              : {{ dealerTelephoneNumber.branch }}
+            </span>
+          </button>
+        </a>
+      </span>
+    </div>
+  </div>
+  <!--Smartphone Dealer Details section ends-->
+
+  <br />
+  <br />
+</div>

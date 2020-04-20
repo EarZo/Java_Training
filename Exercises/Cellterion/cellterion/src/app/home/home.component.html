@@ -10,19 +10,19 @@
     data-aos-once="true"
   >
     <div class="container">
-      <br/>
-      <br/>
+      <br />
+      <br />
       <div class="row align-items-center">
         <div class="col-lg-5 text-center">
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
           <div class="featured-hero-product w-100">
             <h1 class="mb-2">Let's Find a Phone</h1>
             <h4>We'll Help You to Find the Best Phone for Your Budget</h4>
-            <br/>
+            <br />
             <div class="container">
               <div class="cntr">
                 <div class="cntr-innr">
@@ -44,17 +44,17 @@
                       </label>
                     </form>
                   </div>
-                  <br/>
+                  <br />
                   <p class="text-muted search_hint" style="margin-bottom: 0">
                     <small>Mouse-over the Magnifying Glass</small>
                   </p>
                   <small class="text-danger currency_hint" style="margin-top: 0"
-                  >NOTE: This site's currency is LKR!</small
+                    >NOTE: This site's currency is LKR!</small
                   >
-                  <br/>
-                  <br/>
-                  <br/>
-                  <br/>
+                  <br />
+                  <br />
+                  <br />
+                  <br />
                 </div>
               </div>
             </div>
@@ -83,13 +83,12 @@
           <h2 class="text-uppercase" style="margin-bottom: 0">
             <b>Featured Brands</b>
           </h2>
-          <hr style="background-color: gainsboro; margin-top: 0"/>
+          <hr style="background-color: gainsboro; margin-top: 0" />
         </div>
       </div>
       <div class="row">
         <div class="col-md-12 block-3 products-wrap">
           <owl-carousel-o [options]="customOptions">
-
             <ng-template carouselSlide>
               <div class="product">
                 <a href="servlet_smartphonesByBrand?brandCode=7" class="item">
@@ -178,7 +177,7 @@
         <div class="col-lg-6 ml-auto order-lg-2 align-self-start">
           <div class="site-block-cover-content">
             <h2 class="sub-title">
-              {{currentYear}}
+              {{ currentYear }}
             </h2>
             <h1>LATEST SMARTPHONES</h1>
             <p>
@@ -186,21 +185,21 @@
                 routerLink="/latest-smartphones"
                 routerLinkActive="active"
                 class="btn btn-black rounded-0"
-              >View Now</a
+                >View Now</a
               >
             </p>
           </div>
         </div>
         <div class="col-lg-6 order-1">
-          <img src="assets/images/latest.png" alt="Image" class="img-fluid"/>
+          <img src="assets/images/latest.png" alt="Image" class="img-fluid" />
         </div>
       </div>
     </div>
   </div>
   <!--Latest Smartphones section ends-->
 
-  <br/>
-  <br/>
+  <br />
+  <br />
 
   <!--Top Smartphone Dealers section starts-->
   <div class="products-wrap border-top-0" style="padding: 100px 0 100px 0">
@@ -210,16 +209,13 @@
           <h2 class="text-uppercase" style="margin-bottom: 0">
             <b>Top Smartphone Dealers</b>
           </h2>
-          <hr style="background-color: gainsboro; margin-top: 0"/>
+          <hr style="background-color: gainsboro; margin-top: 0" />
         </div>
       </div>
-      <br/>
+      <br />
       <div class="row no-gutters products">
         <div class="col-6 col-md-6 col-lg-4">
-          <a
-            href="servlet_smartphoneDealerDetails?dealerName=dialcom"
-            class="item"
-          >
+          <a (click)="showSmartphoneDealerDetails('Dialcom')" class="item">
             <img
               src="assets/images/dialcom.png"
               alt="Image"
@@ -227,16 +223,13 @@
             />
             <div class="item-info">
               <span class="collection d-block"
-              >Colombo 3, Colombo 4, Borella, Ja-Ela</span
+                >Colombo 3, Colombo 4, Borella, Ja-Ela</span
               >
             </div>
           </a>
         </div>
         <div class="col-6 col-md-6 col-lg-4">
-          <a
-            href="servlet_smartphoneDealerDetails?dealerName=techmart"
-            class="item"
-          >
+          <a (click)="showSmartphoneDealerDetails('Techmart')" class="item">
             <img
               src="assets/images/techmart.png"
               alt="Image"
@@ -248,10 +241,7 @@
           </a>
         </div>
         <div class="col-6 col-md-6 col-lg-4">
-          <a
-            href="servlet_smartphoneDealerDetails?dealerName=celltronics"
-            class="item"
-          >
+          <a (click)="showSmartphoneDealerDetails('Celltronics')" class="item">
             <img
               src="assets/images/celltronics.png"
               alt="Image"
@@ -267,6 +257,6 @@
   </div>
   <!--Top Smartphone Dealers section ends-->
 
-  <br/>
-  <br/>
+  <br />
+  <br />
 </div>

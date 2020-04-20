@@ -14,4 +14,8 @@ export class SmartphoneDetailsService {
         localStorage.getItem("smartphoneId")
     );
   }
+
+  setDealerName(dealerName: any) {
+    localStorage.setItem("dealerName", dealerName);
+  }
 }

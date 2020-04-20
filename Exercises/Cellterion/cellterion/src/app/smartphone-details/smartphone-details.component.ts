@@ -118,4 +118,9 @@ export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
 
     return this.resolution;
   }
+
+  showSmartphoneDealerDetails(dealerName: any) {
+    this.smartphoneDetailsService.setDealerName(dealerName);
+    this.router.navigate(["/dealer"]);
+  }
 }

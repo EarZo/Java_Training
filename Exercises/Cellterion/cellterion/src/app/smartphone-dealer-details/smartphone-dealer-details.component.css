@@ -1,0 +1,45 @@
+.site-wrap {
+  padding-top: 180px;
+  background-color: gainsboro;
+}
+
+.dealer-details-section {
+  text-align: center;
+}
+
+.card {
+  box-shadow: 0 3px 10px;
+}
+
+.logo {
+  width: 100%;
+  border-bottom: 1px solid #999;
+}
+
+.logo img {
+  height: auto;
+  width: auto;
+}
+
+.card-block {
+  padding: 10px;
+  background-color: #999;
+  color: black;
+}
+
+.card-block card-text {
+  text-align: justify;
+}
+
+.card-block span {
+  text-align: center;
+}
+
+.card-block span p {
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.dealer-telephone button {
+  width: 100%;
+}

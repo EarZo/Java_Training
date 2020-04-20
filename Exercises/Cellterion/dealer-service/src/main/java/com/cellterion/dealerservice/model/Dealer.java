@@ -13,6 +13,8 @@ public @Data class Dealer {
     Integer dealerId;
 
     String dealerName;
+    @Column(columnDefinition="LONGTEXT")
+    String dealerDescription;
 
     @OneToMany(mappedBy = "dealer", cascade = CascadeType.ALL)
 //	@LazyCollection(LazyCollectionOption.FALSE) // still eagerly loads the collection, but eliminates the MultipleBagFetchException, i.e. we can have two or more eager loadings at once

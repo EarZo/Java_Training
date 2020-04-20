@@ -13,6 +13,7 @@ public @Data class Telephone {
     Integer telephoneId;
 
     String telephoneNumber;
+    String branch;
 
     @ManyToOne
     @JoinColumn(name = "dealer_id")

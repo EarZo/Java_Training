@@ -40,6 +40,11 @@ public class SmartphoneController {
                 mainCamera.setSmartphone(smartphone);
         }
 
+        if (smartphone.getVideoCameras() != null) {
+            for (VideoCamera videoCamera : smartphone.getVideoCameras())
+                videoCamera.setSmartphone(smartphone);
+        }
+
         if (smartphone.getReviews() != null) {
             for (Review review : smartphone.getReviews())
                 review.setSmartphone(smartphone);

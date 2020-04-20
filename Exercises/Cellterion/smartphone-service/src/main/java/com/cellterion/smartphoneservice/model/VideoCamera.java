@@ -6,18 +6,14 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-public @Data class MainCamera {
+public @Data class VideoCamera {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer mainCameraId;
+    Integer videoCameraId;
 
-    double pixels;
-    String aperture;
-    Integer focalLength;
-    String fieldOfView;
-    String sensorSize;
-    String specialFeature;
+    Integer resolution;
+    String fps;
 
     @ManyToOne
     @JoinColumn(name = "smartphone_id")

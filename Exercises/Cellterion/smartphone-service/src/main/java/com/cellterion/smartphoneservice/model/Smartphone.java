@@ -47,6 +47,11 @@ public @Data class Smartphone {
 	List<MainCamera> mainCameras;
 
 	@OneToMany(mappedBy = "smartphone", cascade = CascadeType.ALL)
+//    @LazyCollection(LazyCollectionOption.FALSE) // still eagerly loads the collection, but eliminates the MultipleBagFetchException
+// 	@Fetch(FetchMode.SELECT) // can use this also, to eliminate MultipleBagFetchException
+ 	List<VideoCamera> videoCameras;
+
+	@OneToMany(mappedBy = "smartphone", cascade = CascadeType.ALL)
 //	@LazyCollection(LazyCollectionOption.FALSE) // still eagerly loads the collection, but eliminates the MultipleBagFetchException, i.e. we can have two or more eager loadings at once
 //	@Fetch(FetchMode.SELECT) // can use this also, to eliminate MultipleBagFetchException
 	List<Review> reviews;

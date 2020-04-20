@@ -3,7 +3,7 @@
 }
 
 .main-details-section {
-  padding: 130px 0 130px 0;
+  padding: 140px 0 140px 0;
   background-image: linear-gradient(to bottom, gainsboro, #999);
 }
 
@@ -19,21 +19,25 @@
   text-align: center;
 }
 
-.main-details-images owl-carousel-o {
-  background-color: white;
-  box-shadow: 0 3px 10px;
+.main-details-images .container {
+  box-shadow: inset 0 0 10px black;
+  background-color: gray;
 }
 
 .site-section {
   padding: 0;
 }
 
-.main-details-images .product {
-  height: 70vh;
-  box-shadow: 0 3px 10px;
+.main-details-images .smartphone-image {
+  padding: 50px;
+  background-color: white;
+  box-shadow: 0 0px 10px white;
+  height: 65vh;
 }
 
-.main-details-images .product img {
+.main-details-images .smartphone-image img {
+  height: 50vh;
+  width: auto;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -50,15 +54,19 @@
 table {
   width: 100%;
   margin-bottom: 10px;
+  box-shadow: 0 1px 5px;
 }
 
 tr {
-  border: 1px solid black;
+  border: 1px solid white;
+}
+
+td div {
+  border-bottom: 1px solid white;
 }
 
 th {
   color: red;
-  border: 1px solid black;
   text-align: center;
   width: 20%;
 }
@@ -71,6 +79,22 @@ th {
   pointer-events: none;
   cursor: default;
   text-decoration: none;
+}
+
+.dealer {
+  background-color: white;
+  box-shadow: 0 3px 10px black;
+}
+
+.dealer img {
+  height: 50vh;
+  width: auto;
+  margin: 0 auto;
+}
+
+.dealer-price {
+  margin-top: -80px;
+  color: black;
 }
 
 .review-section {

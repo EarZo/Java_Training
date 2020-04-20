@@ -26,8 +26,8 @@
             </div>
             <div class="main-spec">
               <img class="main-spec-icon" src="assets/images/camera.png" />
-              <h4>{{ getCamera(1).pixels }}MP</h4>
-              <p>{{ getCamera(1).sensorSize }}p</p>
+              <h4>{{ getMaxCameraPixels() }}MP</h4>
+              <p>{{ getMaxVideoResolution() }}p</p>
             </div>
             <div class="main-spec">
               <img class="main-spec-icon" src="assets/images/processor.png" />
@@ -58,7 +58,7 @@
                       *ngFor="let smartphoneImage of smartphoneImages"
                     >
                       <ng-template carouselSlide>
-                        <div class="product">
+                        <div class="smartphone-image">
                           <img
                             class="img-fluid"
                             src="{{ smartphoneImage.fullImageUrl }}"
@@ -198,9 +198,39 @@
           <td class="ttl">{{ smartphoneDetails.cameraSetup }}</td>
           <td class="nfo" data-spec="cam1modules">
             <div *ngFor="let smartphoneCamera of smartphoneCameras">
-              {{ smartphoneCamera.pixels }} MP, {{ smartphoneCamera.aperture }},
-              {{ smartphoneCamera.focalLength }},
-              {{ smartphoneCamera.sensorSize }}"
+              <span *ngIf="smartphoneCamera.pixels != 0">
+                {{ smartphoneCamera.pixels }}MP,
+              </span>
+
+              <span *ngIf="smartphoneCamera.aperture != null">
+                {{ smartphoneCamera.aperture }},
+              </span>
+
+              <span *ngIf="smartphoneCamera.focalLength != null">
+                {{ smartphoneCamera.focalLength }}mm
+              </span>
+
+              <span *ngIf="smartphoneCamera.fieldOfView != null">
+                ({{ smartphoneCamera.fieldOfView }}),
+              </span>
+
+              <span *ngIf="smartphoneCamera.sensorSize != null">
+                {{ smartphoneCamera.sensorSize }}",
+              </span>
+
+              <span *ngIf="smartphoneCamera.specialFeature != null">
+                {{ smartphoneCamera.specialFeature }}
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="ttl">Video</td>
+          <td class="nfo" data-spec="cam1video">
+            <div *ngFor="let smartphoneVideoCamera of smartphoneVideoCameras">
+              {{ smartphoneVideoCamera.resolution }}p@{{
+                smartphoneVideoCamera.fps
+              }}fps
             </div>
           </td>
         </tr>
@@ -233,70 +263,84 @@
   <br />
 
   <!--Available Smartphone Dealers section starts-->
-  <!--  <div class="products-wrap border-top-0">-->
-  <!--    <div class="container">-->
-  <!--      <div class="row align-items-center">-->
-  <!--        <div class="title-section text-center col-12">-->
-  <!--          <h2 class="text-uppercase" style="margin-bottom: 0"><b>Available Dealers</b></h2>-->
-  <!--          <hr style="background-color: gainsboro; margin-top: 0"/>-->
+  <div class="products-wrap border-top-0 dealer-list">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="title-section text-center col-12">
+          <h2 class="text-uppercase" style="margin-bottom: 0">
+            <b>Available Dealers</b>
+          </h2>
+          <hr style="background-color: gainsboro; margin-top: 0" />
+        </div>
+      </div>
+      <br />
 
-  <!--          <c:if test="${notAvailableInAnyShop}">-->
-  <!--            <h3>This Phone is Currently Not Available in Sri Lanka!</h3>-->
-  <!--          </c:if>-->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!--      <br/>-->
-  <!--      <div class="row no-gutters products">-->
-  <!--        <c:if test="${dialcomStatus == 'Available'}">-->
-  <!--          <div class="col-6 col-md-6 col-lg-4">-->
-  <!--            <a href="servlet_smartphoneDealerDetails?dealerName=dialcom" class="item">-->
-  <!--              <img src="static/image/dialcom.png" alt="Image" class="img-fluid">-->
-  <!--              <br>-->
-  <!--              <br>-->
-  <!--              <br>-->
-  <!--              <br>-->
-  <!--              <div class="item-info">-->
-  <!--                <span class="collection d-block">Available for</span>-->
-  <!--                <h3><small>LKR </small>${dialcomPrice}</h3>-->
-  <!--              </div>-->
-  <!--            </a>-->
-  <!--          </div>-->
-  <!--        </c:if>-->
+      <div *ngIf="smartphoneDealers.length == 0">
+        <h3>This Phone is Currently Not Available in Sri Lanka!</h3>
+      </div>
 
-  <!--        <c:if test="${techmartStatus == 'Available'}">-->
-  <!--          <div class="col-6 col-md-6 col-lg-4">-->
-  <!--            <a href="servlet_smartphoneDealerDetails?dealerName=techmart" class="item">-->
-  <!--              <img src="static/image/techmart.png" alt="Image" class="img-fluid">-->
-  <!--              <br>-->
-  <!--              <br>-->
-  <!--              <br>-->
-  <!--              <br>-->
-  <!--              <div class="item-info">-->
-  <!--                <span class="collection d-block">Available for</span>-->
-  <!--                <h3><small>LKR </small>${techmartPrice}</h3>-->
-  <!--              </div>-->
-  <!--            </a>-->
-  <!--          </div>-->
-  <!--        </c:if>-->
+      <div class="row no-gutters products">
+        <div class="col-md-12 block-3 products-wrap dealers">
+          <owl-carousel-o [options]="customOptions">
+            <ng-container *ngFor="let smartphoneDealer of smartphoneDealers">
+              <ng-template carouselSlide>
+                <a
+                  href="servlet_smartphoneDealerDetails?dealerName=dialcom"
+                  class="item"
+                >
+                  <div class="dealer">
+                    <img
+                      class="img-fluid"
+                      src="assets/images/{{
+                        smartphoneDealer.dealerName.toLowerCase()
+                      }}.png"
+                      alt="Dealer-Logo"
+                    />
+                  </div>
+                </a>
+                <br />
+                <br />
+                <br />
+                <br />
+                <div class="dealer-price">
+                  <span class="collection d-block">Available for</span>
+                  <h3><small>LKR </small>{{ smartphoneDealer.price }}</h3>
+                </div>
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+        </div>
+      </div>
 
-  <!--        <c:if test="${celltronicsStatus == 'Available'}">-->
-  <!--          <div class="col-6 col-md-6 col-lg-4">-->
-  <!--            <a href="servlet_smartphoneDealerDetails?dealerName=celltronics" class="item">-->
-  <!--              <img src="static/image/celltronics.png" alt="Image" class="img-fluid">-->
-  <!--              <br>-->
-  <!--              <br>-->
-  <!--              <br>-->
-  <!--              <br>-->
-  <!--              <div class="item-info">-->
-  <!--                <span class="collection d-block">Available for</span>-->
-  <!--                <h3><small>LKR </small>${celltronicsPrice}</h3>-->
-  <!--              </div>-->
-  <!--            </a>-->
-  <!--          </div>-->
-  <!--        </c:if>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </div>-->
+      <!-- <div
+        class="row no-gutters products"
+        *ngFor="let smartphoneDealer of smartphoneDealers"
+      >
+        <div class="col-6 col-md-6 col-lg-4 dealer">
+          <a
+            href="servlet_smartphoneDealerDetails?dealerName=dialcom"
+            class="item"
+          >
+            <img
+              src="assets/images/{{
+                smartphoneDealer.dealerName.toLowerCase()
+              }}.png"
+              alt="Image"
+              class="img-fluid"
+            />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="item-info">
+              <span class="collection d-block">Available for</span>
+              <h3><small>LKR </small>{{ smartphoneDealer.price }}</h3>
+            </div>
+          </a>
+        </div>
+      </div> -->
+    </div>
+  </div>
   <!--Available Smartphone Dealers section ends-->
 
   <br />

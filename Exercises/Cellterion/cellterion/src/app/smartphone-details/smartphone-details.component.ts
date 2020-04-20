@@ -17,17 +17,21 @@ export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
   public destroyed = new Subject<any>();
   smartphoneDetails: any;
   smartphoneCameras: Array<any>;
+  smartphoneVideoCameras: Array<any>;
   smartphoneImages: Array<any>;
-  camera: any;
+  smartphoneDealers: Array<any>;
+  pixels: number;
+  resolution: number;
 
   customOptions: OwlOptions = {
     center: false,
+    lazyLoad: true,
     items: 1,
-    loop: true,
+    loop: false,
     smartSpeed: 700,
     stagePadding: 15,
     margin: 20,
-    autoplay: true,
+    autoplay: false,
     nav: true,
     autoplayHoverPause: true,
     navText: [
@@ -87,11 +91,31 @@ export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
       .subscribe(data => {
         this.smartphoneDetails = data;
         this.smartphoneCameras = this.smartphoneDetails.mainCameras;
+        this.smartphoneVideoCameras = this.smartphoneDetails.videoCameras;
         this.smartphoneImages = this.smartphoneDetails.images;
+        this.smartphoneDealers = this.smartphoneDetails.smartphoneDealers;
       });
   }
 
-  getCamera(mainCameraId) {
-    return this.smartphoneCameras.find(x => x.mainCameraId === mainCameraId);
+  getMaxCameraPixels() {
+    this.pixels = 0;
+    this.smartphoneCameras.forEach(smartphoneCamera => {
+      if (smartphoneCamera.pixels > this.pixels) {
+        this.pixels = smartphoneCamera.pixels;
+      }
+    });
+
+    return this.pixels;
+  }
+
+  getMaxVideoResolution() {
+    this.resolution = 0;
+    this.smartphoneVideoCameras.forEach(smartphoneVideoCamera => {
+      if (smartphoneVideoCamera.resolution > this.resolution) {
+        this.resolution = smartphoneVideoCamera.resolution;
+      }
+    });
+
+    return this.resolution;
   }
 }

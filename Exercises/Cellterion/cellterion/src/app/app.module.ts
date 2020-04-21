@@ -13,6 +13,7 @@ import { FooterComponent } from "./footer/footer.component";
 import { LatestSmartphonesComponent } from "./latest-smartphones/latest-smartphones.component";
 import { SmartphoneDetailsComponent } from "./smartphone-details/smartphone-details.component";
 import { SmartphoneDealerDetailsComponent } from './smartphone-dealer-details/smartphone-dealer-details.component';
+import { SmartphonesByBrandComponent } from './smartphones-by-brand/smartphones-by-brand.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SmartphoneDealerDetailsComponent } from './smartphone-dealer-details/sm
     FooterComponent,
     LatestSmartphonesComponent,
     SmartphoneDetailsComponent,
-    SmartphoneDealerDetailsComponent
+    SmartphoneDealerDetailsComponent,
+    SmartphonesByBrandComponent
   ],
   imports: [
     BrowserModule,

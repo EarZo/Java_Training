@@ -9,4 +9,8 @@ export class HomeService {
   setDealerName(dealerName: any) {
     localStorage.setItem("dealerName", dealerName);
   }
+
+  setBrandName(brandName: any) {
+    localStorage.setItem("brandName", brandName);
+  }
 }

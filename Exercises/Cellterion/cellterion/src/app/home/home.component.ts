@@ -247,4 +247,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.homeService.setDealerName(dealerName);
     this.router.navigate(["/dealer"]);
   }
+
+  showSmartphonesByBrand(brandName: any) {
+    this.homeService.setBrandName(brandName);
+    this.router.navigate(["/brand"]);
+  }
 }

@@ -11,5 +11,5 @@ public @Data class Smartphone {
 
     String brandName;
     String model;
-    String cardImage;
+    String cardImageUrl;
 }

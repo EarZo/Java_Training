@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/services")
+@CrossOrigin(origins = "http://localhost:4200")
 public class BrandController {
 
     @Autowired
@@ -44,6 +45,18 @@ public class BrandController {
     @GetMapping("/brand/{id}")
     public ResponseEntity<Brand> getSmartphone(@PathVariable Integer id) {
         Brand brand = brandService.findBrandById(id);
+
+        if(brand == null){
+            return ResponseEntity.notFound().build();
+        }else{
+            brand.setSmartphones(brandService.getSmartphones(brand));
+            return ResponseEntity.ok().body(brand);
+        }
+    }
+
+    @GetMapping("/brand/name/{brandName}")
+    public ResponseEntity<Brand> getSmartphoneByBrandName(@PathVariable String brandName) {
+        Brand brand = brandService.findBrandByBrandName(brandName);
 
         if(brand == null){
             return ResponseEntity.notFound().build();

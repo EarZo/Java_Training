@@ -29,12 +29,14 @@ public class SmartphoneCommand extends HystrixCommand<Smartphone[]> {
 
         ResponseEntity<Smartphone[]> smartphonesResponse = restTemplate.exchange("http://smartphoneService/services/smartphone/all/brand/" + brand.getBrandName(), HttpMethod.GET, smartphonesRequest, Smartphone[].class);
 
+        System.out.println("Correct method ran!");
         return smartphonesResponse.getBody();
     }
 
     @Override
     protected Smartphone[] getFallback() {
-        return new Smartphone[1];
+        System.out.println("Fallback ran!");
+        return new Smartphone[0];
     }
 
 }

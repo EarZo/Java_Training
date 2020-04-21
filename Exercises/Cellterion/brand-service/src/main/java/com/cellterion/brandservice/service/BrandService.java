@@ -10,6 +10,8 @@ public interface BrandService {
 
     Brand findBrandById(Integer brandId);
 
+    Brand findBrandByBrandName(String brandName);
+
     List<Brand> findAllBrands();
 
     Smartphone[] getSmartphones(Brand brand);

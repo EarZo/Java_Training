@@ -20,9 +20,6 @@ public class SmartphoneController {
     @Autowired
     SmartphoneService smartphoneService;
 
-    @PersistenceContext
-    EntityManager entityManager;
-
     @GetMapping("/hello")
     public String sayHello() {
         return "Hello from Smartphone-Service!";
@@ -84,21 +81,17 @@ public class SmartphoneController {
         return smartphoneService.getSmartphonesByBrandName(brandName);
     }
 
+    @GetMapping("/smartphone/all/price/{userBudget}")
+    public List<Smartphone> getSmartphonesByUserBudget(@PathVariable double userBudget){
+        return smartphoneService.getSmartphonesByUserBudget(userBudget);
+    }
+
 
 //	@GetMapping("/details/{id}")
 //	public List getDealers(@PathVariable Integer id){
 //		return entityManager.createQuery
 //				("SELECT DISTINCT s.brand, s.model, s.fullImage, s.manufactureYear, v.ram, v.memory, v.gpu, v.displayType, v.displaySize, v.displayResolution, v.displayProtection, v.chipset, v.cameraShutter, v.battery FROM Smartphone s INNER JOIN Variant v ON s.smartphoneId=v.smartphone.smartphoneId WHERE smartphoneId = :smartphoneId")
 //				.setParameter("smartphoneId", id).getResultList();
-//	}
-
-
-//	public List<Smartphone> getDealersBySmartphoneId(Integer smartphoneId){
-//		List<Smartphone> smartphoneList = entityManager.createQuery
-//				("SELECT s FROM Smartphone s WHERE s.smartphoneId = :smartphoneId", Smartphone.class)
-//				.setParameter("smartphoneId", smartphoneId).getResultList();
-//
-//		return smartphoneList.toArray(new Smartphone[smartphoneList.size()]);
 //	}
 
 }

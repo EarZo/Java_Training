@@ -11,13 +11,20 @@ import org.springframework.stereotype.Service;
 
 import com.cellterion.smartphoneservice.model.Smartphone;
 import com.cellterion.smartphoneservice.repository.SmartphoneRepository;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.client.RestTemplate;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Service
 public class SmartphoneServiceImpl implements SmartphoneService {
 	
 	@Autowired
 	SmartphoneRepository smartphoneRepository;
+
+	@PersistenceContext
+	EntityManager entityManager;
 
 	@Autowired
 	RestTemplate restTemplate;
@@ -64,5 +71,11 @@ public class SmartphoneServiceImpl implements SmartphoneService {
 
 		return smartphones.toArray(new Smartphone[smartphones.size()]);
 	}
-	
+
+	@Override
+	public List<Smartphone> getSmartphonesByUserBudget(double userBudget){
+		return entityManager.createQuery
+				("SELECT DISTINCT sd.smartphone FROM SmartphoneDealer sd WHERE sd.price <= :userBudget", Smartphone.class)
+				.setParameter("userBudget", userBudget).getResultList();
+	}
 }

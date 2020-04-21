@@ -16,4 +16,6 @@ public interface SmartphoneService {
 
 	Smartphone[] getSmartphonesByBrandName(String brandName);
 
+	List<Smartphone> getSmartphonesByUserBudget(double userBudget);
+
 }

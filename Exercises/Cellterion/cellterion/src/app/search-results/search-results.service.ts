@@ -6,14 +6,14 @@ import { catchError } from "rxjs/operators";
 @Injectable({
   providedIn: "root"
 })
-export class SmartphonesByBrandService {
+export class SearchResultsService {
   constructor(private http: HttpClient) {}
 
   getDetails(): Observable<any> {
     return this.http
       .get(
-        "//localhost:8083/services/brand/name/" +
-          localStorage.getItem("brandName")
+        "//localhost:8080/services/smartphone/all/price/" +
+          localStorage.getItem("budget")
       )
       .pipe(
         catchError((error: HttpErrorResponse) => {

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { HomeService } from "./home.service";
 import { OwlOptions } from "ngx-owl-carousel-o";
 import * as AOS from "aos";
@@ -13,7 +13,7 @@ declare var $: any;
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"]
 })
-export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
   currentYear: number = new Date().getFullYear();
   public destroyed = new Subject<any>();
 
@@ -83,42 +83,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
     // tslint:disable-next-line:only-arrow-functions
-    $(document).on("keypress", function(e) {
+    $(document).on("keypress", e => {
       if (e.which === 13) {
         // tslint:disable-next-line:only-arrow-functions
-        $("#search_form").submit(function(ex) {
+        $("#search_form").submit(ex => {
           ex.preventDefault(); // stop form submit and do your ajax call
 
           const searchData = $("#inpt_search").val();
-          $.ajax({
-            type: "POST",
-            url: "servlet_home",
-            data: { search: searchData },
-            cache: false,
-            success(response) {
-              if (response === "Connection Error!") {
-                alert(
-                  "Oops! Seems like we faced an internal server error! Please try performing the search again."
-                );
-              } else if (response === "Invalid Input!") {
-                // tslint:disable-next-line:max-line-length
-                alert(
-                  "Oops! No smartphones available for the requested price!\n\n - You probably entered a rather low price for a smartphone\n\n\nHint: Try entering a value between 10,000 and 300,000"
-                );
-              } else if (response === "No Internet!") {
-                alert(
-                  "Oops! Seems like there's no stable connection available! Please check your internet connection and try again."
-                );
-              } else if (response === "No Smartphones!") {
-                // tslint:disable-next-line:max-line-length
-                alert(
-                  "Oops! Seems like there are no smartphones available for the budget you provided. Please try performing the search again with a higher amount."
-                );
-              } else {
-                location.href = "servlet_budgetResults";
-              }
-            }
-          });
+          this.showBudgetResults(searchData);
         });
       }
     });
@@ -234,13 +206,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     siteMenuClone();
   }
 
-  ngAfterViewInit(): void {
-    // 'use strict';
-  }
-
   ngOnDestroy(): void {
     this.destroyed.next();
     this.destroyed.complete();
+  }
+
+  showBudgetResults(budget: number) {
+    this.homeService.setBudget(budget);
+    this.router.navigate(["/budget"]);
   }
 
   showSmartphoneDealerDetails(dealerName: any) {

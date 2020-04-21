@@ -13,4 +13,8 @@ export class HomeService {
   setBrandName(brandName: any) {
     localStorage.setItem("brandName", brandName);
   }
+
+  setBudget(budget: number) {
+    localStorage.setItem("budget", budget.toString());
+  }
 }

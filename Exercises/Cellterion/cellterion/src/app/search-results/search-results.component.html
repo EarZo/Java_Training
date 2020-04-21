@@ -1,0 +1,55 @@
+<div class="site-wrap">
+  <div class="brand-topic text-center">
+    <h1>
+      <b>Smartphones under LKR {{ budget }}</b>
+    </h1>
+    <hr />
+  </div>
+
+  <!--Phone List section starts-->
+  <div class="phone-list-section container-fluid">
+    <div
+      class="no-phones"
+      *ngIf="smartphones == null || smartphones.length == 0"
+    >
+      <img src="assets/images/sad-phone.png" alt="no-smartphones" />
+      <p>Sorry, No Smartphones Found!</p>
+    </div>
+    <div id="phone-list" class="row">
+      <div class="col-sm-3" *ngFor="let smartphone of smartphones">
+        <div
+          class="card"
+          data-aos="flip-right"
+          data-aos-easing="ease-out-cubic"
+        >
+          <div class="hovereffect">
+            <img
+              class="img-fluid mx-auto d-block"
+              src="{{ smartphone.cardImageUrl }}"
+              alt="phone"
+            />
+            <div class="overlay">
+              <h2>Wanna Know Specifications?</h2>
+              <a
+                class="info"
+                (click)="showSmartphoneDetails(smartphone.smartphoneId)"
+                >View Specs</a
+              >
+            </div>
+          </div>
+          <div class="card-block">
+            <h6 class="card-title text-center">
+              <b>{{ smartphone.brandName }} {{ smartphone.model }}</b>
+            </h6>
+          </div>
+          <div class="card-footer text-center">
+            <small class="text-muted"
+              >Hover on the Image to View Specifications</small
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Phone List section ends-->
+</div>

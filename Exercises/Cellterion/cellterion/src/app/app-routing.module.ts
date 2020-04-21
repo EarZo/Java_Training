@@ -5,6 +5,7 @@ import { LatestSmartphonesComponent } from "./latest-smartphones/latest-smartpho
 import { SmartphoneDetailsComponent } from "./smartphone-details/smartphone-details.component";
 import { SmartphoneDealerDetailsComponent } from "./smartphone-dealer-details/smartphone-dealer-details.component";
 import { SmartphonesByBrandComponent } from "./smartphones-by-brand/smartphones-by-brand.component";
+import { SearchResultsComponent } from "./search-results/search-results.component";
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: "brand",
     component: SmartphonesByBrandComponent
+  },
+  {
+    path: "budget",
+    component: SearchResultsComponent
   }
 ];
 

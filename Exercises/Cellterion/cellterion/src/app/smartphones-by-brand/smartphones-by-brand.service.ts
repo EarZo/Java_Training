@@ -18,7 +18,7 @@ export class SmartphonesByBrandService {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error instanceof HttpErrorResponse && error.status == 404) {
-            return of({});
+            return empty();
           }
         })
       );

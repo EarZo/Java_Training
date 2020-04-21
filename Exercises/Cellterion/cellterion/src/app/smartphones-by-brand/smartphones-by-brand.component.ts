@@ -45,7 +45,7 @@ export class SmartphonesByBrandComponent implements OnInit, OnDestroy {
 
   fetchData() {
     this.smartphonesByBrandService.getDetails().subscribe(data => {
-      if (!data || !data.length) {
+      if (!data) {
         this.brandObject = null;
         this.smartphonesByBrand = null;
       } else {

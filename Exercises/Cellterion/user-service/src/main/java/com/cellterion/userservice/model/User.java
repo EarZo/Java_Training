@@ -7,9 +7,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import lombok.Data;
 
 @Entity
@@ -40,13 +37,4 @@ public @Data class User {
 //	@LazyCollection(LazyCollectionOption.FALSE) // still eagerly loads the collection, but eliminates the MultipleBagFetchException, i.e. we can have two or more eager loadings at once
 //	@Fetch(FetchMode.SELECT) // can use this also, to eliminate MultipleBagFetchException
 	List<Role> roles;
-
-    public User() {
-	}
-
-	public User(String username, String email, String password) {
-		this.username = username;
-		this.email = email;
-		this.password = password;
-	}
 }

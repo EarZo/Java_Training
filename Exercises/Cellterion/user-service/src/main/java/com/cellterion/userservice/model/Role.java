@@ -17,13 +17,6 @@ public @Data class Role {
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20)
 	RoleType roleType;
-
-	public Role() {
-	}
-
-	public Role(RoleType roleType) {
-		this.roleType = roleType;
-	}
 	
 	@ManyToMany(mappedBy = "roles")
 	@JsonIgnore

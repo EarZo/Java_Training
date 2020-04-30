@@ -1,15 +1,19 @@
 package com.cellterion.userservice.service;
 
-import java.util.List;
-
 import com.cellterion.userservice.model.User;
 
+import java.util.List;
+
 public interface UserService {
+    User saveUser(User user);
 
-	User saveUser(User user);
+    User findUserById(Integer userID);
 
-	User findUserById(Integer userId);
+    List<User> findAllUsers();
 
-	List<User> findAllUsers();
+    User findByUsername(String username);
 
+    Boolean checkExistenceByUsername(String username);
+
+    Boolean checkExistenceByEmail(String email);
 }

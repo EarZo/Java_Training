@@ -1,6 +1,6 @@
 package com.cellterion.userservice.security.jwt;
 
-import com.cellterion.userservice.security.services.UserDetailsImpl;
+import com.cellterion.userservice.service.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,5 +1,6 @@
 package com.cellterion.smartphoneservice.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,7 +74,7 @@ public class SmartphoneServiceImpl implements SmartphoneService {
 	}
 
 	@Override
-	public List<Smartphone> getSmartphonesByUserBudget(double userBudget){
+	public List<Smartphone> getSmartphonesByUserBudget(BigDecimal userBudget){
 		return entityManager.createQuery
 				("SELECT DISTINCT sd.smartphone FROM SmartphoneDealer sd WHERE sd.price <= :userBudget", Smartphone.class)
 				.setParameter("userBudget", userBudget).getResultList();

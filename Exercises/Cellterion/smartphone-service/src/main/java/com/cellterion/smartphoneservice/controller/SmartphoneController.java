@@ -1,5 +1,6 @@
 package com.cellterion.smartphoneservice.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.cellterion.smartphoneservice.model.*;
@@ -82,7 +83,7 @@ public class SmartphoneController {
     }
 
     @GetMapping("/smartphone/all/price/{userBudget}")
-    public List<Smartphone> getSmartphonesByUserBudget(@PathVariable double userBudget){
+    public List<Smartphone> getSmartphonesByUserBudget(@PathVariable BigDecimal userBudget){
         return smartphoneService.getSmartphonesByUserBudget(userBudget);
     }
 

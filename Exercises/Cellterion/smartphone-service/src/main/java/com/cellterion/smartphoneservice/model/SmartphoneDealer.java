@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
 public @Data class SmartphoneDealer implements Serializable {
@@ -21,5 +22,5 @@ public @Data class SmartphoneDealer implements Serializable {
     @Id
     String dealerName;
 
-    double price;
+    BigDecimal price;
 }

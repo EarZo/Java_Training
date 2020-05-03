@@ -74,6 +74,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     });
 
+    $("#inpt_search").on("paste", function(e) {
+      e.preventDefault();
+    });
+
     // tslint:disable-next-line:only-arrow-functions
     $("#inpt_search").keydown(function(e) {
       // prevent: "e", "=", ",", "-", "."

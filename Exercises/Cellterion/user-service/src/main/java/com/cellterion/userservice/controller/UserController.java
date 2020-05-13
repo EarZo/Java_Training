@@ -28,7 +28,7 @@ import com.cellterion.userservice.model.User;
 
 import javax.validation.Valid;
 
-//@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/services")
 public class UserController {

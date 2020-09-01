@@ -4,6 +4,7 @@ import { filter, takeUntil } from "rxjs/operators";
 import { NavigationEnd, Router, RouterEvent } from "@angular/router";
 import * as AOS from "aos";
 import { Subject } from "rxjs";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: "app-search-results",
@@ -17,8 +18,10 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   constructor(
     private searchResultsService: SearchResultsService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private titleService: Title) {
+      this.titleService.setTitle( "Search Results" );
+    }
 
   ngOnInit(): void {
     AOS.init({});

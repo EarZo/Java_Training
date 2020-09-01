@@ -4,6 +4,7 @@ import { filter, takeUntil } from "rxjs/operators";
 import { NavigationEnd, Router, RouterEvent } from "@angular/router";
 import * as AOS from "aos";
 import { Subject } from "rxjs";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: "app-smartphone-dealer-details",
@@ -18,12 +19,13 @@ export class SmartphoneDealerDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private smartphoneDealerDetailsService: SmartphoneDealerDetailsService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private titleService: Title) {}
 
   ngOnInit(): void {
     AOS.init({});
     this.fetchData();
+    this.titleService.setTitle( this.smartphoneDealer + " Details" );
 
     this.router.events
       .pipe(

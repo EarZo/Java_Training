@@ -5,6 +5,7 @@ import * as AOS from "aos";
 import { filter, takeUntil } from "rxjs/operators";
 import { NavigationEnd, Router, RouterEvent } from "@angular/router";
 import { Subject } from "rxjs";
+import { Title } from '@angular/platform-browser';
 
 declare var $: any;
 
@@ -46,7 +47,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   };
 
-  constructor(private homeService: HomeService, private router: Router) {}
+  constructor(private homeService: HomeService, private router: Router, private titleService: Title) {
+    this.titleService.setTitle( "Cellterion" );
+  }
 
   ngOnInit(): void {
     AOS.init({});

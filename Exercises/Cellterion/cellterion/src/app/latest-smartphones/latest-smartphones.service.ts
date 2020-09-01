@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
+import { Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: "root"
@@ -10,7 +11,9 @@ export class LatestSmartphonesService {
   private smartphoneId = new BehaviorSubject(0);
   currentSmartphoneId = this.smartphoneId.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private titleService: Title) {
+    this.titleService.setTitle( this.currentYear + " Latest Smartphones" );
+  }
 
   getLatest(): Observable<any> {
     return this.http.get(

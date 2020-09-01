@@ -4,6 +4,7 @@ import { filter, takeUntil } from "rxjs/operators";
 import { NavigationEnd, Router, RouterEvent } from "@angular/router";
 import * as AOS from "aos";
 import { Subject } from "rxjs";
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: "app-smartphones-by-brand",
@@ -19,13 +20,14 @@ export class SmartphonesByBrandComponent implements OnInit, OnDestroy {
   // tslint:disable-next-line:max-line-length
   constructor(
     private smartphonesByBrandService: SmartphonesByBrandService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private titleService: Title) {}
 
   ngOnInit(): void {
     AOS.init({});
 
     this.brandName = localStorage.getItem("brandName");
+    this.titleService.setTitle( this.brandName );
     this.fetchData();
 
     this.router.events

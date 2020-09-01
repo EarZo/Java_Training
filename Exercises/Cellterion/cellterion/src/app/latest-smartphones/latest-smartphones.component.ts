@@ -4,6 +4,7 @@ import { NavigationEnd, Router, RouterEvent } from "@angular/router";
 import { filter, takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 import * as AOS from "aos";
+import { Title } from '@angular/platform-browser';
 
 declare var $: any;
 
@@ -19,8 +20,10 @@ export class LatestSmartphonesComponent implements OnInit, OnDestroy {
 
   constructor(
     private latestSmartphonesService: LatestSmartphonesService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private titleService: Title) {
+      this.titleService.setTitle( this.currentYear + " Latest Smartphones" );
+    }
 
   ngOnInit(): void {
     AOS.init({});

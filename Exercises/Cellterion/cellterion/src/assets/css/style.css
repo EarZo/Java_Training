@@ -1,3 +1,12 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~bootstrap/dist/css/bootstrap-grid.min.css";
+@import "~ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css";
+@import "~ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css";
+@import "~aos/dist/aos.css";
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+
 @font-face {
   font-family: "icomoon";
   src: url("src/assets/fonts/icomoon.eot?10si43");
@@ -12,7 +21,7 @@
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
-  speak: none;
+  speak-as: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;

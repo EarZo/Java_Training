@@ -27,9 +27,17 @@
               <div class="cntr">
                 <div class="cntr-innr">
                   <div>
-                    <form id="search_form" action="servlet_home" method="post">
+                    <form
+                      id="search_form"
+                      action="servlet_home"
+                      method="post"
+                      (keyup.enter)="$event.preventDefault()"
+                    >
                       <label class="search" for="inpt_search">
                         <input
+                          [(ngModel)]="budget"
+                          (keyup.enter)="onKeyUp()"
+                          (keydown)="preventInput($event)"
                           id="inpt_search"
                           placeholder="Type in Your Budget and Hit Enter..."
                           class="searchBox"

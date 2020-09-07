@@ -5,7 +5,7 @@ import * as AOS from "aos";
 import { filter, takeUntil } from "rxjs/operators";
 import { NavigationEnd, Router, RouterEvent } from "@angular/router";
 import { Subject } from "rxjs";
-import { Title } from '@angular/platform-browser';
+import { Title } from "@angular/platform-browser";
 
 declare var $: any;
 
@@ -15,8 +15,21 @@ declare var $: any;
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  budget;
   currentYear: number = new Date().getFullYear();
   public destroyed = new Subject<any>();
+
+  onKeyUp() {
+    // console.log(this.budget);
+    this.showBudgetResults(this.budget);
+  }
+
+  preventInput($event) {
+    // prevent: "e", "=", ",", "-", "."
+    if ([69, 187, 188, 189, 190, 107, 109, 110].includes($event.keyCode)) {
+      $event.preventDefault();
+    }
+  }
 
   customOptions: OwlOptions = {
     center: false,
@@ -47,8 +60,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   };
 
-  constructor(private homeService: HomeService, private router: Router, private titleService: Title) {
-    this.titleService.setTitle( "Cellterion" );
+  constructor(
+    private homeService: HomeService,
+    private router: Router,
+    private titleService: Title
+  ) {
+    this.titleService.setTitle("Cellterion");
   }
 
   ngOnInit(): void {
@@ -79,27 +96,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     $("#inpt_search").on("paste", function(e) {
       e.preventDefault();
-    });
-
-    // tslint:disable-next-line:only-arrow-functions
-    $("#inpt_search").keydown(function(e) {
-      // prevent: "e", "=", ",", "-", "."
-      if ([69, 187, 188, 189, 190, 107, 109, 110].includes(e.keyCode)) {
-        e.preventDefault();
-      }
-    });
-
-    // tslint:disable-next-line:only-arrow-functions
-    $(document).on("keypress", e => {
-      if (e.which === 13) {
-        // tslint:disable-next-line:only-arrow-functions
-        $("#search_form").submit(ex => {
-          ex.preventDefault(); // stop form submit and do your ajax call
-
-          const searchData = $("#inpt_search").val();
-          this.showBudgetResults(searchData);
-        });
-      }
     });
 
     // tslint:disable-next-line:only-arrow-functions

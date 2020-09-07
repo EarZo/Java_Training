@@ -1,4 +1,4 @@
-$("#inpt_search").on('focus', function () {
+/* $("#inpt_search").on('focus', function () {
     $(this).parent('label').addClass('active');
 });
 
@@ -41,4 +41,4 @@ $(document).on('keypress', function (e) {
             });
         });
     }
-});
+}); */

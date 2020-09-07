@@ -1,0 +1,79 @@
+<!--Search section starts-->
+<div
+  class="site-blocks-cover"
+  style="background-color: gainsboro; top: -35px"
+  data-aos="fade"
+  data-aos-duration="1000"
+  data-aos-delay="800"
+  data-aos-easing="slide"
+  data-aos-once="true"
+>
+  <div class="container">
+    <br />
+    <br />
+    <div class="row align-items-center">
+      <div class="col-lg-5 text-center">
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="featured-hero-product w-100">
+          <h1 class="mb-2">Let's Find a Phone</h1>
+          <h4>We'll Help You to Find the Best Phone for Your Budget</h4>
+          <br />
+          <div class="container">
+            <div class="cntr">
+              <div class="cntr-innr">
+                <div>
+                  <form
+                    id="search_form"
+                    action="servlet_home"
+                    method="post"
+                    (keyup.enter)="$event.preventDefault()"
+                  >
+                    <label class="search" for="inpt_search">
+                      <input
+                        [(ngModel)]="budget"
+                        (keyup.enter)="onKeyUp()"
+                        (keydown)="preventInput($event)"
+                        id="inpt_search"
+                        placeholder="Type in Your Budget and Hit Enter..."
+                        class="searchBox"
+                        type="number"
+                        name="search"
+                        min="0"
+                        max="300000"
+                        autocomplete="off"
+                        pattern="^[0-9]*$"
+                        required
+                      />
+                    </label>
+                  </form>
+                </div>
+                <br />
+                <p class="text-muted search_hint" style="margin-bottom: 0">
+                  <small>Mouse-over the Magnifying Glass</small>
+                </p>
+                <small class="text-danger currency_hint" style="margin-top: 0"
+                  >NOTE: This site's currency is LKR!</small
+                >
+                <br />
+                <br />
+                <br />
+                <br />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col-lg-7 align-self-end text-center text-lg-right"
+        style="pointer-events: none; z-index: -5"
+      >
+        <img src="assets/images/girl.png" alt="Image" class="img-fluid img-1" />
+      </div>
+    </div>
+  </div>
+</div>
+<!--Search section ends-->

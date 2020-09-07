@@ -1,176 +1,13 @@
 <div class="site-wrap">
   <!--Search section starts-->
-  <div
-    class="site-blocks-cover"
-    style="background-color: gainsboro; top: -35px"
-    data-aos="fade"
-    data-aos-duration="1000"
-    data-aos-delay="800"
-    data-aos-easing="slide"
-    data-aos-once="true"
-  >
-    <div class="container">
-      <br />
-      <br />
-      <div class="row align-items-center">
-        <div class="col-lg-5 text-center">
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <div class="featured-hero-product w-100">
-            <h1 class="mb-2">Let's Find a Phone</h1>
-            <h4>We'll Help You to Find the Best Phone for Your Budget</h4>
-            <br />
-            <div class="container">
-              <div class="cntr">
-                <div class="cntr-innr">
-                  <div>
-                    <form
-                      id="search_form"
-                      action="servlet_home"
-                      method="post"
-                      (keyup.enter)="$event.preventDefault()"
-                    >
-                      <label class="search" for="inpt_search">
-                        <input
-                          [(ngModel)]="budget"
-                          (keyup.enter)="onKeyUp()"
-                          (keydown)="preventInput($event)"
-                          id="inpt_search"
-                          placeholder="Type in Your Budget and Hit Enter..."
-                          class="searchBox"
-                          type="number"
-                          name="search"
-                          min="0"
-                          max="300000"
-                          autocomplete="off"
-                          pattern="^[0-9]*$"
-                          required
-                        />
-                      </label>
-                    </form>
-                  </div>
-                  <br />
-                  <p class="text-muted search_hint" style="margin-bottom: 0">
-                    <small>Mouse-over the Magnifying Glass</small>
-                  </p>
-                  <small class="text-danger currency_hint" style="margin-top: 0"
-                    >NOTE: This site's currency is LKR!</small
-                  >
-                  <br />
-                  <br />
-                  <br />
-                  <br />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="col-lg-7 align-self-end text-center text-lg-right"
-          style="pointer-events: none; z-index: -5"
-        >
-          <img
-            src="assets/images/girl.png"
-            alt="Image"
-            class="img-fluid img-1"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-search></app-search>
   <!--Search section ends-->
 
-  <!--Featured Brands section starts-->
-  <div class="site-section">
-    <div class="container">
-      <div class="row">
-        <div class="title-section text-center col-12">
-          <h2 class="text-uppercase" style="margin-bottom: 0">
-            <b>Featured Brands</b>
-          </h2>
-          <hr style="background-color: gainsboro; margin-top: 0" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 block-3 products-wrap">
-          <owl-carousel-o [options]="customOptions">
-            <ng-template carouselSlide>
-              <div class="product">
-                <a (click)="showSmartphonesByBrand('Sony')" class="item">
-                  <img
-                    src="assets/images/sony.png"
-                    alt="Image"
-                    class="img-fluid"
-                  />
-                </a>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="product">
-                <a (click)="showSmartphonesByBrand('Samsung')" class="item">
-                  <img
-                    src="assets/images/samsung.png"
-                    alt="Image"
-                    class="img-fluid"
-                  />
-                </a>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="product">
-                <a (click)="showSmartphonesByBrand('Apple')" class="item">
-                  <img
-                    src="assets/images/apple.png"
-                    alt="Image"
-                    class="img-fluid"
-                  />
-                </a>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="product">
-                <a (click)="showSmartphonesByBrand('Oneplus')" class="item">
-                  <img
-                    src="assets/images/oneplus.png"
-                    alt="Image"
-                    class="img-fluid"
-                  />
-                </a>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="product">
-                <a (click)="showSmartphonesByBrand('Nokia')" class="item">
-                  <img
-                    src="assets/images/nokia.png"
-                    alt="Image"
-                    class="img-fluid"
-                  />
-                </a>
-              </div>
-            </ng-template>
-            <ng-template carouselSlide>
-              <div class="product">
-                <a (click)="showSmartphonesByBrand('Xiaomi')" class="item">
-                  <img
-                    src="assets/images/xiaomi.png"
-                    alt="Image"
-                    class="img-fluid"
-                  />
-                </a>
-              </div>
-            </ng-template>
-          </owl-carousel-o>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--Featured Brands section ends-->
+  <!--Featured-Brands section starts-->
+  <app-featured-brands></app-featured-brands>
+  <!--Featured-Brands section ends-->
 
-  <!--Latest Smartphones section starts-->
+  <!--Latest-Smartphones section starts-->
   <div
     class="site-blocks-cover inner-page py-5"
     style="background-color: gainsboro"
@@ -204,66 +41,14 @@
       </div>
     </div>
   </div>
-  <!--Latest Smartphones section ends-->
+  <!--Latest-Smartphones section ends-->
 
   <br />
   <br />
 
-  <!--Top Smartphone Dealers section starts-->
-  <div class="products-wrap border-top-0" style="padding: 100px 0 100px 0">
-    <div class="container">
-      <div class="row">
-        <div class="title-section text-center col-12">
-          <h2 class="text-uppercase" style="margin-bottom: 0">
-            <b>Top Smartphone Dealers</b>
-          </h2>
-          <hr style="background-color: gainsboro; margin-top: 0" />
-        </div>
-      </div>
-      <br />
-      <div class="row no-gutters products">
-        <div class="col-6 col-md-6 col-lg-4">
-          <a (click)="showSmartphoneDealerDetails('Dialcom')" class="item">
-            <img
-              src="assets/images/dialcom.png"
-              alt="Image"
-              class="img-fluid"
-            />
-            <div class="item-info">
-              <span class="collection d-block"
-                >Colombo 3, Colombo 4, Borella, Ja-Ela</span
-              >
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4">
-          <a (click)="showSmartphoneDealerDetails('Techmart')" class="item">
-            <img
-              src="assets/images/techmart.png"
-              alt="Image"
-              class="img-fluid"
-            />
-            <div class="item-info">
-              <span class="collection d-block">Colombo 4</span>
-            </div>
-          </a>
-        </div>
-        <div class="col-6 col-md-6 col-lg-4">
-          <a (click)="showSmartphoneDealerDetails('Celltronics')" class="item">
-            <img
-              src="assets/images/celltronics.png"
-              alt="Image"
-              class="img-fluid"
-            />
-            <div class="item-info">
-              <span class="collection d-block">Colombo 4</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--Top Smartphone Dealers section ends-->
+  <!--Top-Smartphone-Dealers section starts-->
+  <app-top-smartphone-dealers></app-top-smartphone-dealers>
+  <!--Top-Smartphone-Dealers section ends-->
 
   <br />
   <br />

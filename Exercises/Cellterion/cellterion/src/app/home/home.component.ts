@@ -1,6 +1,4 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { HomeService } from "./home.service";
-import { OwlOptions } from "ngx-owl-carousel-o";
 import * as AOS from "aos";
 import { filter, takeUntil } from "rxjs/operators";
 import { NavigationEnd, Router, RouterEvent } from "@angular/router";
@@ -15,56 +13,10 @@ declare var $: any;
   styleUrls: ["./home.component.css"]
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  budget;
   currentYear: number = new Date().getFullYear();
   public destroyed = new Subject<any>();
 
-  onKeyUp() {
-    // console.log(this.budget);
-    this.showBudgetResults(this.budget);
-  }
-
-  preventInput($event) {
-    // prevent: "e", "=", ",", "-", "."
-    if ([69, 187, 188, 189, 190, 107, 109, 110].includes($event.keyCode)) {
-      $event.preventDefault();
-    }
-  }
-
-  customOptions: OwlOptions = {
-    center: false,
-    items: 1,
-    loop: true,
-    smartSpeed: 700,
-    stagePadding: 15,
-    margin: 20,
-    autoplay: true,
-    nav: true,
-    navText: [
-      '<span class="icon-chevron-left">',
-      '<span class="icon-chevron-right">'
-    ],
-    responsive: {
-      600: {
-        margin: 20,
-        items: 2
-      },
-      1000: {
-        margin: 20,
-        items: 3
-      },
-      1200: {
-        margin: 20,
-        items: 3
-      }
-    }
-  };
-
-  constructor(
-    private homeService: HomeService,
-    private router: Router,
-    private titleService: Title
-  ) {
+  constructor(private router: Router, private titleService: Title) {
     this.titleService.setTitle("Cellterion");
   }
 
@@ -80,25 +32,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         siteMenuClone();
       });
 
-    $("#inpt_search").on("focus", function() {
-      $(this)
-        .parent("label")
-        .addClass("active");
-    });
-
-    $("#inpt_search").on("blur", function() {
-      if ($(this).val().length === 0) {
-        $(this)
-          .parent("label")
-          .removeClass("active");
-      }
-    });
-
-    $("#inpt_search").on("paste", function(e) {
-      e.preventDefault();
-    });
-
-    // tslint:disable-next-line:only-arrow-functions
     const siteMenuClone = function() {
       $('<div class="site-mobile-menu"></div>').prependTo(".site-wrap");
 
@@ -108,7 +41,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       $('<div class="site-mobile-menu-logo"></div>').prependTo(
         ".site-mobile-menu-header"
       );
-      // tslint:disable-next-line:max-line-length
       $(
         '<div style="text-align: center;"><div class="site-mobile-menu-close "/><hr style="background-color: gainsboro"/></div>'
       ).prependTo(".site-mobile-menu-header");
@@ -133,7 +65,6 @@ export class HomeComponent implements OnInit, OnDestroy {
           .appendTo(".site-mobile-menu-body");
       });
 
-      // tslint:disable-next-line:only-arrow-functions
       setTimeout(function() {
         let counter = 0;
         $(".site-mobile-menu .has-children").each(function() {
@@ -171,7 +102,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
 
       $(window).resize(function() {
-        // tslint:disable-next-line:one-variable-per-declaration
         const $this = $(this),
           w = $this.width();
 
@@ -196,7 +126,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       });
 
       // click outisde offcanvas
-      // tslint:disable-next-line:only-arrow-functions
       $(document).mouseup(function(e) {
         const container = $(".site-mobile-menu");
         if (!container.is(e.target) && container.has(e.target).length === 0) {
@@ -212,20 +141,5 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyed.next();
     this.destroyed.complete();
-  }
-
-  showBudgetResults(budget: number) {
-    this.homeService.setBudget(budget);
-    this.router.navigate(["/budget"]);
-  }
-
-  showSmartphoneDealerDetails(dealerName: any) {
-    this.homeService.setDealerName(dealerName);
-    this.router.navigate(["/dealer"]);
-  }
-
-  showSmartphonesByBrand(brandName: any) {
-    this.homeService.setBrandName(brandName);
-    this.router.navigate(["/brand"]);
   }
 }

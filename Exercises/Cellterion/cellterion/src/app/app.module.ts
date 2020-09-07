@@ -16,6 +16,9 @@ import { SmartphoneDetailsComponent } from "./smartphone-details/smartphone-deta
 import { SmartphoneDealerDetailsComponent } from "./smartphone-dealer-details/smartphone-dealer-details.component";
 import { SmartphonesByBrandComponent } from "./smartphones-by-brand/smartphones-by-brand.component";
 import { SearchResultsComponent } from "./search-results/search-results.component";
+import { SearchComponent } from './search/search.component';
+import { FeaturedBrandsComponent } from './featured-brands/featured-brands.component';
+import { TopSmartphoneDealersComponent } from './top-smartphone-dealers/top-smartphone-dealers.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { SearchResultsComponent } from "./search-results/search-results.componen
     SmartphoneDetailsComponent,
     SmartphoneDealerDetailsComponent,
     SmartphonesByBrandComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    SearchComponent,
+    FeaturedBrandsComponent,
+    TopSmartphoneDealersComponent
   ],
   imports: [
     BrowserModule,

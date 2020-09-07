@@ -5,16 +5,4 @@ import { Injectable } from "@angular/core";
 })
 export class HomeService {
   constructor() {}
-
-  setDealerName(dealerName: any) {
-    localStorage.setItem("dealerName", dealerName);
-  }
-
-  setBrandName(brandName: any) {
-    localStorage.setItem("brandName", brandName);
-  }
-
-  setBudget(budget: number) {
-    localStorage.setItem("budget", budget.toString());
-  }
 }

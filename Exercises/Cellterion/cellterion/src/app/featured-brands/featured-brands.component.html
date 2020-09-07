@@ -1,0 +1,84 @@
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="title-section text-center col-12">
+        <h2 class="text-uppercase" style="margin-bottom: 0">
+          <b>Featured Brands</b>
+        </h2>
+        <hr style="background-color: gainsboro; margin-top: 0" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 block-3 products-wrap">
+        <owl-carousel-o [options]="customOptions">
+          <ng-template carouselSlide>
+            <div class="product">
+              <a (click)="showSmartphonesByBrand('Sony')" class="item">
+                <img
+                  src="assets/images/sony.png"
+                  alt="Image"
+                  class="img-fluid"
+                />
+              </a>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="product">
+              <a (click)="showSmartphonesByBrand('Samsung')" class="item">
+                <img
+                  src="assets/images/samsung.png"
+                  alt="Image"
+                  class="img-fluid"
+                />
+              </a>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="product">
+              <a (click)="showSmartphonesByBrand('Apple')" class="item">
+                <img
+                  src="assets/images/apple.png"
+                  alt="Image"
+                  class="img-fluid"
+                />
+              </a>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="product">
+              <a (click)="showSmartphonesByBrand('Oneplus')" class="item">
+                <img
+                  src="assets/images/oneplus.png"
+                  alt="Image"
+                  class="img-fluid"
+                />
+              </a>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="product">
+              <a (click)="showSmartphonesByBrand('Nokia')" class="item">
+                <img
+                  src="assets/images/nokia.png"
+                  alt="Image"
+                  class="img-fluid"
+                />
+              </a>
+            </div>
+          </ng-template>
+          <ng-template carouselSlide>
+            <div class="product">
+              <a (click)="showSmartphonesByBrand('Xiaomi')" class="item">
+                <img
+                  src="assets/images/xiaomi.png"
+                  alt="Image"
+                  class="img-fluid"
+                />
+              </a>
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+</div>

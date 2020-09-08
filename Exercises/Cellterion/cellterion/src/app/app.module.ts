@@ -1,5 +1,5 @@
 import { BrowserModule, Title } from "@angular/platform-browser";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -16,9 +16,9 @@ import { SmartphoneDetailsComponent } from "./smartphone-details/smartphone-deta
 import { SmartphoneDealerDetailsComponent } from "./smartphone-dealer-details/smartphone-dealer-details.component";
 import { SmartphonesByBrandComponent } from "./smartphones-by-brand/smartphones-by-brand.component";
 import { SearchResultsComponent } from "./search-results/search-results.component";
-import { SearchComponent } from './search/search.component';
-import { FeaturedBrandsComponent } from './featured-brands/featured-brands.component';
-import { TopSmartphoneDealersComponent } from './top-smartphone-dealers/top-smartphone-dealers.component';
+import { SearchComponent } from "./search/search.component";
+import { FeaturedBrandsComponent } from "./featured-brands/featured-brands.component";
+import { TopSmartphoneDealersComponent } from "./top-smartphone-dealers/top-smartphone-dealers.component";
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import { TopSmartphoneDealersComponent } from './top-smartphone-dealers/top-smar
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     CarouselModule,

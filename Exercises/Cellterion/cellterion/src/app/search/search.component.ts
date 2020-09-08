@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SearchService } from "./search.service";
 import { Router } from "@angular/router";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 declare var $: any;
 
@@ -11,6 +12,14 @@ declare var $: any;
 })
 export class SearchComponent implements OnInit {
   budget;
+
+  form = new FormGroup({
+    search: new FormControl("", [
+      Validators.required,
+      Validators.min(0),
+      Validators.pattern("^[0-9]*$")
+    ])
+  });
 
   constructor(private searchService: SearchService, private router: Router) {}
 
@@ -34,6 +43,10 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  get search() {
+    return this.form.get("search");
+  }
+
   onKeyUp() {
     // console.log(this.budget);
     this.showBudgetResults(this.budget);
@@ -47,7 +60,9 @@ export class SearchComponent implements OnInit {
   }
 
   showBudgetResults(budget: number) {
-    this.searchService.setBudget(budget);
-    this.router.navigate(["/budget"]);
+    if (!this.search.errors.required || !this.search.errors.min) {
+      this.searchService.setBudget(budget);
+      this.router.navigate(["/budget"]);
+    }
   }
 }

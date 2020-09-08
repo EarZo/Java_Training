@@ -1,4 +1,3 @@
-<!--Search section starts-->
 <div
   class="site-blocks-cover"
   style="background-color: gainsboro; top: -35px"
@@ -27,6 +26,7 @@
               <div class="cntr-innr">
                 <div>
                   <form
+                    [formGroup]="form"
                     id="search_form"
                     action="servlet_home"
                     method="post"
@@ -37,18 +37,26 @@
                         [(ngModel)]="budget"
                         (keyup.enter)="onKeyUp()"
                         (keydown)="preventInput($event)"
+                        formControlName="search"
                         id="inpt_search"
                         placeholder="Type in Your Budget and Hit Enter..."
                         class="searchBox"
                         type="number"
-                        name="search"
-                        min="0"
-                        max="300000"
                         autocomplete="off"
-                        pattern="^[0-9]*$"
-                        required
                       />
                     </label>
+                    <br />
+                    <small
+                      *ngIf="search.touched && search.invalid"
+                      class="alert alert-danger speech-bubble"
+                    >
+                      <small *ngIf="search.errors.required">
+                        Budget is required to search!
+                      </small>
+                      <small *ngIf="search.errors.min">
+                        Budget should be a positive value!
+                      </small>
+                    </small>
                   </form>
                 </div>
                 <br />
@@ -76,4 +84,3 @@
     </div>
   </div>
 </div>
-<!--Search section ends-->

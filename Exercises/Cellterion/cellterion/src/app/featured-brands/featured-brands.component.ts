@@ -17,6 +17,7 @@ export class FeaturedBrandsComponent implements OnInit {
   ngOnInit(): void {}
 
   customOptions: OwlOptions = {
+    autoplayHoverPause: true,
     center: false,
     items: 1,
     loop: true,

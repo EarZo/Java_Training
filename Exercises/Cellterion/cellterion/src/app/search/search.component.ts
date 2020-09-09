@@ -11,12 +11,10 @@ declare var $: any;
   styleUrls: ["./search.component.css"]
 })
 export class SearchComponent implements OnInit {
-  budget;
-
   form = new FormGroup({
     search: new FormControl("", [
       Validators.required,
-      Validators.min(0),
+      Validators.min(10000),
       Validators.pattern("^[0-9]*$")
     ])
   });
@@ -28,6 +26,8 @@ export class SearchComponent implements OnInit {
       $(this)
         .parent("label")
         .addClass("active");
+
+      $(".speech-bubble").fadeIn("fast");
     });
 
     $("#inpt_search").on("blur", function() {
@@ -36,10 +36,9 @@ export class SearchComponent implements OnInit {
           .parent("label")
           .removeClass("active");
       }
-    });
-
-    $("#inpt_search").on("paste", function(e) {
-      e.preventDefault();
+      setTimeout(function() {
+        $(".speech-bubble").fadeOut("fast");
+      }, 1000);
     });
   }
 
@@ -47,22 +46,27 @@ export class SearchComponent implements OnInit {
     return this.form.get("search");
   }
 
-  onKeyUp() {
-    // console.log(this.budget);
-    this.showBudgetResults(this.budget);
+  noPaste(event) {
+    event.preventDefault();
   }
 
-  preventInput($event) {
-    // prevent: "e", "=", ",", "-", "."
-    if ([69, 187, 188, 189, 190, 107, 109, 110].includes($event.keyCode)) {
-      $event.preventDefault();
+  numericOnly(event): boolean {
+    // restrict E,e,+,-,. characters in search input
+    const charCode = event.which ? event.which : event.keyCode;
+    if (
+      charCode == 101 ||
+      charCode == 69 ||
+      charCode == 43 ||
+      charCode == 45 ||
+      charCode == 46
+    ) {
+      return false;
     }
+    return true;
   }
 
-  showBudgetResults(budget: number) {
-    if (!this.search.errors.required || !this.search.errors.min) {
-      this.searchService.setBudget(budget);
-      this.router.navigate(["/budget"]);
-    }
+  showBudgetResults() {
+    this.searchService.setBudget(this.form.value.search);
+    this.router.navigate(["/budget"]);
   }
 }

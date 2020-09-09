@@ -3,6 +3,11 @@
   cursor: pointer;
 }
 
+.form-group {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
 .speech-bubble {
   position: fixed;
   background-color: #f2f2f2;

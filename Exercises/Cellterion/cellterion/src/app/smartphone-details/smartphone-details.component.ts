@@ -6,7 +6,9 @@ import { NavigationEnd, Router, RouterEvent } from "@angular/router";
 import * as AOS from "aos";
 import { LatestSmartphonesService } from "../latest-smartphones/latest-smartphones.service";
 import { Subject } from "rxjs";
-import { Title } from '@angular/platform-browser';
+import { Title } from "@angular/platform-browser";
+import { AppError } from "../common/app-error";
+import { NotFoundError } from "../common/not-found-error";
 
 @Component({
   selector: "app-smartphone-details",
@@ -55,17 +57,19 @@ export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
     }
   };
 
-  // tslint:disable-next-line:max-line-length
   constructor(
     private smartphoneDetailsService: SmartphoneDetailsService,
     private latestSmartphonesService: LatestSmartphonesService,
     private router: Router,
-    private titleService: Title) {}
+    private titleService: Title
+  ) {}
 
   ngOnInit(): void {
     AOS.init({});
     this.fetchData();
-    this.titleService.setTitle( this.smartphoneDetails.brandName + " " + this.smartphoneDetails.model );
+    this.titleService.setTitle(
+      this.smartphoneDetails.brandName + " " + this.smartphoneDetails.model
+    );
 
     this.router.events
       .pipe(
@@ -83,19 +87,30 @@ export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    this.latestSmartphonesService.currentSmartphoneId.subscribe(data => {
-      this.smartphoneId = data;
+    this.latestSmartphonesService.currentSmartphoneId.subscribe(response => {
+      this.smartphoneId = response;
     });
 
-    this.smartphoneDetailsService
-      .getDetails(this.smartphoneId)
-      .subscribe(data => {
-        this.smartphoneDetails = data;
+    this.smartphoneDetailsService.getDetails(this.smartphoneId).subscribe(
+      response => {
+        this.smartphoneDetails = response;
         this.smartphoneCameras = this.smartphoneDetails.mainCameras;
         this.smartphoneVideoCameras = this.smartphoneDetails.videoCameras;
         this.smartphoneImages = this.smartphoneDetails.images;
         this.smartphoneDealers = this.smartphoneDetails.smartphoneDealers;
-      });
+      },
+      (error: AppError) => {
+        this.smartphoneDetails = null;
+        if (error instanceof NotFoundError) {
+          console.log(
+            "Oops! It's not you, it's us! Seems like our server's having some trouble! We'll fix it as soon as possible."
+          );
+        } else {
+          alert("An unexpected error occured!");
+          console.log(error);
+        }
+      }
+    );
   }
 
   getMaxCameraPixels() {

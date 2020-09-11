@@ -3,8 +3,8 @@ import { SmartphonesByBrandService } from "./smartphones-by-brand.service";
 import { filter, takeUntil } from "rxjs/operators";
 import { NavigationEnd, Router, RouterEvent } from "@angular/router";
 import * as AOS from "aos";
-import { Subject } from "rxjs";
-import { Title } from '@angular/platform-browser';
+import { Subject, empty } from "rxjs";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-smartphones-by-brand",
@@ -17,17 +17,17 @@ export class SmartphonesByBrandComponent implements OnInit, OnDestroy {
   smartphonesByBrand: Array<any>;
   brandName: any;
 
-  // tslint:disable-next-line:max-line-length
   constructor(
     private smartphonesByBrandService: SmartphonesByBrandService,
     private router: Router,
-    private titleService: Title) {}
+    private titleService: Title
+  ) {}
 
   ngOnInit(): void {
     AOS.init({});
 
     this.brandName = localStorage.getItem("brandName");
-    this.titleService.setTitle( this.brandName );
+    this.titleService.setTitle(this.brandName);
     this.fetchData();
 
     this.router.events
@@ -46,12 +46,12 @@ export class SmartphonesByBrandComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    this.smartphonesByBrandService.getDetails().subscribe(data => {
-      if (!data) {
+    this.smartphonesByBrandService.getDetails().subscribe(response => {
+      if (empty) {
         this.brandObject = null;
         this.smartphonesByBrand = null;
       } else {
-        this.brandObject = data;
+        this.brandObject = response;
         this.smartphonesByBrand = this.brandObject.smartphones;
       }
     });

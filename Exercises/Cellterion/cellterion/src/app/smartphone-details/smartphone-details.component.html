@@ -1,6 +1,10 @@
 <div class="site-wrap">
   <!--Main Details section starts-->
-  <div class="main-details-section" data-aos="fade">
+  <div
+    class="main-details-section"
+    data-aos="fade"
+    *ngIf="smartphoneDetails != null"
+  >
     <div class="container-fluid main-details-container">
       <div class="row align-items-center">
         <!--main-details div starts-->
@@ -80,7 +84,7 @@
   <!--Main Details section ends-->
 
   <!--Specifications List section starts-->
-  <div id="specs-list">
+  <div id="specs-list" *ngIf="smartphoneDetails != null">
     <style type="text/css">
       .tr-toggle {
         display: none;
@@ -263,7 +267,10 @@
   <br />
 
   <!--Available Smartphone Dealers section starts-->
-  <div class="products-wrap border-top-0 dealer-list">
+  <div
+    class="products-wrap border-top-0 dealer-list"
+    *ngIf="smartphoneDetails != null"
+  >
     <div class="container">
       <div class="row align-items-center">
         <div class="title-section text-center col-12">

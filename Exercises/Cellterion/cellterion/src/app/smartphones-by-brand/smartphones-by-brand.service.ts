@@ -7,17 +7,16 @@ import { catchError } from "rxjs/operators";
   providedIn: "root"
 })
 export class SmartphonesByBrandService {
+  private url = "//localhost:8083/services/brand/name";
+
   constructor(private http: HttpClient) {}
 
   getDetails(): Observable<any> {
     return this.http
-      .get(
-        "//localhost:8083/services/brand/name/" +
-          localStorage.getItem("brandName")
-      )
+      .get(this.url + "/" + localStorage.getItem("brandName"))
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          if (error instanceof HttpErrorResponse && error.status == 404) {
+          if (error.status === 404) {
             return empty();
           }
         })

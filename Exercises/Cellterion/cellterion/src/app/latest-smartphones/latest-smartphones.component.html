@@ -8,11 +8,11 @@
 
   <!--Phone List section starts-->
   <div class="phone-list-section container-fluid">
-    <div class="no-phones" *ngIf="latestSmartphones.length == 0">
+    <div class="no-phones" *ngIf="latestSmartphones == null">
       <img src="assets/images/sad-phone.png" alt="no-smartphones" />
       <p>Sorry, No Smartphones Found!</p>
     </div>
-    <div id="phone-list" class="row">
+    <div id="phone-list" class="row" *ngIf="latestSmartphones != null">
       <div class="col-sm-3" *ngFor="let latestSmartphone of latestSmartphones">
         <div
           class="card"

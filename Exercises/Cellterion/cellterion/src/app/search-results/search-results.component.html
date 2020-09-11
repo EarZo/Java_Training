@@ -8,14 +8,11 @@
 
   <!--Phone List section starts-->
   <div class="phone-list-section container-fluid">
-    <div
-      class="no-phones"
-      *ngIf="smartphones == null || smartphones.length == 0"
-    >
+    <div class="no-phones" *ngIf="smartphones == null">
       <img src="assets/images/sad-phone.png" alt="no-smartphones" />
       <p>Sorry, No Smartphones Found!</p>
     </div>
-    <div id="phone-list" class="row">
+    <div id="phone-list" class="row" *ngIf="smartphones != null">
       <div class="col-sm-3" *ngFor="let smartphone of smartphones">
         <div
           class="card"

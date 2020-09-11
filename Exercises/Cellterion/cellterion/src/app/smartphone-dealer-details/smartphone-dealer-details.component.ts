@@ -4,7 +4,9 @@ import { filter, takeUntil } from "rxjs/operators";
 import { NavigationEnd, Router, RouterEvent } from "@angular/router";
 import * as AOS from "aos";
 import { Subject } from "rxjs";
-import { Title } from '@angular/platform-browser';
+import { Title } from "@angular/platform-browser";
+import { AppError } from "../common/app-error";
+import { NotFoundError } from "../common/not-found-error";
 
 @Component({
   selector: "app-smartphone-dealer-details",
@@ -20,12 +22,13 @@ export class SmartphoneDealerDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private smartphoneDealerDetailsService: SmartphoneDealerDetailsService,
     private router: Router,
-    private titleService: Title) {}
+    private titleService: Title
+  ) {}
 
   ngOnInit(): void {
     AOS.init({});
     this.fetchData();
-    this.titleService.setTitle( this.smartphoneDealer + " Details" );
+    this.titleService.setTitle(this.smartphoneDealer + " Details");
 
     this.router.events
       .pipe(
@@ -43,12 +46,23 @@ export class SmartphoneDealerDetailsComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    this.smartphoneDealerDetailsService
-      .getSmartphoneDealerDetails()
-      .subscribe(data => {
-        this.smartphoneDealer = data;
+    this.smartphoneDealerDetailsService.getSmartphoneDealerDetails().subscribe(
+      response => {
+        this.smartphoneDealer = response;
         this.dealerAddresses = this.smartphoneDealer.addresses;
         this.dealerTelephoneNumbers = this.smartphoneDealer.telephoneList;
-      });
+      },
+      (error: AppError) => {
+        this.smartphoneDealer = null;
+        if (error instanceof NotFoundError) {
+          console.log(
+            "Oops! It's not you, it's us! Seems like our server's having some trouble! We'll fix it as soon as possible."
+          );
+        } else {
+          alert("An unexpected error occured!");
+          console.log(error);
+        }
+      }
+    );
   }
 }

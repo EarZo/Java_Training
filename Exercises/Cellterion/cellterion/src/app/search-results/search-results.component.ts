@@ -3,8 +3,8 @@ import { SearchResultsService } from "./search-results.service";
 import { filter, takeUntil } from "rxjs/operators";
 import { NavigationEnd, Router, RouterEvent } from "@angular/router";
 import * as AOS from "aos";
-import { Subject } from "rxjs";
-import { Title } from '@angular/platform-browser';
+import { empty, Subject } from "rxjs";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: "app-search-results",
@@ -19,9 +19,10 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   constructor(
     private searchResultsService: SearchResultsService,
     private router: Router,
-    private titleService: Title) {
-      this.titleService.setTitle( "Search Results" );
-    }
+    private titleService: Title
+  ) {
+    this.titleService.setTitle("Search Results");
+  }
 
   ngOnInit(): void {
     AOS.init({});
@@ -45,11 +46,11 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    this.searchResultsService.getDetails().subscribe(data => {
-      if (!data) {
+    this.searchResultsService.getDetails().subscribe(response => {
+      if (empty) {
         this.smartphones = null;
       } else {
-        this.smartphones = data;
+        this.smartphones = response;
       }
     });
   }

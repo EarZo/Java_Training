@@ -7,21 +7,18 @@ import { catchError } from "rxjs/operators";
   providedIn: "root"
 })
 export class SearchResultsService {
+  private url = "//localhost:8080/services/smartphone/all/price";
+
   constructor(private http: HttpClient) {}
 
   getDetails(): Observable<any> {
-    return this.http
-      .get(
-        "//localhost:8080/services/smartphone/all/price/" +
-          localStorage.getItem("budget")
-      )
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          if (error instanceof HttpErrorResponse && error.status == 404) {
-            return empty();
-          }
-        })
-      );
+    return this.http.get(this.url + "/" + localStorage.getItem("budget")).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          return empty();
+        }
+      })
+    );
   }
 
   setId(id: number) {

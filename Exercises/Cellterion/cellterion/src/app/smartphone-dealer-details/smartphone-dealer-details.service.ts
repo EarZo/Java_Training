@@ -18,12 +18,10 @@ export class SmartphoneDealerDetailsService {
       .get(this.url + "/" + localStorage.getItem("dealerName"))
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          if (error instanceof HttpErrorResponse && error.status == 404) {
-            if (error.status === 404) {
-              return Observable.throw(new NotFoundError());
-            } else {
-              return Observable.throw(new AppError(error));
-            }
+          if (error.status === 404) {
+            return Observable.throw(new NotFoundError());
+          } else {
+            return Observable.throw(new AppError(error));
           }
         })
       );

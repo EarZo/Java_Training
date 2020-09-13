@@ -7,6 +7,7 @@ import { filter, takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 import * as AOS from "aos";
 import { Title } from "@angular/platform-browser";
+import { ToastrService } from "ngx-toastr";
 
 declare var $: any;
 
@@ -23,7 +24,8 @@ export class LatestSmartphonesComponent implements OnInit, OnDestroy {
   constructor(
     private latestSmartphonesService: LatestSmartphonesService,
     private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    private toastr: ToastrService
   ) {
     this.titleService.setTitle(this.currentYear + " Latest Smartphones");
   }
@@ -56,12 +58,17 @@ export class LatestSmartphonesComponent implements OnInit, OnDestroy {
       (error: AppError) => {
         this.latestSmartphones = null;
         if (error instanceof NotFoundError) {
-          console.log(
-            "Oops! It's not you, it's us! Seems like our server's having some trouble! We'll fix it as soon as possible."
+          this.toastr.error(
+            "Seems like our server's having some trouble! We'll fix it as soon as possible.",
+            "Oops! It's Not You, It's Us!"
           );
+          // console.log(error);
         } else {
-          alert("An unexpected error occured!");
-          console.log(error);
+          this.toastr.error(
+            "An unexpected error occured!",
+            "Oops! It's Not You, It's Us!"
+          );
+          // console.log(error);
         }
       }
     );

@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
-import { Observable, empty } from "rxjs";
+import { Observable } from "rxjs";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError } from "rxjs/operators";
+import { AppError } from "../common/app-error";
+import { NotFoundError } from "../common/not-found-error";
 
 @Injectable({
   providedIn: "root"
@@ -15,7 +17,9 @@ export class SearchResultsService {
     return this.http.get(this.url + "/" + localStorage.getItem("budget")).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 404) {
-          return empty();
+          return Observable.throw(new NotFoundError());
+        } else {
+          return Observable.throw(new AppError(error));
         }
       })
     );

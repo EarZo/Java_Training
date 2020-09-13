@@ -7,6 +7,7 @@ import { Subject } from "rxjs";
 import { Title } from "@angular/platform-browser";
 import { AppError } from "../common/app-error";
 import { NotFoundError } from "../common/not-found-error";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-smartphone-dealer-details",
@@ -22,7 +23,8 @@ export class SmartphoneDealerDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private smartphoneDealerDetailsService: SmartphoneDealerDetailsService,
     private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -55,12 +57,17 @@ export class SmartphoneDealerDetailsComponent implements OnInit, OnDestroy {
       (error: AppError) => {
         this.smartphoneDealer = null;
         if (error instanceof NotFoundError) {
-          console.log(
-            "Oops! It's not you, it's us! Seems like our server's having some trouble! We'll fix it as soon as possible."
+          this.toastr.error(
+            "Seems like our server's having some trouble! We'll fix it as soon as possible.",
+            "Oops! It's Not You, It's Us!"
           );
+          // console.log(error);
         } else {
-          alert("An unexpected error occured!");
-          console.log(error);
+          this.toastr.error(
+            "An unexpected error occured!",
+            "Oops! It's Not You, It's Us!"
+          );
+          // console.log(error);
         }
       }
     );

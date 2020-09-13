@@ -19,6 +19,7 @@ import { SearchResultsComponent } from "./search-results/search-results.componen
 import { SearchComponent } from "./search/search.component";
 import { FeaturedBrandsComponent } from "./featured-brands/featured-brands.component";
 import { TopSmartphoneDealersComponent } from "./top-smartphone-dealers/top-smartphone-dealers.component";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { TopSmartphoneDealersComponent } from "./top-smartphone-dealers/top-smar
     AppRoutingModule,
     CarouselModule,
     SlickCarouselModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [Title],
   bootstrap: [AppComponent]

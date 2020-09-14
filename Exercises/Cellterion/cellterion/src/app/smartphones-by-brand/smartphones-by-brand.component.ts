@@ -50,7 +50,7 @@ export class SmartphonesByBrandComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    this.smartphonesByBrandService.getDetails().subscribe(
+    this.smartphonesByBrandService.getAll().subscribe(
       response => {
         this.brandObject = response;
         this.smartphonesByBrand = this.brandObject.smartphones;
@@ -63,13 +63,7 @@ export class SmartphonesByBrandComponent implements OnInit, OnDestroy {
             "Oops! It's Not You, It's Us!"
           );
           // console.log(error);
-        } else {
-          this.toastr.error(
-            "An unexpected error occured!",
-            "Oops! It's Not You, It's Us!"
-          );
-          // console.log(error);
-        }
+        } else throw error;
       }
     );
   }

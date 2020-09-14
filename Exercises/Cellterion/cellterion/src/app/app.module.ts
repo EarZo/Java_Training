@@ -1,6 +1,7 @@
+import { AppErrorHandler } from "./common/app-error-handler";
 import { BrowserModule, Title } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { NgModule } from "@angular/core";
+import { ErrorHandler, NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
@@ -47,7 +48,7 @@ import { ToastrModule } from "ngx-toastr";
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [Title],
+  providers: [{ provide: ErrorHandler, useClass: AppErrorHandler }, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

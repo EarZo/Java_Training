@@ -48,7 +48,7 @@ export class SmartphoneDealerDetailsComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    this.smartphoneDealerDetailsService.getSmartphoneDealerDetails().subscribe(
+    this.smartphoneDealerDetailsService.getAll().subscribe(
       response => {
         this.smartphoneDealer = response;
         this.dealerAddresses = this.smartphoneDealer.addresses;
@@ -62,13 +62,7 @@ export class SmartphoneDealerDetailsComponent implements OnInit, OnDestroy {
             "Oops! It's Not You, It's Us!"
           );
           // console.log(error);
-        } else {
-          this.toastr.error(
-            "An unexpected error occured!",
-            "Oops! It's Not You, It's Us!"
-          );
-          // console.log(error);
-        }
+        } else throw error;
       }
     );
   }

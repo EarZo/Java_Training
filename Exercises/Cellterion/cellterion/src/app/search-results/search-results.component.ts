@@ -50,7 +50,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    this.searchResultsService.getDetails().subscribe(
+    this.searchResultsService.getAll().subscribe(
       response => {
         this.smartphones = response;
       },
@@ -62,13 +62,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
             "Oops! It's Not You, It's Us!"
           );
           // console.log(error);
-        } else {
-          this.toastr.error(
-            "An unexpected error occured!",
-            "Oops! It's Not You, It's Us!"
-          );
-          // console.log(error);
-        }
+        } else throw error;
       }
     );
   }

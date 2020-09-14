@@ -93,7 +93,7 @@ export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
       this.smartphoneId = response;
     });
 
-    this.smartphoneDetailsService.getDetails(this.smartphoneId).subscribe(
+    this.smartphoneDetailsService.getAll().subscribe(
       response => {
         this.smartphoneDetails = response;
         this.smartphoneCameras = this.smartphoneDetails.mainCameras;
@@ -109,13 +109,7 @@ export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
             "Oops! It's Not You, It's Us!"
           );
           // console.log(error);
-        } else {
-          this.toastr.error(
-            "An unexpected error occured!",
-            "Oops! It's Not You, It's Us!"
-          );
-          // console.log(error);
-        }
+        } else throw error;
       }
     );
   }

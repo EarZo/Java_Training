@@ -51,7 +51,7 @@ export class LatestSmartphonesComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    this.latestSmartphonesService.getLatest().subscribe(
+    this.latestSmartphonesService.getAll().subscribe(
       response => {
         this.latestSmartphones = response;
       },
@@ -63,13 +63,7 @@ export class LatestSmartphonesComponent implements OnInit, OnDestroy {
             "Oops! It's Not You, It's Us!"
           );
           // console.log(error);
-        } else {
-          this.toastr.error(
-            "An unexpected error occured!",
-            "Oops! It's Not You, It's Us!"
-          );
-          // console.log(error);
-        }
+        } else throw error;
       }
     );
   }

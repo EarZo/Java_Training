@@ -56,6 +56,7 @@ export class SmartphoneDealerDetailsComponent implements OnInit, OnDestroy {
       },
       (error: AppError) => {
         this.smartphoneDealer = null;
+
         if (error instanceof NotFoundError) {
           this.toastr.error(
             "Seems like our server's having some trouble! We'll fix it as soon as possible.",

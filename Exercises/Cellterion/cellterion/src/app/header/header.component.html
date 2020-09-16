@@ -7,7 +7,7 @@
         <div class="site-logo">
           <a
             routerLink="/home"
-            routerLinkActive="active"
+            routerLinkActive="active current"
             class="js-logo-clone"
             title="Your Smartphone Buying Assistant | www.cellterion.com"
             ><img
@@ -21,6 +21,7 @@
       <!--Logo section ends-->
 
       <!--Navigation Menu section starts-->
+
       <div class="main-nav d-none d-lg-block">
         <nav
           class="site-navigation text-right text-md-center"
@@ -31,7 +32,19 @@
             style="color: white"
           >
             <li class="active">
-              <a routerLink="/home" routerLinkActive="active">Home</a>
+              <a routerLink="/home" routerLinkActive="active current">Home</a>
+            </li>
+
+            <li
+              *ngIf="authService.isLoggedIn() && authService.currentUser.admin"
+            >
+              <a routerLink="/admin" routerLinkActive="active current">Admin</a>
+            </li>
+            <li *ngIf="!authService.isLoggedIn()">
+              <a routerLink="/login">Login</a>
+            </li>
+            <li *ngIf="authService.isLoggedIn()">
+              <a (click)="authService.logout()">Logout</a>
             </li>
             <li class="has-children">
               <a href="#">Featured Brands</a>
@@ -98,6 +111,10 @@
             </li>
           </ul>
         </nav>
+
+        <p *ngIf="authService.isLoggedIn()">
+          Welcome {{ authService.currentUser.name }}
+        </p>
       </div>
 
       <a class="site-menu-toggle js-menu-toggle ml-1 d-inline-block d-lg-none"

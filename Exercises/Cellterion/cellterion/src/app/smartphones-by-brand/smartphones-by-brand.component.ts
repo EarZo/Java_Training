@@ -57,6 +57,7 @@ export class SmartphonesByBrandComponent implements OnInit, OnDestroy {
       },
       (error: AppError) => {
         this.brandObject = null;
+
         if (error instanceof NotFoundError) {
           this.toastr.error(
             "Seems like our server's having some trouble! We'll fix it as soon as possible.",

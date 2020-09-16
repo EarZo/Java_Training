@@ -6,6 +6,12 @@ import { SmartphoneDetailsComponent } from "./smartphone-details/smartphone-deta
 import { SmartphoneDealerDetailsComponent } from "./smartphone-dealer-details/smartphone-dealer-details.component";
 import { SmartphonesByBrandComponent } from "./smartphones-by-brand/smartphones-by-brand.component";
 import { SearchResultsComponent } from "./search-results/search-results.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
+import { AdminComponent } from "./admin/admin.component";
+import { LoginComponent } from "./login/login.component";
+import { NoAccessComponent } from "./no-access/no-access.component";
+import { AdminAuthGuard } from "./services/admin-auth-guard.service";
+import { AuthGuard } from "./services/auth-guard.service";
 
 const routes: Routes = [
   {
@@ -17,6 +23,13 @@ const routes: Routes = [
     redirectTo: "home",
     pathMatch: "full"
   },
+  {
+    path: "admin",
+    component: AdminComponent,
+    canActivate: [AuthGuard, AdminAuthGuard]
+  },
+  { path: "login", component: LoginComponent },
+  { path: "no-access", component: NoAccessComponent },
   {
     path: "latest-smartphones",
     component: LatestSmartphonesComponent
@@ -36,6 +49,10 @@ const routes: Routes = [
   {
     path: "budget",
     component: SearchResultsComponent
+  },
+  {
+    path: "**",
+    component: NotFoundComponent
   }
 ];
 

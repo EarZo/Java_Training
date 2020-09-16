@@ -51,11 +51,10 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   fetchData() {
     this.searchResultsService.getAll().subscribe(
-      response => {
-        this.smartphones = response;
-      },
+      response => (this.smartphones = response),
       (error: AppError) => {
         this.smartphones = null;
+
         if (error instanceof NotFoundError) {
           this.toastr.error(
             "Seems like our server's having some trouble! We'll fix it as soon as possible.",

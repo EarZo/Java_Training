@@ -1,7 +1,12 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnChanges, OnDestroy, OnInit } from "@angular/core";
 import { SmartphoneDealerDetailsService } from "./smartphone-dealer-details.service";
 import { filter, takeUntil } from "rxjs/operators";
-import { NavigationEnd, Router, RouterEvent } from "@angular/router";
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterEvent
+} from "@angular/router";
 import * as AOS from "aos";
 import { Subject } from "rxjs";
 import { Title } from "@angular/platform-browser";
@@ -24,13 +29,13 @@ export class SmartphoneDealerDetailsComponent implements OnInit, OnDestroy {
     private smartphoneDealerDetailsService: SmartphoneDealerDetailsService,
     private router: Router,
     private titleService: Title,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     AOS.init({});
     this.fetchData();
-    this.titleService.setTitle(this.smartphoneDealer + " Details");
 
     this.router.events
       .pipe(
@@ -45,26 +50,35 @@ export class SmartphoneDealerDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyed.next();
     this.destroyed.complete();
+    localStorage.removeItem("dealerName");
   }
 
   fetchData() {
-    this.smartphoneDealerDetailsService.getAll().subscribe(
-      response => {
-        this.smartphoneDealer = response;
-        this.dealerAddresses = this.smartphoneDealer.addresses;
-        this.dealerTelephoneNumbers = this.smartphoneDealer.telephoneList;
-      },
-      (error: AppError) => {
-        this.smartphoneDealer = null;
+    this.activatedRoute.paramMap.subscribe(params => {
+      let dealerName = params.get("dealerName");
+      localStorage.setItem("dealerName", dealerName);
+      this.titleService.setTitle(dealerName + " Details");
+    });
 
-        if (error instanceof NotFoundError) {
-          this.toastr.error(
-            "Seems like our server's having some trouble! We'll fix it as soon as possible.",
-            "Oops! It's Not You, It's Us!"
-          );
-          // console.log(error);
-        } else throw error;
-      }
-    );
+    this.smartphoneDealerDetailsService
+      .getAll(localStorage.getItem("dealerName"))
+      .subscribe(
+        response => {
+          this.smartphoneDealer = response;
+          this.dealerAddresses = this.smartphoneDealer.addresses;
+          this.dealerTelephoneNumbers = this.smartphoneDealer.telephoneList;
+        },
+        (error: AppError) => {
+          this.smartphoneDealer = null;
+
+          if (error instanceof NotFoundError) {
+            this.toastr.error(
+              "Seems like our server's having some trouble! We'll fix it as soon as possible.",
+              "Oops! It's Not You, It's Us!"
+            );
+            // console.log(error);
+          } else throw error;
+        }
+      );
   }
 }

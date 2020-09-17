@@ -10,8 +10,14 @@ import { catchError } from "rxjs/operators";
 export class DataService {
   constructor(private http: HttpClient, private url: string) {}
 
-  getAll(): Observable<any> {
-    return this.http.get(this.url).pipe(catchError(this.handleError));
+  getAll(additionalParams?: string): Observable<any> {
+    if (additionalParams) {
+      return this.http
+        .get(this.url + additionalParams)
+        .pipe(catchError(this.handleError));
+    } else {
+      return this.http.get(this.url).pipe(catchError(this.handleError));
+    }
   }
 
   create(resource) {

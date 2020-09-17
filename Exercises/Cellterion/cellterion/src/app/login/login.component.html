@@ -1,37 +1,65 @@
 <div class="site-wrap">
   <div
     class="site-blocks-cover"
-    style="background-color: gainsboro; top: 150px"
+    style="background-color: gainsboro"
+    data-aos="fade"
+    data-aos-duration="1000"
+    data-aos-delay="800"
+    data-aos-easing="slide"
+    data-aos-once="true"
   >
-    <form class="form-signin" #f="ngForm" (ngSubmit)="signIn(f.value)">
-      <h2 class="form-signin-heading">Please sign in</h2>
-      <div *ngIf="invalidLogin" class="alert alert-danger">
-        Invalid username and/or password.
+    <div class="site-section" style="margin-top: 80px;">
+      <div class="container">
+        <div>
+          <div class="title-section text-center">
+            <h1 style="margin-bottom: 0">Sign In</h1>
+            <h2 class="text-uppercase" style="margin-bottom: 0">
+              for the best content and a personalized experience!
+            </h2>
+            <hr style="background-color: gainsboro; margin-top: 0" />
+            <form class="form-signin" #f="ngForm" (ngSubmit)="signIn(f.value)">
+              <div *ngIf="invalidLogin" class="alert alert-danger">
+                Invalid username and/or password.
+              </div>
+              <label for="inputEmail" class="sr-only">Email address</label>
+              <input
+                type="email"
+                id="inputEmail"
+                name="email"
+                ngModel
+                class="form-control"
+                placeholder="Email address"
+                required
+                autofocus
+              />
+              <label for="inputPassword" class="sr-only">Password</label>
+              <input
+                type="password"
+                id="inputPassword"
+                name="password"
+                ngModel
+                class="form-control"
+                placeholder="Password"
+                required
+              />
+              <button class="btn btn-lg btn-primary btn-block" type="submit">
+                Sign in
+              </button>
+            </form>
+
+            <hr style="background-color: gainsboro" />
+            <h2>
+              No Account? No worries! Join with us below!
+            </h2>
+            <button
+              class="btn btn-xm btn-success btn-block"
+              routerLink="/signup"
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
       </div>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input
-        type="email"
-        id="inputEmail"
-        name="email"
-        ngModel
-        class="form-control"
-        placeholder="Email address"
-        required
-        autofocus
-      />
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input
-        type="password"
-        id="inputPassword"
-        name="password"
-        ngModel
-        class="form-control"
-        placeholder="Password"
-        required
-      />
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Sign in
-      </button>
-    </form>
+    </div>
   </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "../services/auth.service";
+import * as AOS from "aos";
 
 @Component({
   selector: "app-login",
@@ -16,7 +17,9 @@ export class LoginComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    AOS.init({});
+  }
 
   signIn(credentials) {
     this.authService.login(credentials).subscribe(result => {

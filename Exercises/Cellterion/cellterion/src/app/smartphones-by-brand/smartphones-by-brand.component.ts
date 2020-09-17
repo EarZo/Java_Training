@@ -1,7 +1,12 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { SmartphonesByBrandService } from "./smartphones-by-brand.service";
 import { filter, takeUntil } from "rxjs/operators";
-import { NavigationEnd, Router, RouterEvent } from "@angular/router";
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterEvent
+} from "@angular/router";
 import * as AOS from "aos";
 import { Subject } from "rxjs";
 import { Title } from "@angular/platform-browser";
@@ -24,14 +29,12 @@ export class SmartphonesByBrandComponent implements OnInit, OnDestroy {
     private smartphonesByBrandService: SmartphonesByBrandService,
     private router: Router,
     private titleService: Title,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     AOS.init({});
-
-    this.brandName = localStorage.getItem("brandName");
-    this.titleService.setTitle(this.brandName);
     this.fetchData();
 
     this.router.events
@@ -47,10 +50,17 @@ export class SmartphonesByBrandComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyed.next();
     this.destroyed.complete();
+    localStorage.removeItem("brandName");
   }
 
   fetchData() {
-    this.smartphonesByBrandService.getAll().subscribe(
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.brandName = params.get("brandName");
+      localStorage.setItem("brandName", this.brandName);
+      this.titleService.setTitle(this.brandName + " Smartphones");
+    });
+
+    this.smartphonesByBrandService.getAll(this.brandName).subscribe(
       response => {
         this.brandObject = response;
         this.smartphonesByBrand = this.brandObject.smartphones;

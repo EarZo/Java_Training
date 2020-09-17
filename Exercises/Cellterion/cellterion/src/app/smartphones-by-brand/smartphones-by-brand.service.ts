@@ -7,12 +7,7 @@ import { DataService } from "../services/data.service";
 })
 export class SmartphonesByBrandService extends DataService {
   constructor(http: HttpClient) {
-    super(
-      http,
-      "//localhost:8083/services/brand/name" +
-        "/" +
-        localStorage.getItem("brandName")
-    );
+    super(http, "//localhost:8083/services/brand/name/");
   }
 
   setId(id: number) {

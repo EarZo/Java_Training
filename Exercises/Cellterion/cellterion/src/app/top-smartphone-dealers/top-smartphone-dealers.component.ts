@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { TopSmartphoneDealersService } from "./top-smartphone-dealers.service";
-import { Router } from "@angular/router";
 import { OwlOptions } from "ngx-owl-carousel-o";
 
 @Component({
@@ -9,10 +7,7 @@ import { OwlOptions } from "ngx-owl-carousel-o";
   styleUrls: ["./top-smartphone-dealers.component.css"]
 })
 export class TopSmartphoneDealersComponent implements OnInit {
-  constructor(
-    private topSmartphoneDealersService: TopSmartphoneDealersService,
-    private router: Router
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
@@ -44,9 +39,4 @@ export class TopSmartphoneDealersComponent implements OnInit {
       }
     }
   };
-
-  showSmartphoneDealerDetails(dealerName: any) {
-    this.topSmartphoneDealersService.setDealerName(dealerName);
-    this.router.navigate(["/dealer"]);
-  }
 }

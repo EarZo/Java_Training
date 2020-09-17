@@ -12,7 +12,6 @@ export class AuthService {
   login(credentials) {
     return this.http.post<any>("/api/authenticate", credentials).pipe(
       map(response => {
-        console.log(JSON.stringify(response));
         if (response && response.token) {
           localStorage.setItem("token", response.token);
           return true;
@@ -37,9 +36,6 @@ export class AuthService {
     // let decodedToken = jwtHelperService.decodeToken(token);
     let expirationDate = jwtHelperService.getTokenExpirationDate(token);
     let isExpired = jwtHelperService.isTokenExpired(token);
-
-    console.log("Expiration", expirationDate);
-    console.log("isExpired", isExpired);
 
     return !isExpired;
   }

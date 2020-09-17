@@ -1,3 +1,4 @@
+import { SignupComponent } from "./signup/signup.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
@@ -29,6 +30,7 @@ const routes: Routes = [
     canActivate: [AuthGuard, AdminAuthGuard]
   },
   { path: "login", component: LoginComponent },
+  { path: "signup", component: SignupComponent },
   { path: "no-access", component: NoAccessComponent },
   {
     path: "latest-smartphones",
@@ -39,11 +41,11 @@ const routes: Routes = [
     component: SmartphoneDetailsComponent
   },
   {
-    path: "dealer",
+    path: "dealer/:dealerName",
     component: SmartphoneDealerDetailsComponent
   },
   {
-    path: "brand",
+    path: "brand/:brandName",
     component: SmartphonesByBrandComponent
   },
   {

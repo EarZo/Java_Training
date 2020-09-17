@@ -45,9 +45,4 @@ export class FeaturedBrandsComponent implements OnInit {
       }
     }
   };
-
-  showSmartphonesByBrand(brandName: any) {
-    this.featuredBrandsService.setBrandName(brandName);
-    this.router.navigate(["/brand"]);
-  }
 }

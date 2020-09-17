@@ -47,6 +47,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyed.next();
     this.destroyed.complete();
+    localStorage.removeItem("budget");
   }
 
   fetchData() {

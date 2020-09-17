@@ -86,6 +86,7 @@ export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroyed.next();
     this.destroyed.complete();
+    localStorage.removeItem("smartphoneId");
   }
 
   fetchData() {

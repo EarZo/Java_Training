@@ -13,7 +13,7 @@
         <owl-carousel-o [options]="customOptions">
           <ng-template carouselSlide>
             <div class="product">
-              <a (click)="showSmartphonesByBrand('Sony')" class="item">
+              <a [routerLink]="['/brand', 'Sony']" class="item">
                 <img
                   src="assets/images/sony.png"
                   alt="Image"
@@ -24,7 +24,7 @@
           </ng-template>
           <ng-template carouselSlide>
             <div class="product">
-              <a (click)="showSmartphonesByBrand('Samsung')" class="item">
+              <a [routerLink]="['/brand', 'Samsung']" class="item">
                 <img
                   src="assets/images/samsung.png"
                   alt="Image"
@@ -35,7 +35,7 @@
           </ng-template>
           <ng-template carouselSlide>
             <div class="product">
-              <a (click)="showSmartphonesByBrand('Apple')" class="item">
+              <a [routerLink]="['/brand', 'Apple']" class="item">
                 <img
                   src="assets/images/apple.png"
                   alt="Image"
@@ -46,7 +46,7 @@
           </ng-template>
           <ng-template carouselSlide>
             <div class="product">
-              <a (click)="showSmartphonesByBrand('Oneplus')" class="item">
+              <a [routerLink]="['/brand', 'Oneplus']" class="item">
                 <img
                   src="assets/images/oneplus.png"
                   alt="Image"
@@ -57,7 +57,7 @@
           </ng-template>
           <ng-template carouselSlide>
             <div class="product">
-              <a (click)="showSmartphonesByBrand('Nokia')" class="item">
+              <a [routerLink]="['/brand', 'Nokia']" class="item">
                 <img
                   src="assets/images/nokia.png"
                   alt="Image"
@@ -68,7 +68,7 @@
           </ng-template>
           <ng-template carouselSlide>
             <div class="product">
-              <a (click)="showSmartphonesByBrand('Xiaomi')" class="item">
+              <a [routerLink]="['/brand', 'Xiaomi']" class="item">
                 <img
                   src="assets/images/xiaomi.png"
                   alt="Image"

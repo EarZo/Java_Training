@@ -7,7 +7,6 @@
         <div class="site-logo">
           <a
             routerLink="/home"
-            routerLinkActive="active current"
             class="js-logo-clone"
             title="Your Smartphone Buying Assistant | www.cellterion.com"
             ><img
@@ -31,90 +30,92 @@
             class="site-menu js-clone-nav d-none d-lg-block"
             style="color: white"
           >
-            <li class="active">
-              <a routerLink="/home" routerLinkActive="active current">Home</a>
+            <li routerLinkActive="active current">
+              <a routerLink="/home">Home</a>
             </li>
 
             <li
               *ngIf="authService.isLoggedIn() && authService.currentUser.admin"
+              routerLinkActive="active current"
             >
-              <a routerLink="/admin" routerLinkActive="active current">Admin</a>
+              <a routerLink="/admin">Admin</a>
             </li>
-            <li *ngIf="!authService.isLoggedIn()">
+            <li
+              *ngIf="!authService.isLoggedIn()"
+              routerLinkActive="active current"
+            >
               <a routerLink="/login">Login</a>
             </li>
             <li *ngIf="authService.isLoggedIn()">
               <a (click)="authService.logout()">Logout</a>
             </li>
-            <li class="has-children">
-              <a href="#">Featured Brands</a>
+            <li class="has-children" routerLinkActive="active current">
+              <a>Featured Brands</a>
               <ul class="dropdown">
-                <li>
-                  <a class="brand" href="servlet_smartphonesByBrand?brandCode=7"
-                    >Sony</a
-                  >
+                <li
+                  routerLinkActive="active current"
+                  [routerLink]="['/brand', 'Sony']"
+                >
+                  <a class="brand">Sony</a>
                 </li>
-                <li>
-                  <a class="brand" href="servlet_smartphonesByBrand?brandCode=9"
-                    >Samsung</a
-                  >
+                <li
+                  routerLinkActive="active current"
+                  [routerLink]="['/brand', 'Samsung']"
+                >
+                  <a class="brand">Samsung</a>
                 </li>
-                <li>
-                  <a
-                    class="brand"
-                    href="servlet_smartphonesByBrand?brandCode=48"
-                    >Apple</a
-                  >
+                <li
+                  routerLinkActive="active current"
+                  [routerLink]="['/brand', 'Apple']"
+                >
+                  <a class="brand">Apple</a>
                 </li>
-                <li>
-                  <a
-                    class="brand"
-                    href="servlet_smartphonesByBrand?brandCode=95"
-                    >One Plus</a
-                  >
+                <li
+                  routerLinkActive="active current"
+                  [routerLink]="['/brand', 'Oneplus']"
+                >
+                  <a class="brand">One Plus</a>
                 </li>
-                <li>
-                  <a class="brand" href="servlet_smartphonesByBrand?brandCode=1"
-                    >Nokia</a
-                  >
+                <li
+                  routerLinkActive="active current"
+                  [routerLink]="['/brand', 'Nokia']"
+                >
+                  <a class="brand">Nokia</a>
                 </li>
-                <li>
-                  <a
-                    class="brand"
-                    href="servlet_smartphonesByBrand?brandCode=80"
-                    >Xiaomi</a
-                  >
+                <li
+                  routerLinkActive="active current"
+                  [routerLink]="['/brand', 'Xiaomi']"
+                >
+                  <a class="brand">Xiaomi</a>
                 </li>
               </ul>
             </li>
 
-            <li class="has-children">
-              <a href="#">Smartphone Dealers</a>
+            <li class="has-children" routerLinkActive="active current">
+              <a>Smartphone Dealers</a>
               <ul class="dropdown">
-                <li>
-                  <a href="servlet_smartphoneDealerDetails?dealerName=dialcom"
-                    >Dialcom</a
-                  >
+                <li
+                  routerLinkActive="active current"
+                  [routerLink]="['/dealer', 'Dialcom']"
+                >
+                  <a class="dealer">Dialcom</a>
                 </li>
-                <li>
-                  <a href="servlet_smartphoneDealerDetails?dealerName=techmart"
-                    >Techmart</a
-                  >
+                <li
+                  routerLinkActive="active current"
+                  [routerLink]="['/dealer', 'Techmart']"
+                >
+                  <a class="dealer">Techmart</a>
                 </li>
-                <li>
-                  <a
-                    href="servlet_smartphoneDealerDetails?dealerName=celltronics"
-                    >Celltronics</a
-                  >
+                <li
+                  routerLinkActive="active current"
+                  [routerLink]="['/dealer', 'Celltronics']"
+                >
+                  <a class="dealer">Celltronics</a>
                 </li>
               </ul>
             </li>
           </ul>
         </nav>
-
-        <p *ngIf="authService.isLoggedIn()">
-          Welcome {{ authService.currentUser.name }}
-        </p>
       </div>
 
       <a class="site-menu-toggle js-menu-toggle ml-1 d-inline-block d-lg-none"

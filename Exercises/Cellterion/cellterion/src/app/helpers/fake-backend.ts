@@ -20,7 +20,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     // fake jwt token
     let token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1vc2ggSGFtZWRhbmkiLCJhZG1pbiI6dHJ1ZX0.1dm4jAzSnmfPFNKXAz36Iq6I1upjQ3jW1kTfv5cx2XA";
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkVyYW5kYSBFZGlyaXNvb3JpeWEiLCJhZG1pbiI6dHJ1ZX0.oHOYLqrurmbwJP0ogYq1YAYsW5MLhUdOLHekIPCS_s8";
 
     // wrap in delayed observable to simulate server api call
     return of(null)
@@ -30,7 +30,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       .pipe(dematerialize());
 
     function handleRoute() {
-      console.log("Hits handleRoute() in FakeBackendInterceptor");
+      /* console.log(url);
+      console.log(method);
+      console.log(headers);
+      console.log(body); */
       switch (true) {
         case url.endsWith("/api/authenticate") && method === "POST":
           return authenticate();
@@ -48,14 +51,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     // fake implementation of /api/authenticate
     //
     function authenticate() {
-      console.log("Hits authenticate() in FakeBackendInterceptor");
       const requestBody = body;
 
       if (
-        requestBody.email === "mosh@domain.com" &&
+        requestBody.email === "eranda@domain.com" &&
         requestBody.password === "1234"
       ) {
-        return ok(token);
+        return ok({ token: token });
       } else {
         return ok();
       }

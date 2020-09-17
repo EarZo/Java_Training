@@ -1,3 +1,7 @@
-.site-menu-toggle{
+ul li a {
+  cursor: pointer;
+}
+
+.site-menu-toggle {
   cursor: pointer;
 }

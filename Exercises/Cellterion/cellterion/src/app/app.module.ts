@@ -67,10 +67,10 @@ export function tokenGetter() {
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: tokenGetter,
-        // allowedDomains: ["http://localhost:4200"],
-        throwNoTokenError: true,
-        skipWhenExpired: true
+        tokenGetter: tokenGetter
+        // allowedDomains: ["http://localhost:4200", "http://localhost:8080"]
+        // throwNoTokenError: true,
+        // skipWhenExpired: true
 
         /* disallowedRoutes: ["http://example.com/examplebadroute/"] */
       }

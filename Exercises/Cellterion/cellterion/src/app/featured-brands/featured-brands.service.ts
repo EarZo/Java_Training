@@ -5,8 +5,4 @@ import { Injectable } from "@angular/core";
 })
 export class FeaturedBrandsService {
   constructor() {}
-
-  setBrandName(brandName: any) {
-    localStorage.setItem("brandName", brandName);
-  }
 }

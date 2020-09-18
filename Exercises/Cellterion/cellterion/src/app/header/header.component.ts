@@ -1,6 +1,7 @@
 import { AuthService } from "./../services/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import * as AOS from "aos";
 
 @Component({
   selector: "app-header",
@@ -12,7 +13,9 @@ export class HeaderComponent implements OnInit {
 
   constructor(public authService: AuthService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    AOS.init({});
+  }
 
   showSmartphoneDetails(id: number) {
     localStorage.setItem("smartphoneId", id.toString());

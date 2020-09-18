@@ -1,0 +1,22 @@
+.site-wrap .site-blocks-cover .site-section {
+  margin-top: 50px;
+}
+
+h1 {
+  margin-bottom: 0;
+  text-shadow: 2px 2px gray;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+img {
+  width: 40%;
+  height: 40%;
+}
+
+hr {
+  background-color: gainsboro;
+  margin-top: 0;
+}

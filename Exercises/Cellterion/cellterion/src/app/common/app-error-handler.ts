@@ -9,6 +9,6 @@ export class AppErrorHandler implements ErrorHandler {
       "An unexpected error occured!",
       "Oops! It's Not You, It's Us!"
     );
-    // console.log(error);
+    console.log(error);
   }
 }

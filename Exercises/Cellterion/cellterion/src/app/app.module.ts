@@ -35,6 +35,7 @@ import { OrderService } from "./services/order.service";
 import { AuthService } from "./services/auth.service";
 import { AuthGuard } from "./services/auth-guard.service";
 import { AdminAuthGuard } from "./services/admin-auth-guard.service";
+import { MasterGuard } from "./services/master-guard.service";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -86,6 +87,7 @@ export function tokenGetter() {
     Title,
     OrderService,
     AuthService,
+    MasterGuard,
     AuthGuard,
     AdminAuthGuard,
 

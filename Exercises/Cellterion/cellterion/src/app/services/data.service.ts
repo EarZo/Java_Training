@@ -47,13 +47,10 @@ export class DataService {
   private handleError(error: Response) {
     if (error.status === 400) {
       return throwError(new BadInputError(error));
-      // return Observable.throw(new BadInputError(error));
     } else if (error.status === 404) {
       return throwError(new NotFoundError());
-      // return Observable.throw(new NotFoundError());
     } else {
       return throwError(new AppError(error));
-      // return Observable.throw(new AppError(error));
     }
   }
 }

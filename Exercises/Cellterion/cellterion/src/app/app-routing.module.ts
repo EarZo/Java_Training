@@ -13,6 +13,7 @@ import { LoginComponent } from "./login/login.component";
 import { NoAccessComponent } from "./no-access/no-access.component";
 import { AdminAuthGuard } from "./services/admin-auth-guard.service";
 import { AuthGuard } from "./services/auth-guard.service";
+import { GUARDS, MasterGuard } from "./services/master-guard.service";
 
 const routes: Routes = [
   {
@@ -27,7 +28,12 @@ const routes: Routes = [
   {
     path: "admin",
     component: AdminComponent,
-    canActivate: [AuthGuard, AdminAuthGuard]
+    canActivate: [AuthGuard, AdminAuthGuard, MasterGuard],
+    //this is the data object which will be used by
+    //masteer guard to execute guard1 and guard 2
+    data: {
+      guards: [GUARDS.AUTHGUARD, GUARDS.ADMINAUTHGUARD]
+    }
   },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },

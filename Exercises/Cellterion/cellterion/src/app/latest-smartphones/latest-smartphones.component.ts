@@ -61,7 +61,7 @@ export class LatestSmartphonesComponent implements OnInit, OnDestroy {
             "Seems like our server's having some trouble! We'll fix it as soon as possible.",
             "Oops! It's Not You, It's Us!"
           );
-          // console.log(error);
+          console.log(error);
         } else throw error;
       }
     );

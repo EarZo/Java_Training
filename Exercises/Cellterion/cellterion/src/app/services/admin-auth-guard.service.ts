@@ -8,12 +8,16 @@ import { AuthService } from "./auth.service";
 export class AdminAuthGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) {}
 
-  canActivate() {
+  canActivate(): Promise<boolean> {
     let user = this.authService.currentUser;
-    if (user && user.admin) {
-      return true;
-    }
-    this.router.navigate(["no-access"]);
-    return false;
+
+    return new Promise((resolve: Function, reject: Function) => {
+      if (user && user.admin) {
+        resolve(true);
+      } else {
+        this.router.navigate(["/no-access"]);
+        reject(false);
+      }
+    });
   }
 }

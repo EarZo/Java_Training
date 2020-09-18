@@ -1,13 +1,19 @@
+import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { map } from "rxjs/operators";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   login(credentials) {
     return this.http.post<any>("/api/authenticate", credentials).pipe(
@@ -22,7 +28,9 @@ export class AuthService {
   }
 
   logout() {
+    this.toastr.info("You've successfully signed out!");
     localStorage.removeItem("token");
+    this.router.navigate(["/home"]);
   }
 
   isLoggedIn() {

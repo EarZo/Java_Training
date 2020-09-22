@@ -1,0 +1,18 @@
+@media (max-width: 600px) {
+  input,
+  input::-webkit-input-placeholder {
+    font-size: 10px;
+  }
+  input,
+  input::-moz-placeholder {
+    font-size: 10px;
+  } /* Firefox 19+ */
+  input,
+  input:-moz-placeholder {
+    font-size: 10px;
+  } /* Firefox 18- */
+  input,
+  input:-ms-input-placeholder {
+    font-size: 10px;
+  } /* IE */
+}

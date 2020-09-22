@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { SearchService } from "./search.service";
 import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { faGrinBeamSweat } from "@fortawesome/free-regular-svg-icons";
 
 declare var $: any;
 
@@ -11,6 +12,8 @@ declare var $: any;
   styleUrls: ["./search.component.css"]
 })
 export class SearchComponent implements OnInit {
+  faGrinBeamSweat = faGrinBeamSweat;
+
   form = new FormGroup({
     search: new FormControl("", [
       Validators.required,

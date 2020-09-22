@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "../services/auth.service";
 import * as AOS from "aos";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-login",
@@ -9,7 +11,14 @@ import * as AOS from "aos";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
+  faEnvelope = faEnvelope;
+  faKey = faKey;
   invalidLogin: boolean;
+
+  form = new FormGroup({
+    email: new FormControl("", [Validators.required]),
+    password: new FormControl("", [Validators.required])
+  });
 
   constructor(
     private router: Router,
@@ -21,8 +30,8 @@ export class LoginComponent implements OnInit {
     AOS.init({});
   }
 
-  signIn(credentials) {
-    this.authService.login(credentials).subscribe(result => {
+  signIn() {
+    this.authService.login(this.form.value).subscribe(result => {
       if (result) {
         let returnUrl = this.route.snapshot.queryParamMap.get("returnUrl");
         this.router.navigate([returnUrl || "/home"]);

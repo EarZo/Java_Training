@@ -1,1 +1,122 @@
-<p>signup works!</p>
+<div class="site-wrap">
+  <div
+    class="site-blocks-cover"
+    style="background-color: gainsboro"
+    data-aos="fade"
+    data-aos-duration="1000"
+    data-aos-delay="800"
+    data-aos-easing="slide"
+    data-aos-once="true"
+  >
+    <div class="site-section" style="margin-top: 80px;">
+      <div class="container">
+        <div>
+          <div class="title-section text-center">
+            <form
+              class="form-signup"
+              [formGroup]="form"
+              (ngSubmit)="form.valid && signUp()"
+            >
+              <div
+                *ngIf="form.touched && form.invalid"
+                class="alert alert-danger"
+              >
+                Please complete all the fields!
+              </div>
+              <div class="row no-gutters">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text rounded-pill">
+                      <fa-icon [icon]="faUser"></fa-icon
+                    ></span>
+                  </div>
+                  <div class="col">
+                    <label for="inputFirstName" class="sr-only"
+                      >First Name</label
+                    >
+                    <input
+                      type="text"
+                      id="inputFirstName"
+                      formControlName="firstname"
+                      class="form-control rounded-pill"
+                      placeholder="Enter your first name"
+                      autofocus
+                    />
+                  </div>
+
+                  <div class="col">
+                    <label for="inputLastName" class="sr-only">Last Name</label>
+                    <input
+                      type="text"
+                      id="inputLastName"
+                      formControlName="lastname"
+                      class="form-control rounded-pill"
+                      placeholder="Enter your last name"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text rounded-pill">
+                    <fa-icon [icon]="faEnvelope"></fa-icon
+                  ></span>
+                </div>
+                <div class="col">
+                  <label for="inputEmail" class="sr-only">Email Address</label>
+                  <input
+                    type="email"
+                    id="inputEmail"
+                    formControlName="email"
+                    class="form-control rounded-pill"
+                    placeholder="Enter your email address"
+                  />
+                </div>
+              </div>
+
+              <div class="row no-gutters">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text rounded-pill">
+                      <fa-icon [icon]="faKey"></fa-icon
+                    ></span>
+                  </div>
+                  <div class="col">
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input
+                      type="password"
+                      id="inputPassword"
+                      formControlName="password"
+                      class="form-control rounded-pill"
+                      placeholder="Enter a password"
+                    />
+                  </div>
+                  <div class="col">
+                    <label for="inputPasswordAgain" class="sr-only"
+                      >Re-Enter Password</label
+                    >
+                    <input
+                      type="password"
+                      id="inputPasswordAgain"
+                      formControlName="reEnterPassword"
+                      class="form-control rounded-pill"
+                      placeholder="Re-enter the password"
+                    />
+                  </div>
+                </div>
+              </div>
+              <button
+                [disabled]="form.invalid"
+                class="btn btn-lg btn-success btn-block rounded-pill"
+                type="submit"
+              >
+                Sign Up
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

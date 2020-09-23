@@ -1,6 +1,5 @@
 import { AuthService } from "./../services/auth.service";
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
 import * as AOS from "aos";
 
 @Component({
@@ -11,14 +10,9 @@ import * as AOS from "aos";
 export class HeaderComponent implements OnInit {
   dealerName: any;
 
-  constructor(public authService: AuthService, private router: Router) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
     AOS.init({});
-  }
-
-  showSmartphoneDetails(id: number) {
-    localStorage.setItem("smartphoneId", id.toString());
-    // this.router.navigate(["/details"]);
   }
 }

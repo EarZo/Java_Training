@@ -1,4 +1,52 @@
-@media (max-width: 600px) {
+/*   background-image: url("src/assets/images/background.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+ */
+.container-fluid {
+  margin-top: 200px;
+}
+
+.site-wrap {
+  background-color: gainsboro;
+}
+
+.site-wrap .site-blocks-cover {
+  background-color: gainsboro;
+  background-image: url("src/assets/images/background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+input,
+input::-webkit-input-placeholder {
+  font-size: 12px;
+}
+input,
+input::-moz-placeholder {
+  font-size: 12px;
+} /* Firefox 19+ */
+input,
+input:-moz-placeholder {
+  font-size: 12px;
+} /* Firefox 18- */
+input,
+input:-ms-input-placeholder {
+  font-size: 12px;
+} /* IE */
+
+@media (min-width: 991.98px) {
+  .site-wrap .site-blocks-cover .show-when-minimized {
+    display: none;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .container-fluid {
+    margin-top: 190px;
+  }
+
   input,
   input::-webkit-input-placeholder {
     font-size: 10px;
@@ -15,4 +63,13 @@
   input:-ms-input-placeholder {
     font-size: 10px;
   } /* IE */
+
+  .featured-hero-product {
+    border-right: none;
+  }
+
+  .col-lg-5 h2,
+  .col-lg-5 p {
+    display: none;
+  }
 }

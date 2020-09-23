@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { FeaturedBrandsService } from "./featured-brands.service";
-import { Router } from "@angular/router";
 import { OwlOptions } from "ngx-owl-carousel-o";
 
 @Component({
@@ -9,15 +7,13 @@ import { OwlOptions } from "ngx-owl-carousel-o";
   styleUrls: ["./featured-brands.component.css"]
 })
 export class FeaturedBrandsComponent implements OnInit {
-  constructor(
-    private featuredBrandsService: FeaturedBrandsService,
-    private router: Router
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
   customOptions: OwlOptions = {
     autoplayHoverPause: true,
+    autoplayMouseleaveTimeout: 500,
     center: false,
     items: 1,
     loop: true,

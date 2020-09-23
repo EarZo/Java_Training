@@ -22,7 +22,8 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/assets/css/style.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "src/assets/css/icomoon.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",

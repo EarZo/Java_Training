@@ -16,8 +16,8 @@ export class LoginComponent implements OnInit {
   invalidLogin: boolean;
 
   form = new FormGroup({
-    email: new FormControl("", [Validators.required]),
-    password: new FormControl("", [Validators.required])
+    email: new FormControl("", [Validators.email, Validators.required]),
+    password: new FormControl("", Validators.required)
   });
 
   constructor(
@@ -28,6 +28,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     AOS.init({});
+  }
+
+  get email() {
+    return this.form.get("email");
+  }
+
+  get password() {
+    return this.form.get("password");
   }
 
   signIn() {

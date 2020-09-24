@@ -1,166 +1,149 @@
-<div class="site-wrap">
-  <div
-    class="site-blocks-cover"
-    data-aos="fade"
-    data-aos-duration="1000"
-    data-aos-delay="800"
-    data-aos-easing="slide"
-    data-aos-once="true"
-  >
-    <div class="container-fluid">
-      <div class="row align-items-center">
-        <div class="col-lg-7 text-center">
-          <div style="margin-bottom: 0" class="show-when-minimized">
-            <h2
-              style="font-size:xx-large; color: white;"
-              class="font-weight-bold"
-            >
-              Let's get you set up!
-            </h2>
-            <p style="color: white;">It takes only a few minutes...</p>
-            <hr style="background-color: gainsboro; margin-top: 0" />
-          </div>
-          <div
-            style="border-right: white solid 1px; margin-top: 0;"
-            class="featured-hero-product w-100"
-          >
-            <br />
-            <div class="container">
-              <div class="cntr">
-                <div class="cntr-innr">
-                  <form
-                    class="form-signup"
-                    [formGroup]="form"
-                    (ngSubmit)="form.valid && signUp()"
-                  >
-                    <div
-                      *ngIf="form.touched && form.invalid"
-                      class="alert alert-danger"
-                    >
-                      Please complete all the fields!
-                    </div>
-                    <div class="row no-gutters">
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text rounded-pill">
-                            <fa-icon [icon]="faUser"></fa-icon>
-                          </span>
-                        </div>
-                        <div class="col">
-                          <label for="inputFirstName" class="sr-only"
-                            >First Name</label
-                          >
-                          <input
-                            type="text"
-                            id="inputFirstName"
-                            formControlName="firstname"
-                            class="form-control rounded-pill"
-                            placeholder="Enter your first name"
-                            autofocus
-                          />
-                        </div>
-
-                        <div class="col">
-                          <label for="inputLastName" class="sr-only"
-                            >Last Name</label
-                          >
-                          <input
-                            type="text"
-                            id="inputLastName"
-                            formControlName="lastname"
-                            class="form-control rounded-pill"
-                            placeholder="Enter your last name"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
+<div
+  class="site-section"
+  data-aos="fade"
+  data-aos-duration="1000"
+  data-aos-delay="800"
+  data-aos-easing="slide"
+  data-aos-once="true"
+>
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-lg-8 text-center">
+        <div class="show-when-minimized">
+          <h2 class="font-weight-bold">
+            Let's get you set up!
+          </h2>
+          <p>
+            It just takes only a few minutes...
+          </p>
+          <hr />
+        </div>
+        <div class="featured-hero-product w-100">
+          <br />
+          <div class="container">
+            <div class="cntr">
+              <div class="cntr-innr">
+                <form
+                  class="form-signup"
+                  [formGroup]="form"
+                  (ngSubmit)="form.valid && signUp()"
+                >
+                  <div class="row no-gutters">
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text rounded-pill">
-                          <fa-icon [icon]="faEnvelope"></fa-icon>
+                          <fa-icon [icon]="faUser"></fa-icon>
                         </span>
                       </div>
                       <div class="col">
-                        <label for="inputEmail" class="sr-only"
-                          >Email Address</label
+                        <label for="inputFirstName" class="sr-only"
+                          >First Name</label
                         >
                         <input
-                          type="email"
-                          id="inputEmail"
-                          formControlName="email"
+                          type="text"
+                          id="inputFirstName"
+                          formControlName="firstname"
                           class="form-control rounded-pill"
-                          placeholder="Enter your email address"
+                          placeholder="Enter your first name"
+                          autofocus
+                        />
+                      </div>
+
+                      <div class="col">
+                        <label for="inputLastName" class="sr-only"
+                          >Last Name</label
+                        >
+                        <input
+                          type="text"
+                          id="inputLastName"
+                          formControlName="lastname"
+                          class="form-control rounded-pill"
+                          placeholder="Enter your last name"
                         />
                       </div>
                     </div>
+                  </div>
 
-                    <div class="row no-gutters">
-                      <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text rounded-pill">
-                            <fa-icon [icon]="faKey"></fa-icon>
-                          </span>
-                        </div>
-                        <div class="col">
-                          <label for="inputPassword" class="sr-only"
-                            >Password</label
-                          >
-                          <input
-                            type="password"
-                            id="inputPassword"
-                            formControlName="password"
-                            class="form-control rounded-pill"
-                            placeholder="Enter a password"
-                          />
-                        </div>
-                        <div class="col">
-                          <label for="inputPasswordAgain" class="sr-only"
-                            >Re-Enter Password</label
-                          >
-                          <input
-                            type="password"
-                            id="inputPasswordAgain"
-                            formControlName="reEnterPassword"
-                            class="form-control rounded-pill"
-                            placeholder="Re-enter the password"
-                          />
-                        </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text rounded-pill">
+                        <fa-icon [icon]="faEnvelope"></fa-icon>
+                      </span>
+                    </div>
+                    <div class="col">
+                      <label for="inputEmail" class="sr-only"
+                        >Email Address</label
+                      >
+                      <input
+                        type="email"
+                        id="inputEmail"
+                        formControlName="email"
+                        class="form-control rounded-pill"
+                        placeholder="Enter your email address"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row no-gutters">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text rounded-pill">
+                          <fa-icon [icon]="faKey"></fa-icon>
+                        </span>
+                      </div>
+                      <div class="col">
+                        <label for="inputPassword" class="sr-only"
+                          >Password</label
+                        >
+                        <input
+                          type="password"
+                          id="inputPassword"
+                          formControlName="password"
+                          class="form-control rounded-pill"
+                          placeholder="Enter a password"
+                        />
+                      </div>
+                      <div class="col">
+                        <label for="inputPasswordAgain" class="sr-only"
+                          >Re-Enter Password</label
+                        >
+                        <input
+                          type="password"
+                          id="inputPasswordAgain"
+                          formControlName="reEnterPassword"
+                          class="form-control rounded-pill"
+                          placeholder="Re-enter the password"
+                        />
                       </div>
                     </div>
-                    <button
-                      [disabled]="form.invalid"
-                      class="btn btn-lg btn-success btn-block rounded-pill"
-                      type="submit"
-                    >
-                      Sign Up
-                    </button>
-                  </form>
-                </div>
+                  </div>
+                  <button
+                    [disabled]="form.invalid"
+                    class="btn btn-lg btn-success btn-block rounded-pill"
+                    type="submit"
+                  >
+                    Sign Up
+                  </button>
+                </form>
               </div>
             </div>
           </div>
         </div>
-        <div
-          class="col-lg-5 text-center"
-          style="pointer-events: none; z-index: -5"
-        >
-          <img
-            style="width: 40%; height: 40%;"
-            src="assets/images/user.png"
-            alt="Image"
-            class="img-fluid img-1"
-          />
-          <br />
-          <br />
-          <h2
-            style="font-size:xx-large; color: white;"
-            class="font-weight-bold"
-          >
-            Let's get you set up!
-          </h2>
-          <p style="color: white;">It takes only a few minutes...</p>
-        </div>
+      </div>
+      <div class="col-lg-4 text-center signup-poster">
+        <img
+          src="assets/images/user.png"
+          alt="Image"
+          class="img-fluid signup-poster-image"
+        />
+        <br />
+        <br />
+        <h2 class="font-weight-bold">
+          Let's get you set up!
+        </h2>
+        <p>
+          It just takes only a few minutes...
+        </p>
       </div>
     </div>
   </div>

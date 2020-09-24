@@ -1,85 +1,84 @@
-<div class="site-wrap">
-  <div
-    class="site-blocks-cover"
-    style="background-color: gainsboro"
-    data-aos="fade"
-    data-aos-duration="1000"
-    data-aos-delay="800"
-    data-aos-easing="slide"
-    data-aos-once="true"
-  >
-    <div class="site-section" style="margin-top: 80px;">
-      <div class="container">
-        <div>
-          <div class="title-section text-center">
-            <h1 style="margin-bottom: 0">Sign In</h1>
-            <h2 class="text-uppercase" style="margin-bottom: 0">
-              for the best content and a personalized experience!
-            </h2>
-            <hr style="background-color: gainsboro; margin-top: 0" />
-            <form class="form-signin" [formGroup]="form" (ngSubmit)="signIn()">
-              <div *ngIf="invalidLogin" class="alert alert-danger">
-                Invalid username and/or password.
-              </div>
-              <div
-                *ngIf="form.touched && form.invalid"
-                class="alert alert-danger"
-              >
-                Please complete all the fields!
-              </div>
-
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text rounded-pill">
-                    <fa-icon [icon]="faEnvelope"></fa-icon>
-                  </span>
-                </div>
-                <label for="inputEmail" class="sr-only">Email Address</label>
-                <input
-                  type="email"
-                  id="inputEmail"
-                  formControlName="email"
-                  class="form-control rounded-pill"
-                  placeholder="Enter your email address"
-                  autofocus
-                />
-              </div>
-
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text rounded-pill">
-                    <fa-icon [icon]="faKey"></fa-icon>
-                  </span>
-                </div>
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input
-                  type="password"
-                  id="inputPassword"
-                  formControlName="password"
-                  class="form-control rounded-pill"
-                  placeholder="Enter your password"
-                />
-              </div>
-              <button
-                class="btn btn-lg btn-primary btn-block rounded-pill"
-                type="submit"
-              >
-                Sign in
-              </button>
-            </form>
-
-            <hr style="background-color: gainsboro" />
-            <h2>
-              No Account? No worries! Join with us below!
-            </h2>
-            <button
-              class="btn btn-xm btn-success btn-block rounded-pill"
-              routerLink="/signup"
-            >
-              Sign Up
-            </button>
+<div
+  class="site-section"
+  data-aos="fade"
+  data-aos-duration="1000"
+  data-aos-delay="800"
+  data-aos-easing="slide"
+  data-aos-once="true"
+>
+  <div class="container">
+    <div>
+      <div class="title-section text-center">
+        <h1>Sign In</h1>
+        <h2 class="text-uppercase">
+          for the best content and a personalized experience!
+        </h2>
+        <hr />
+        <form class="form-signin" [formGroup]="form" (ngSubmit)="signIn()">
+          <div *ngIf="invalidLogin" class="alert alert-danger">
+            Invalid username and/or password.
           </div>
-        </div>
+
+          <div class="form-group input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text rounded-pill">
+                <fa-icon [icon]="faEnvelope"></fa-icon>
+              </span>
+            </div>
+            <label for="inputEmail" class="sr-only">Email Address</label>
+            <input
+              type="email"
+              id="inputEmail"
+              formControlName="email"
+              class="form-control rounded-pill"
+              placeholder="Enter your email address"
+              autofocus
+            />
+          </div>
+          <div *ngIf="email.touched && email.invalid">
+            <div *ngIf="email.errors.required" class="alert alert-danger">
+              Please provide a username!
+            </div>
+          </div>
+
+          <div class="form-group input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text rounded-pill">
+                <fa-icon [icon]="faKey"></fa-icon>
+              </span>
+            </div>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input
+              type="password"
+              id="inputPassword"
+              formControlName="password"
+              class="form-control rounded-pill"
+              placeholder="Enter your password"
+            />
+          </div>
+          <div *ngIf="password.touched && password.invalid">
+            <div *ngIf="password.errors.required" class="alert alert-danger">
+              Please provide a password!
+            </div>
+          </div>
+          <button
+            class="btn btn-lg btn-primary btn-block rounded-pill"
+            type="submit"
+          >
+            Sign in
+          </button>
+        </form>
+
+        <hr />
+        <h2>
+          No Account? No worries! Join with us below!
+        </h2>
+        <button
+          class="btn btn-xm btn-success btn-block rounded-pill"
+          routerLink="/signup"
+        >
+          Sign Up
+        </button>
       </div>
     </div>
   </div>

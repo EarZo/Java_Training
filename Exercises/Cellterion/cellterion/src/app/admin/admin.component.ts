@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { OrderService } from "../services/order.service";
+import * as AOS from "aos";
 
 @Component({
   selector: "app-admin",
@@ -12,6 +13,7 @@ export class AdminComponent implements OnInit {
   constructor(private orderService: OrderService) {}
 
   ngOnInit(): void {
+    AOS.init({});
     this.orderService.getOrders().subscribe(orders => (this.orders = orders));
   }
 }

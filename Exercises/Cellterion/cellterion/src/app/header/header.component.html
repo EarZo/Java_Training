@@ -57,7 +57,10 @@
               <a (click)="authService.logout()">Logout</a>
             </li>
             <li class="has-children" routerLinkActive="active current">
-              <a>Featured Brands</a>
+              <a>
+                Featured Brands
+                <fa-icon [icon]="faChevronDown"></fa-icon>
+              </a>
               <ul class="dropdown">
                 <li
                   routerLinkActive="active current"
@@ -99,7 +102,10 @@
             </li>
 
             <li class="has-children" routerLinkActive="active current">
-              <a>Smartphone Dealers</a>
+              <a>
+                Smartphone Dealers
+                <fa-icon [icon]="faChevronDown"></fa-icon>
+              </a>
               <ul class="dropdown">
                 <li
                   routerLinkActive="active current"

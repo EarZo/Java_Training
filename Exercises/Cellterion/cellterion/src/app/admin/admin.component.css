@@ -1,0 +1,35 @@
+hr {
+  background-color: gainsboro;
+}
+
+.site-section h1,
+.site-section h2 {
+  font-size: 50px;
+  font-weight: 900;
+  margin-bottom: 0;
+  color: black;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .site-section h1 {
+    font-size: 70px;
+  }
+}
+
+.site-section h2 {
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.container {
+  margin-top: 80px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-top: 100px;
+  }
+}

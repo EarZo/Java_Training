@@ -1,5 +1,39 @@
-<h1>Admin</h1>
-<h2>Orders</h2>
-<ul>
-  <li *ngFor="let order of orders">{{ order }}</li>
-</ul>
+<div
+  class="site-section"
+  data-aos="fade"
+  data-aos-duration="1000"
+  data-aos-delay="800"
+  data-aos-easing="slide"
+  data-aos-once="true"
+>
+  <div class="container">
+    <div class="title-section text-center">
+      <h1>Admin</h1>
+      <hr />
+      <h2 class="text-uppercase">
+        Orders
+      </h2>
+    </div>
+    <div class="table-responsive">
+      <table
+        class="table table-hover table-dark text-center"
+        data-aos="zoom-in-up"
+        data-aos-duration="2000"
+        data-aos-delay="2000"
+      >
+        <thead>
+          <tr>
+            <th scope="col">Order number</th>
+            <th scope="col">Order Capacity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <th scope="row">#{{ order }}</th>
+            <td>{{ order }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

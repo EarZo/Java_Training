@@ -17,7 +17,6 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./smartphone-details.component.css"]
 })
 export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
-  private smartphoneId: number;
   public destroyed = new Subject<any>();
   smartphoneDetails: any;
   smartphoneCameras: Array<any>;
@@ -90,10 +89,6 @@ export class SmartphoneDetailsComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    this.latestSmartphonesService.currentSmartphoneId.subscribe(response => {
-      this.smartphoneId = response;
-    });
-
     this.smartphoneDetailsService.getAll().subscribe(
       response => {
         this.smartphoneDetails = response;

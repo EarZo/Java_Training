@@ -1,6 +1,7 @@
 package com.cellterion.userservice.security;
 
 import com.auth0.jwt.JWT;
+import com.cellterion.userservice.model.CustomUserDetailsImpl;
 import com.cellterion.userservice.model.WebsiteUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -50,8 +51,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
+
         String token = JWT.create()
-                .withSubject(((WebsiteUser) auth.getPrincipal()).getUsername())
+                .withSubject(((CustomUserDetailsImpl) auth.getPrincipal()).getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(SECRET.getBytes()));
 

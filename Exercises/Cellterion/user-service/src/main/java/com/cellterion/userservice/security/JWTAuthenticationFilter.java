@@ -22,6 +22,7 @@ import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 import static com.cellterion.userservice.security.SecurityConstants.*;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
     private AuthenticationManager authenticationManager;
 
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
@@ -38,8 +39,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             credentials.getUsername(),
-                            credentials.getPassword(),
-                            new ArrayList<>())
+                            credentials.getPassword())
             );
         } catch (IOException e) {
             throw new RuntimeException(e);

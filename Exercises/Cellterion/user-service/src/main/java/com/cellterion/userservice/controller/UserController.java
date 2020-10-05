@@ -25,6 +25,11 @@ public class UserController {
     @PostMapping("/sign-up")
     public void signUp(@RequestBody WebsiteUser websiteUser) {
         websiteUser.setPassword(bCryptPasswordEncoder.encode(websiteUser.getPassword()));
+        websiteUser.setEnabled(true);
+        websiteUser.setAccountNonLocked(true);
+        websiteUser.setAccountNonExpired(true);
+        websiteUser.setCredentialsNonExpired(true);
+
         userRepository.save(websiteUser);
     }
 }

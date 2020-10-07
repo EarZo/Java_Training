@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cellterion</groupId>
-	<artifactId>websiteUser-service</artifactId>
+	<artifactId>user-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>websiteUser-service</name>
+	<name>user-service</name>
 	<description>User-Service for Cellterion</description>
 
 	<properties>

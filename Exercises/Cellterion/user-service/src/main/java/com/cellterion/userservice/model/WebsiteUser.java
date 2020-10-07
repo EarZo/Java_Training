@@ -17,6 +17,7 @@ public @Data @NoArgsConstructor class WebsiteUser {
     private String password;
     private String firstName;
     private String lastName;
+    private boolean admin;
     private boolean enabled;
     private boolean accountNonLocked;
     private boolean accountNonExpired;
@@ -32,6 +33,7 @@ public @Data @NoArgsConstructor class WebsiteUser {
         this.accountNonLocked = websiteUser.isAccountNonLocked();
         this.accountNonExpired = websiteUser.isAccountNonExpired();
         this.credentialsNonExpired = websiteUser.isCredentialsNonExpired();
+        this.roles = websiteUser.getRoles();
     }
 
     @ManyToMany(fetch = FetchType.EAGER)

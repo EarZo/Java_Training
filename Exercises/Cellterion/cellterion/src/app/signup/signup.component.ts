@@ -1,12 +1,10 @@
+import { SignupService } from './signup.service';
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import {
-  faCoffee,
-  faEnvelope,
-  faKey,
-  faUser
-} from "@fortawesome/free-solid-svg-icons";
+import {faEnvelope, faKey, faUser} from "@fortawesome/free-solid-svg-icons";
 import * as AOS from "aos";
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-signup",
@@ -26,13 +24,35 @@ export class SignupComponent implements OnInit {
     reEnterPassword: new FormControl("", [Validators.required])
   });
 
-  constructor() {}
+  newUser = {
+    firstname: String,
+    lastname: String,
+    username: String,
+    password: String,
+    admin: false
+  }
+
+  constructor(
+    private signupService : SignupService,
+    private router: Router,
+    private toastr: ToastrService
+    ) {}
 
   ngOnInit(): void {
     AOS.init({});
   }
 
   signUp() {
-    console.log(this.form.value);
+    this.newUser.firstname = this.form.controls["firstname"].value;
+    this.newUser.lastname = this.form.controls["lastname"].value;
+    this.newUser.username = this.form.controls["email"].value;
+    this.newUser.password = this.form.controls["password"].value;
+
+    this.signupService.create(this.newUser).subscribe(result => {
+      console.log(result);
+    });
+
+    this.toastr.info("Registration successful!", "Welcome to the Cellterion™ family!");
+    this.router.navigate(["/login"]);
   }
 }

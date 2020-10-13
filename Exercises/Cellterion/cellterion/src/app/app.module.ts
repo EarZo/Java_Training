@@ -1,3 +1,6 @@
+import { MatInputModule } from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 import { AppErrorHandler } from "./common/app-error-handler";
 import { BrowserModule, Title } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -82,7 +85,10 @@ export function tokenGetter() {
     CarouselModule,
     SlickCarouselModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },

@@ -9,6 +9,11 @@ hr {
   background-size: cover;
 }
 
+.form-field {
+  width: 100%;
+  background-color: aliceblue;
+}
+
 .site-section h1,
 .site-section h2 {
   font-size: 50px;
@@ -44,9 +49,9 @@ hr {
 
 /* Validation */
 
-.form-control.ng-touched.ng-invalid {
+/* .form-control.ng-touched.ng-invalid {
   border: 1px solid red;
   box-shadow: 0 0 10px red;
-}
+} */
 
 /* Validation */

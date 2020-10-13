@@ -16,10 +16,11 @@ export class AuthService {
   ) {}
 
   login(credentials) {
-    return this.http.post<any>("/api/authenticate", credentials).pipe(
+    return this.http.post<any>("http://localhost:8081/login", credentials, {observe: 'response'}).pipe(
       map(response => {
-        if (response && response.token) {
-          localStorage.setItem("token", response.token);
+        console.log(response.headers.get('Authorization'));
+        if (response && response.headers.get('Authorization')) {
+          localStorage.setItem("token", response.headers.get('Authorization'));
           return true;
         }
         return false;

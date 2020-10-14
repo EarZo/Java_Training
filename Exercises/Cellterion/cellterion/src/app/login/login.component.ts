@@ -44,6 +44,10 @@ export class LoginComponent implements OnInit {
     this.form.controls.email.setValue('');
   }
 
+  clearPassword(){
+    this.form.controls.password.setValue('');
+  }
+
   signIn() {
     this.user.username = this.form.controls["email"].value;
     this.user.password = this.form.controls["password"].value;

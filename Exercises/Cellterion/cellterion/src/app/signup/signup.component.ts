@@ -1,7 +1,6 @@
 import { SignupService } from './signup.service';
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import {faEnvelope, faKey, faUser} from "@fortawesome/free-solid-svg-icons";
 import * as AOS from "aos";
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -12,10 +11,6 @@ import { Router } from '@angular/router';
   styleUrls: ["./signup.component.css"]
 })
 export class SignupComponent implements OnInit {
-  faEnvelope = faEnvelope;
-  faKey = faKey;
-  faUser = faUser;
-
   form = new FormGroup({
     firstname: new FormControl("", [Validators.required]),
     lastname: new FormControl("", [Validators.required]),
@@ -40,6 +35,10 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     AOS.init({});
+  }
+
+  get email(){
+    return this.form.get("email");
   }
 
   signUp() {

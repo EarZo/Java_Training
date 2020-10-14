@@ -2,16 +2,34 @@ hr {
   background-color: gainsboro;
 }
 
-.site-section {
-  background-image: url("src/assets/images/background.jpg");
+.bg {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url("src/assets/images/background-1.jpg");
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position: center;
   background-size: cover;
+}
+
+.form-group {
+  padding: 10px 30px 10px 30px;
+  background: rgba(25, 25, 25, 0.2);
+}
+
+input,
+mat-label {
+  margin-left: 10px;
 }
 
 .form-field {
   width: 100%;
-  background-color: aliceblue;
 }
 
 .site-section h1,

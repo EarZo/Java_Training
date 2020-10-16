@@ -42,6 +42,12 @@
     max-width: 100%;
     height: auto;
   }
+
+  .banner h4,
+  .banner .search_hint,
+  .banner .currency_hint {
+    font-size: 0.6rem;
+  }
 }
 
 .item {

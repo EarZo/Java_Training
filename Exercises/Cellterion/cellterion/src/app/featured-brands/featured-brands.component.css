@@ -1,3 +1,18 @@
+.container-fluid {
+  padding: 30px;
+  background-image: url("src/assets/images/background-1.jpg");
+  height: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+hr {
+  background-color: gainsboro;
+  margin-top: 0;
+}
+
 .product {
   cursor: pointer;
 }

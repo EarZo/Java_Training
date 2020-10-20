@@ -39,13 +39,19 @@
                     <td>
                       <mat-form-field class="form-field">
                         <mat-label>First Name</mat-label>
-                        <input matInput>
+                        <input [formControl]="firstname" matInput>
+                        <mat-error *ngIf="firstname.hasError('required')">
+                          Please fill out this field!
+                        </mat-error>
                       </mat-form-field>
                     </td>
                     <td>
                       <mat-form-field class="form-field">
                         <mat-label>Last Name</mat-label>
-                        <input matInput>
+                        <input [formControl]="lastname" matInput>
+                        <mat-error *ngIf="lastname.hasError('required')">
+                          Please fill out this field!
+                        </mat-error>
                       </mat-form-field>
                     </td>
                   </tr>
@@ -61,7 +67,10 @@
                     <td>
                       <mat-form-field class="form-field">
                         <mat-label>Email Address</mat-label>
-                        <input matInput type="text" [formControl]="email" placeholder="Ex. name@domain.com">
+                        <input matInput type="email" [formControl]="email" placeholder="Ex. name@domain.com">
+                        <mat-error *ngIf="email.hasError('required')">
+                          Please fill out this field!
+                        </mat-error>
                         <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
                           Please enter a valid email address
                         </mat-error>
@@ -80,13 +89,19 @@
                     <td>
                       <mat-form-field class="form-field">
                         <mat-label>Password</mat-label>
-                        <input matInput>
+                        <input type="password" [formControl]="password" matInput>
+                        <mat-error *ngIf="password.hasError('required')">
+                          Please fill out this field!
+                        </mat-error>
                       </mat-form-field>
                     </td>
                     <td>
                       <mat-form-field class="form-field">
                         <mat-label>Re-enter the password</mat-label>
-                        <input matInput>
+                        <input type="password" [formControl]="reEnterPassword" matInput>
+                        <mat-error *ngIf="reEnterPassword.hasError('required')">
+                          Please fill out this field!
+                        </mat-error>
                       </mat-form-field>
                     </td>
                   </tr>

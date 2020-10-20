@@ -37,8 +37,24 @@ export class SignupComponent implements OnInit {
     AOS.init({});
   }
 
+  get firstname(){
+    return this.form.get("firstname");
+  }
+  
+  get lastname(){
+    return this.form.get("lastname");
+  }
+  
   get email(){
     return this.form.get("email");
+  }
+  
+  get password(){
+    return this.form.get("password");
+  }
+  
+  get reEnterPassword(){
+    return this.form.get("reEnterPassword");
   }
 
   signUp() {

@@ -1,3 +1,4 @@
+import { UnauthorizedError } from './../common/unauthorized-error';
 import { AppError } from "./../common/app-error";
 import { BadInputError } from "../common/bad-input-error";
 import { NotFoundError } from "./../common/not-found-error";
@@ -47,8 +48,10 @@ export class DataService {
   private handleError(error: Response) {
     if (error.status === 400) {
       return throwError(new BadInputError(error));
-    } else if (error.status === 404) {
-      return throwError(new NotFoundError());
+    } else if(error.status === 403){
+      return throwError(new UnauthorizedError(error));
+    }else if (error.status === 404) {
+      return throwError(new NotFoundError(error));
     } else {
       return throwError(new AppError(error));
     }

@@ -5,7 +5,7 @@ import { AppErrorHandler } from "./common/app-error-handler";
 import { BrowserModule, Title } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ErrorHandler, NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HttpClientXsrfModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { JwtModule } from "@auth0/angular-jwt";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
@@ -71,6 +71,10 @@ export function tokenGetter() {
     ReactiveFormsModule,
     FontAwesomeModule,
     HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-XSRF-TOKEN'
+    }),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter

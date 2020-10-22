@@ -64,10 +64,8 @@ export class SignupComponent implements OnInit {
     this.newUser.password = this.form.controls["password"].value;
 
     this.signupService.create(this.newUser).subscribe(result => {
-      console.log(result);
+      this.toastr.info("Registration successful!", "Welcome to the Cellterion™ family!");
+      this.router.navigate(["/login"]);
     });
-
-    this.toastr.info("Registration successful!", "Welcome to the Cellterion™ family!");
-    this.router.navigate(["/login"]);
   }
 }

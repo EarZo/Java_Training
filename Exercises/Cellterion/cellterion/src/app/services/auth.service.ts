@@ -19,8 +19,10 @@ export class AuthService {
     return this.http.post<any>("http://localhost:8081/login", credentials, {observe: 'response'}).pipe(
       map(response => {
         console.log(response.headers.get('Authorization'));
+        console.log(response.headers.get('XSRF-TOKEN'));
         if (response && response.headers.get('Authorization')) {
           localStorage.setItem("token", response.headers.get('Authorization'));
+          console.log(new JwtHelperService().decodeToken(localStorage.getItem("token")));
           return true;
         }
         return false;

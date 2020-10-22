@@ -29,6 +29,7 @@ public @Data @NoArgsConstructor class WebsiteUser {
         this.password = websiteUser.getPassword();
         this.firstName = websiteUser.getFirstName();
         this.lastName = websiteUser.getLastName();
+        this.admin = websiteUser.isAdmin();
         this.enabled = websiteUser.isEnabled();
         this.accountNonLocked = websiteUser.isAccountNonLocked();
         this.accountNonExpired = websiteUser.isAccountNonExpired();
